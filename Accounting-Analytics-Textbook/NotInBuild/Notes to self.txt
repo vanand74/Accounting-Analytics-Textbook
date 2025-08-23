@@ -27,6 +27,15 @@ GETTING STARTED
 
 ---------------
 
+UPDATING THE BOOK
+
+* Pull the most recent version from GitHub using GitHub desktop.
+* Make changes locally.
+* Rebuild the book (jb build <book folder>)
+* Run the command (ghp-import -n -p -f _build/html) in the appropriate folder.
+
+---------------
+
 NOTES
 
 There are two ways to build. You can configure GitHub actions to build in the cloud every time you push to the main branch. Alternatively, you can build locally and use ghp-import to push the built files. I chose the latter options as I think it's easier. 
