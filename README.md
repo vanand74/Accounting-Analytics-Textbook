@@ -1,8 +1,8 @@
 # Data Analytics for Accountants
 
-This is a data analytics textbook for undergraduate accounting students in the course ACC 3323, Data Analytics for Accounting at Texas State University. 
+This is a data analytics textbook for undergraduate accounting students in the course ACC 3323, Data Analytics for Accounting, at Texas State University. 
 
-The book covers SQL, Excel, and Tableau.
+The book teaches the process of analytics through SQL. It also shows students how to apply these skills in Excel, and concludes with a unit on visualization in Tableau.
 
 ## To View the book
 You can read the book at [https://vanand74.github.io/Accounting-Analytics-Textbook/](https://vanand74.github.io/Accounting-Analytics-Textbook/).

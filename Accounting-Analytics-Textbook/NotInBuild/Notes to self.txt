@@ -1,0 +1,36 @@
+I found the Jupyter Book documentation most helpful (https://jupyterbook.org/en/stable/intro.html). Almost everything I needed was in the "Create your first book" section. 
+
+These websites were somewhat useful:
+https://medium.com/the-power-of-ai/create-beautiful-reports-and-books-with-jupyter-book-3d99c04f70a8
+https://chrisholdgraf.com/jupyter-book/intro.html
+
+---------------
+
+GETTING STARTED
+
+* Install the Python libraries jupyter-book and ghp-import (see the docs)
+* Create a GitHub repository.
+	- Create a README.
+	- Use a license (I used MIT).
+	- (**) Add a .gitignore
+* Clone the repository locally.
+* Update the .gitignore to exclude certain file types and directories (esp. _build). See the .gitignore file in this repository for an example. I used Google Gemini to help with this.
+* Create a subfolder in the repository with the same name as the repository (Accounting-Analytics-Textbook).
+* Create a sample book using the command jb create mynewbook/ . I did this in my Temp folder.
+* Build the new book using the command jb build mynewbook/
+* Copy all files over to the repository folder.
+* Update the _config.yml file. Use the one in this repository as an example.
+* Commit the files and push to the GitHub repository (the.gitignore will tell it not to upload the _build folder).
+* Run the command ghp-import -n -p -f _build/html in the subfolder of the repository that contains _build. This will create a branch called gh-pages and automatically configure the Pages settings in the repository. This will get the build going. 
+	- Note that this is out of order of the official instructions. But those instructions
+	  do not make sense as you cannot set the branch without first creating it!
+
+---------------
+
+NOTES
+
+There are two ways to build. You can configure GitHub actions to build in the cloud every time you push to the main branch. Alternatively, you can build locally and use ghp-import to push the built files. I chose the latter options as I think it's easier. 
+
+The instructions in the "Create your first book" tutorial of the Jupyter Book documentation does not do a good job of explaining this. What's worse, there's another section (Build and publish outputs >> Publish your book on the internet) that assumes you will use GitHub Actions. 
+
+The order of instructions in the "Create your first book" tutorial of the Jupyter Book documentation does not make sense. They tell you to change a GitHub setting to point to a branch before that branch has been created. That's why I changed the order.
