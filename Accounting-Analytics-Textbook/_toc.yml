@@ -3,3 +3,8 @@
 
 format: jb-book
 root: intro
+parts: 
+- caption: "Unit 1: Introduction to Python and Programming"
+  chapters:
+  - file: "Unit 1/1-1 The Process of Analytics"
+  - file: "Unit 1/1-2 Tabular Data"
