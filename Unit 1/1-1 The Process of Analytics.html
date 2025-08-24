@@ -1,0 +1,1911 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>The Process of Analytics &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 1/1-1 The Process of Analytics';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tabular Data" href="1-2%20Tabular%20Data.html" />
+    <link rel="prev" title="Introduction and Welcome" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/BookLogo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: Introduction to Python and Programming</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Process of Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1-2%20Tabular%20Data.html">Tabular Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 1/1-1 The Process of Analytics.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 1/1-1 The Process of Analytics.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Process of Analytics</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-programming">What is Programming?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-between-programming-and-cooking">Similarities between programming and cooking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-the-process-of-analytics">Programming and the Process of Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-before-you-act-excel-vs-sql">Thinking before you act: Excel vs. SQL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-to-illustrate-the-process-of-data-analytics">Examples to Illustrate the Process of Data Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-analyzing-cost-of-living-by-state">Example 1: Analyzing Cost of Living by State</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-data">Understanding the data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-of-two-states-has-the-higher-food-costs">Which of two states has the higher food costs?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-state-has-the-highest-food-costs">Which state has the highest food costs?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-state-has-the-lowest-food-costs">Which state has the lowest food costs?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-state-has-the-lowest-overall-cost-of-living-which-has-the-highest">Which state has the lowest overall cost of living? Which has the highest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#i-only-care-about-the-lower-48-and-dc-can-i-repeat-the-analysis-for-just-those">I only care about the “Lower 48” and DC. Can I repeat the analysis for just those?</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#highest-grocery-costs-in-the-lower-48-dc">Highest grocery costs in the “Lower 48” + DC</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#highest-overall-costs-in-the-lower-48-dc">Highest overall costs in the “Lower 48” + DC</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-employee-spending-report">Example 2: Employee Spending Report</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-stock-returns">Example 3: Stock Returns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-summary-and-takeaways">Overall Summary and Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-process-of-analytics">
+<h1>The Process of Analytics<a class="headerlink" href="#the-process-of-analytics" title="Permalink to this heading">#</a></h1>
+<p>Data analytics is the process of using data to gain insights into business decisions. This process is independent of software. In fact, we can learn this process with pencil and paper! In this chapter, you will learn how to reason through data analyses without using software. As you become more comfortable with this type of reasoning, you will apply it to writing SQL statements. Eventually, you will apply this reasoning process in Excel. Once you become adept at this process, you will find that you think before you act with data, and this will make you a powerful data analyst.</p>
+<p>Before we dive into some examples, let’s talk briefly about computer programming. Programming involves the exact same type of reasoning that you need for data analytics.</p>
+<section id="what-is-programming">
+<h2>What is Programming?<a class="headerlink" href="#what-is-programming" title="Permalink to this heading">#</a></h2>
+<p>Computers are dumb. They can only do what they are instructed to do. Thus, we humans use programming languages to tell computers what to do.</p>
+<p>A computer program is simply a set of instructions for a computer. When you write a computer program, your code is translated into instructions that the computer can understand. Programs are written in a programming language. There are many programming languages out there and each is a different way of telling a computer what to do. Over the years, programmers have created different languages, each with its advantages and disadvantages, and as a result these languages tend to evolve for different use cases. For example, PHP and JavaScript are frequently used to create websites, while C++ is often used to create games. SQL was originally developed at IBM as a way to manipulate and retrieve data stored in a relational database.<sup>[1]</sup> It is now one of the most popular programming languages worldwide.</p>
+<section id="similarities-between-programming-and-cooking">
+<h3>Similarities between programming and cooking<a class="headerlink" href="#similarities-between-programming-and-cooking" title="Permalink to this heading">#</a></h3>
+<p>A computer program is like a cooking recipe. A program is a set of steps that, when followed by a computer, performs an action that you desire. A recipe is a set of steps that, when followed, leads to a desired outcome (yummy food). Thus, programming and cooking recipes are similar in that they must be logically correct to achieve their objectives.</p>
+<p>As an example, here’s a recipe for making whipped cream, courtesy of <a class="reference external" href="https://www.foodnetwork.com/recipes/alton-brown/whipped-cream-recipe-1957526">this website</a>:</p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Obtain a metal mixing bowl, a metal whisk, 1 cup of heavy whipping cream, and 2 tablespoons of sugar.</p></li>
+<li><p>Place a metal mixing bowl and metal whisk into the freezer for 10 minutes.</p></li>
+<li><p>Remove bowl and whisk from freezer and place on kitchen countertop.</p></li>
+<li><p>Add 2 tablespoons of sugar to the bowl.</p></li>
+<li><p>Add 1 cup of heavy whipping cream to the bowl.</p></li>
+<li><p>Whisk cream and sugar mixture until stiff peaks are visible.</p></li>
+</ol>
+<hr class="docutils" />
+<p>If you begin with the correct ingredients (which are analogous to data!), and if you correctly follow the steps, you will have delicious whipped cream. If you can understand the above recipe, you can write a computer program.</p>
+</section>
+</section>
+<section id="programming-and-the-process-of-analytics">
+<h2>Programming and the Process of Analytics<a class="headerlink" href="#programming-and-the-process-of-analytics" title="Permalink to this heading">#</a></h2>
+<p>When you are faced with a business problem and some data, you must think through the steps required to transform the data into insights. What steps must be taken? Will those steps work? Will those steps provide the analysis that you are looking for? Will those steps work for all possible data values? This is the sort of reasoning that you must perform when working with data.</p>
+<section id="thinking-before-you-act-excel-vs-sql">
+<h3>Thinking before you act: Excel vs. SQL<a class="headerlink" href="#thinking-before-you-act-excel-vs-sql" title="Permalink to this heading">#</a></h3>
+<p>A computer program is just a way of writing down your steps. When you write a computer program, you must think before you act. This is not the case with Excel! In Excel, you can copy, paste, write formulas, autofill formulas, delete cells, undo your actions, and so on. You can do this through trial and error. Sometimes that is a good thing (the fancy term for it is “exploratory data analysis”). The problem is that, often, you will not be able to recall what you did! That means that you might not be able to reproduce your work (I have observed this with many students and faculty!). It also means that you cannot reason about whether your output in Excel is correct.</p>
+<p>By contrast, when you write a program in SQL, you can read it and reason about it. You can run it and reproduce the output. Importantly, if you write something incorrect, you will get an error. Thus, SQL will force a discipline on you. It will force you to learn how to think before you act with data.</p>
+</section>
+</section>
+<section id="examples-to-illustrate-the-process-of-data-analytics">
+<h2>Examples to Illustrate the Process of Data Analytics<a class="headerlink" href="#examples-to-illustrate-the-process-of-data-analytics" title="Permalink to this heading">#</a></h2>
+<p>I will now present three examples of data analyses. Each will begin with a description of a setting, and a question that needs to be answered. I will then describe the available data. I will then show a data analysis that answers the question, and discuss how I performed that analysis. When applicable, I will present a more efficient way of performing that analysis.</p>
+<section id="example-1-analyzing-cost-of-living-by-state">
+<h3>Example 1: Analyzing Cost of Living by State<a class="headerlink" href="#example-1-analyzing-cost-of-living-by-state" title="Permalink to this heading">#</a></h3>
+<p>Imagine that you are a senior in college and are searching for a job. You are open to living anywhere in the country, but decide to do some research on cost of living. You want to do this early in your search so that you can evaluate job offers. Say that you get competing job offers from companies in Florida and Texas. If you know the cost of living in those states, you can evaluate the attractiveness of the offers. If the salaries are similar, but one state has a higher cost of living, you might be worse off financially in the high-cost state.</p>
+<p>You find a dataset that provides information on the cost of living by state.<sup>[2]</sup> It turns out that measuring the cost of living is not as simple as you thought. The dataset provides an overall number (in the column <em>Index</em>, but also provides data on food, housing, utility, transportation, and health costs.</p>
+<p>Let’s dive in and do some analyses that illustrate the process of data analytics.</p>
+<section id="understanding-the-data">
+<h4>Understanding the data<a class="headerlink" href="#understanding-the-data" title="Permalink to this heading">#</a></h4>
+<p>Before we can do any analysis, we need to understand the data. Let’s begin by looking at data for two states, Texas and Florida.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>State</th>
+      <th>Index</th>
+      <th>Grocery</th>
+      <th>Housing</th>
+      <th>Utilities</th>
+      <th>Transportation</th>
+      <th>Health</th>
+      <th>Misc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Texas</td>
+      <td>91.8</td>
+      <td>95.8</td>
+      <td>80.0</td>
+      <td>103.3</td>
+      <td>92.1</td>
+      <td>98.5</td>
+      <td>96.1</td>
+    </tr>
+    <tr>
+      <td>Florida</td>
+      <td>102.0</td>
+      <td>105.1</td>
+      <td>106.0</td>
+      <td>99.3</td>
+      <td>101.2</td>
+      <td>90.3</td>
+      <td>99.9</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>There is one row for each state. Each row contains a set of numbers, one for grocery costs, one for housing costs, etc. There’s also an overall number in the column <em>Index</em>, which is a weighted average of the other numbers.</p>
+<p>Each number is normalized. That means that a state whose cost is average gets a value of 100. If a state has a number less than 100, its cost is lower than average. If a state has a number greater than 100, its cost is greater than average.</p>
+</section>
+<section id="which-of-two-states-has-the-higher-food-costs">
+<h4>Which of two states has the higher food costs?<a class="headerlink" href="#which-of-two-states-has-the-higher-food-costs" title="Permalink to this heading">#</a></h4>
+<p><strong>QUESTION:</strong> You decide to focus on two states initially, Texas and Florida. Using data from the table above, determine which state has the higher food costs.</p>
+<p><strong>ANSWER:</strong> Obviously, Florida has higher grocery costs. Its value is 105.1, while Texas’s is 95.8.</p>
+<p><strong>HOW DID I DETERMINE THAT?</strong> I just looked at the two numbers and compared them. I did not really think about it.</p>
+</section>
+<section id="which-state-has-the-highest-food-costs">
+<h4>Which state has the highest food costs?<a class="headerlink" href="#which-state-has-the-highest-food-costs" title="Permalink to this heading">#</a></h4>
+<p>You want to extend your analysis to all 50 states. Here is the data:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div style='height: 250px; overflow: auto; width: fit-content;'><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>State</th>
+      <th>Index</th>
+      <th>Grocery</th>
+      <th>Housing</th>
+      <th>Utilities</th>
+      <th>Transportation</th>
+      <th>Health</th>
+      <th>Misc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wisconsin</td>
+      <td>99.5</td>
+      <td>99.6</td>
+      <td>99.7</td>
+      <td>92.4</td>
+      <td>99.7</td>
+      <td>102.5</td>
+      <td>100.6</td>
+    </tr>
+    <tr>
+      <td>Rhode Island</td>
+      <td>109.3</td>
+      <td>99.0</td>
+      <td>111.1</td>
+      <td>137.5</td>
+      <td>96.7</td>
+      <td>100.4</td>
+      <td>110.0</td>
+    </tr>
+    <tr>
+      <td>South Dakota</td>
+      <td>97.3</td>
+      <td>103.4</td>
+      <td>94.9</td>
+      <td>87.5</td>
+      <td>100.2</td>
+      <td>104.9</td>
+      <td>97.1</td>
+    </tr>
+    <tr>
+      <td>Wyoming</td>
+      <td>97.0</td>
+      <td>101.9</td>
+      <td>91.2</td>
+      <td>90.3</td>
+      <td>91.8</td>
+      <td>97.9</td>
+      <td>102.6</td>
+    </tr>
+    <tr>
+      <td>Arkansas</td>
+      <td>90.5</td>
+      <td>95.1</td>
+      <td>79.2</td>
+      <td>92.2</td>
+      <td>92.4</td>
+      <td>85.4</td>
+      <td>97.6</td>
+    </tr>
+    <tr>
+      <td>Idaho</td>
+      <td>102.0</td>
+      <td>104.4</td>
+      <td>100.2</td>
+      <td>73.9</td>
+      <td>105.3</td>
+      <td>102.8</td>
+      <td>108.3</td>
+    </tr>
+    <tr>
+      <td>Indiana</td>
+      <td>90.8</td>
+      <td>98.0</td>
+      <td>76.0</td>
+      <td>94.2</td>
+      <td>99.4</td>
+      <td>95.2</td>
+      <td>96.1</td>
+    </tr>
+    <tr>
+      <td>Missouri</td>
+      <td>88.0</td>
+      <td>96.7</td>
+      <td>74.8</td>
+      <td>97.5</td>
+      <td>87.2</td>
+      <td>91.0</td>
+      <td>92.5</td>
+    </tr>
+    <tr>
+      <td>Vermont</td>
+      <td>113.7</td>
+      <td>106.4</td>
+      <td>130.7</td>
+      <td>114.5</td>
+      <td>101.2</td>
+      <td>113.0</td>
+      <td>106.1</td>
+    </tr>
+    <tr>
+      <td>Colorado</td>
+      <td>104.0</td>
+      <td>102.6</td>
+      <td>111.4</td>
+      <td>88.3</td>
+      <td>98.1</td>
+      <td>109.1</td>
+      <td>103.2</td>
+    </tr>
+    <tr>
+      <td>New Hampshire</td>
+      <td>110.1</td>
+      <td>98.8</td>
+      <td>116.2</td>
+      <td>120.7</td>
+      <td>103.0</td>
+      <td>106.2</td>
+      <td>109.9</td>
+    </tr>
+    <tr>
+      <td>Kansas</td>
+      <td>89.7</td>
+      <td>96.5</td>
+      <td>75.6</td>
+      <td>100.4</td>
+      <td>90.2</td>
+      <td>102.1</td>
+      <td>93.9</td>
+    </tr>
+    <tr>
+      <td>Texas</td>
+      <td>91.8</td>
+      <td>95.8</td>
+      <td>80.0</td>
+      <td>103.3</td>
+      <td>92.1</td>
+      <td>98.5</td>
+      <td>96.1</td>
+    </tr>
+    <tr>
+      <td>Minnesota</td>
+      <td>93.7</td>
+      <td>100.7</td>
+      <td>79.8</td>
+      <td>95.4</td>
+      <td>96.1</td>
+      <td>103.1</td>
+      <td>99.8</td>
+    </tr>
+    <tr>
+      <td>Utah</td>
+      <td>100.5</td>
+      <td>98.1</td>
+      <td>110.8</td>
+      <td>84.4</td>
+      <td>102.1</td>
+      <td>89.8</td>
+      <td>98.1</td>
+    </tr>
+    <tr>
+      <td>Montana</td>
+      <td>96.4</td>
+      <td>104.5</td>
+      <td>92.4</td>
+      <td>80.4</td>
+      <td>98.5</td>
+      <td>105.3</td>
+      <td>98.3</td>
+    </tr>
+    <tr>
+      <td>Washington</td>
+      <td>112.0</td>
+      <td>108.2</td>
+      <td>116.8</td>
+      <td>96.7</td>
+      <td>122.4</td>
+      <td>113.0</td>
+      <td>110.7</td>
+    </tr>
+    <tr>
+      <td>Maryland</td>
+      <td>114.9</td>
+      <td>105.1</td>
+      <td>133.8</td>
+      <td>114.4</td>
+      <td>103.6</td>
+      <td>105.4</td>
+      <td>107.9</td>
+    </tr>
+    <tr>
+      <td>California</td>
+      <td>141.6</td>
+      <td>108.8</td>
+      <td>197.8</td>
+      <td>140.7</td>
+      <td>138.7</td>
+      <td>105.4</td>
+      <td>115.8</td>
+    </tr>
+    <tr>
+      <td>Oklahoma</td>
+      <td>85.5</td>
+      <td>95.7</td>
+      <td>70.5</td>
+      <td>94.7</td>
+      <td>86.7</td>
+      <td>94.6</td>
+      <td>89.5</td>
+    </tr>
+    <tr>
+      <td>Florida</td>
+      <td>102.0</td>
+      <td>105.1</td>
+      <td>106.0</td>
+      <td>99.3</td>
+      <td>101.2</td>
+      <td>90.3</td>
+      <td>99.9</td>
+    </tr>
+    <tr>
+      <td>District of Columbia</td>
+      <td>135.2</td>
+      <td>104.5</td>
+      <td>200.8</td>
+      <td>102.5</td>
+      <td>108.0</td>
+      <td>123.6</td>
+      <td>111.3</td>
+    </tr>
+    <tr>
+      <td>Alabama</td>
+      <td>87.6</td>
+      <td>97.6</td>
+      <td>69.1</td>
+      <td>98.8</td>
+      <td>91.9</td>
+      <td>90.7</td>
+      <td>94.2</td>
+    </tr>
+    <tr>
+      <td>Nebraska</td>
+      <td>92.4</td>
+      <td>98.9</td>
+      <td>78.6</td>
+      <td>90.0</td>
+      <td>95.0</td>
+      <td>97.3</td>
+      <td>100.2</td>
+    </tr>
+    <tr>
+      <td>Alaska</td>
+      <td>127.3</td>
+      <td>130.3</td>
+      <td>131.2</td>
+      <td>132.1</td>
+      <td>115.3</td>
+      <td>142.1</td>
+      <td>122.7</td>
+    </tr>
+    <tr>
+      <td>Arizona</td>
+      <td>112.5</td>
+      <td>102.5</td>
+      <td>134.8</td>
+      <td>106.4</td>
+      <td>104.5</td>
+      <td>90.8</td>
+      <td>105.0</td>
+    </tr>
+    <tr>
+      <td>Hawaii</td>
+      <td>182.3</td>
+      <td>134.6</td>
+      <td>292.1</td>
+      <td>207.0</td>
+      <td>143.1</td>
+      <td>125.9</td>
+      <td>124.7</td>
+    </tr>
+    <tr>
+      <td>Michigan</td>
+      <td>89.8</td>
+      <td>98.9</td>
+      <td>73.9</td>
+      <td>97.4</td>
+      <td>100.6</td>
+      <td>88.4</td>
+      <td>94.3</td>
+    </tr>
+    <tr>
+      <td>Iowa</td>
+      <td>89.6</td>
+      <td>95.7</td>
+      <td>77.7</td>
+      <td>89.5</td>
+      <td>95.5</td>
+      <td>96.0</td>
+      <td>94.3</td>
+    </tr>
+    <tr>
+      <td>Illinois</td>
+      <td>94.7</td>
+      <td>98.5</td>
+      <td>84.8</td>
+      <td>97.3</td>
+      <td>100.0</td>
+      <td>102.3</td>
+      <td>98.1</td>
+    </tr>
+    <tr>
+      <td>Oregon</td>
+      <td>112.7</td>
+      <td>105.1</td>
+      <td>131.2</td>
+      <td>94.7</td>
+      <td>114.7</td>
+      <td>122.2</td>
+      <td>103.3</td>
+    </tr>
+    <tr>
+      <td>Massachusetts</td>
+      <td>145.1</td>
+      <td>102.7</td>
+      <td>215.0</td>
+      <td>158.9</td>
+      <td>103.0</td>
+      <td>139.0</td>
+      <td>114.6</td>
+    </tr>
+    <tr>
+      <td>Tennessee</td>
+      <td>90.0</td>
+      <td>96.7</td>
+      <td>81.5</td>
+      <td>87.9</td>
+      <td>89.3</td>
+      <td>85.9</td>
+      <td>95.4</td>
+    </tr>
+    <tr>
+      <td>North Carolina</td>
+      <td>97.8</td>
+      <td>97.7</td>
+      <td>94.9</td>
+      <td>94.7</td>
+      <td>92.9</td>
+      <td>110.8</td>
+      <td>100.4</td>
+    </tr>
+    <tr>
+      <td>Connecticut</td>
+      <td>113.5</td>
+      <td>101.5</td>
+      <td>120.6</td>
+      <td>137.6</td>
+      <td>103.1</td>
+      <td>112.6</td>
+      <td>109.9</td>
+    </tr>
+    <tr>
+      <td>Louisiana</td>
+      <td>93.2</td>
+      <td>96.7</td>
+      <td>84.0</td>
+      <td>81.4</td>
+      <td>97.7</td>
+      <td>95.6</td>
+      <td>100.5</td>
+    </tr>
+    <tr>
+      <td>Puerto Rico</td>
+      <td>103.4</td>
+      <td>112.4</td>
+      <td>97.5</td>
+      <td>170.7</td>
+      <td>106.4</td>
+      <td>69.5</td>
+      <td>91.8</td>
+    </tr>
+    <tr>
+      <td>New Mexico</td>
+      <td>94.2</td>
+      <td>97.9</td>
+      <td>90.2</td>
+      <td>84.1</td>
+      <td>92.5</td>
+      <td>109.3</td>
+      <td>96.6</td>
+    </tr>
+    <tr>
+      <td>Virginia</td>
+      <td>101.4</td>
+      <td>98.9</td>
+      <td>105.2</td>
+      <td>98.4</td>
+      <td>94.7</td>
+      <td>107.6</td>
+      <td>101.0</td>
+    </tr>
+    <tr>
+      <td>Ohio</td>
+      <td>95.1</td>
+      <td>99.6</td>
+      <td>86.7</td>
+      <td>97.1</td>
+      <td>99.9</td>
+      <td>99.4</td>
+      <td>97.7</td>
+    </tr>
+    <tr>
+      <td>Delaware</td>
+      <td>103.5</td>
+      <td>100.1</td>
+      <td>101.4</td>
+      <td>99.4</td>
+      <td>100.0</td>
+      <td>106.7</td>
+      <td>108.2</td>
+    </tr>
+    <tr>
+      <td>Maine</td>
+      <td>113.4</td>
+      <td>100.3</td>
+      <td>133.2</td>
+      <td>119.8</td>
+      <td>104.3</td>
+      <td>117.4</td>
+      <td>103.1</td>
+    </tr>
+    <tr>
+      <td>North Dakota</td>
+      <td>90.8</td>
+      <td>97.2</td>
+      <td>76.9</td>
+      <td>84.6</td>
+      <td>97.6</td>
+      <td>109.3</td>
+      <td>96.6</td>
+    </tr>
+    <tr>
+      <td>South Carolina</td>
+      <td>94.6</td>
+      <td>98.9</td>
+      <td>84.9</td>
+      <td>96.3</td>
+      <td>96.1</td>
+      <td>95.0</td>
+      <td>99.7</td>
+    </tr>
+    <tr>
+      <td>New Jersey</td>
+      <td>114.8</td>
+      <td>102.6</td>
+      <td>143.3</td>
+      <td>102.1</td>
+      <td>101.4</td>
+      <td>109.2</td>
+      <td>104.2</td>
+    </tr>
+    <tr>
+      <td>Georgia</td>
+      <td>91.7</td>
+      <td>97.7</td>
+      <td>79.7</td>
+      <td>102.6</td>
+      <td>97.6</td>
+      <td>94.8</td>
+      <td>94.5</td>
+    </tr>
+    <tr>
+      <td>West Virginia</td>
+      <td>88.6</td>
+      <td>96.7</td>
+      <td>71.6</td>
+      <td>92.2</td>
+      <td>96.0</td>
+      <td>94.4</td>
+      <td>95.4</td>
+    </tr>
+    <tr>
+      <td>U.S.</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>100.0</td>
+      <td>100.0</td>
+    </tr>
+    <tr>
+      <td>Nevada</td>
+      <td>99.5</td>
+      <td>102.9</td>
+      <td>111.3</td>
+      <td>88.7</td>
+      <td>114.4</td>
+      <td>85.2</td>
+      <td>89.2</td>
+    </tr>
+    <tr>
+      <td>Pennsylvania</td>
+      <td>97.5</td>
+      <td>97.4</td>
+      <td>86.8</td>
+      <td>108.5</td>
+      <td>104.5</td>
+      <td>93.7</td>
+      <td>102.5</td>
+    </tr>
+    <tr>
+      <td>Mississippi</td>
+      <td>87.3</td>
+      <td>95.9</td>
+      <td>72.5</td>
+      <td>89.7</td>
+      <td>89.5</td>
+      <td>95.7</td>
+      <td>93.2</td>
+    </tr>
+    <tr>
+      <td>New York</td>
+      <td>124.7</td>
+      <td>104.1</td>
+      <td>174.2</td>
+      <td>100.2</td>
+      <td>108.7</td>
+      <td>110.5</td>
+      <td>105.1</td>
+    </tr>
+    <tr>
+      <td>Kentucky</td>
+      <td>91.7</td>
+      <td>99.7</td>
+      <td>75.0</td>
+      <td>87.3</td>
+      <td>95.2</td>
+      <td>93.3</td>
+      <td>101.9</td>
+    </tr>
+  </tbody>
+</table></div></div></div>
+</div>
+<p><strong>QUESTION:</strong> Which state has the highest grocery costs?</p>
+<p><strong>ANSWER:</strong> Hawaii has the highest grocery costs, with a value of 134.6. This makes sense as Hawaii is an island so much of its food must be imported by boat or by plane.</p>
+<p><strong>HOW DID I DETERMINE THAT?</strong> This was difficult. I had to scroll through all rows of the dataset and keep the highest number I had seen so far in my head.</p>
+<p><strong>IS THERE A BETTER WAY?</strong> Yes. If we <em><strong>sort</strong></em> the data, we can easily see which state has the highest grocery costs. Here are the top 5 rows from the sorted list.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>State</th>
+      <th>Index</th>
+      <th>Grocery</th>
+      <th>Housing</th>
+      <th>Utilities</th>
+      <th>Transportation</th>
+      <th>Health</th>
+      <th>Misc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Hawaii</td>
+      <td>182.3</td>
+      <td>134.6</td>
+      <td>292.1</td>
+      <td>207.0</td>
+      <td>143.1</td>
+      <td>125.9</td>
+      <td>124.7</td>
+    </tr>
+    <tr>
+      <td>Alaska</td>
+      <td>127.3</td>
+      <td>130.3</td>
+      <td>131.2</td>
+      <td>132.1</td>
+      <td>115.3</td>
+      <td>142.1</td>
+      <td>122.7</td>
+    </tr>
+    <tr>
+      <td>Puerto Rico</td>
+      <td>103.4</td>
+      <td>112.4</td>
+      <td>97.5</td>
+      <td>170.7</td>
+      <td>106.4</td>
+      <td>69.5</td>
+      <td>91.8</td>
+    </tr>
+    <tr>
+      <td>California</td>
+      <td>141.6</td>
+      <td>108.8</td>
+      <td>197.8</td>
+      <td>140.7</td>
+      <td>138.7</td>
+      <td>105.4</td>
+      <td>115.8</td>
+    </tr>
+    <tr>
+      <td>Washington</td>
+      <td>112.0</td>
+      <td>108.2</td>
+      <td>116.8</td>
+      <td>96.7</td>
+      <td>122.4</td>
+      <td>113.0</td>
+      <td>110.7</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>TAKEAWAY:</strong> This is your first lesson! If you think about what you want to do with your data, there is usually a natural, and efficient, way to compute it.</p>
+<p>In this case, we sorted the data by grocery costs and then looked at the top row.</p>
+</section>
+<section id="which-state-has-the-lowest-food-costs">
+<h4>Which state has the lowest food costs?<a class="headerlink" href="#which-state-has-the-lowest-food-costs" title="Permalink to this heading">#</a></h4>
+<p>Armed with what we just learned, this is now an easy question to answer. We will simply sort the data. However, this time, we will sort a different way. We will sort so that the lowest value appears at the top.</p>
+<p>Here are the 5 states with the <em>lowest</em> grocery costs:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>State</th>
+      <th>Index</th>
+      <th>Grocery</th>
+      <th>Housing</th>
+      <th>Utilities</th>
+      <th>Transportation</th>
+      <th>Health</th>
+      <th>Misc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Arkansas</td>
+      <td>90.5</td>
+      <td>95.1</td>
+      <td>79.2</td>
+      <td>92.2</td>
+      <td>92.4</td>
+      <td>85.4</td>
+      <td>97.6</td>
+    </tr>
+    <tr>
+      <td>Oklahoma</td>
+      <td>85.5</td>
+      <td>95.7</td>
+      <td>70.5</td>
+      <td>94.7</td>
+      <td>86.7</td>
+      <td>94.6</td>
+      <td>89.5</td>
+    </tr>
+    <tr>
+      <td>Iowa</td>
+      <td>89.6</td>
+      <td>95.7</td>
+      <td>77.7</td>
+      <td>89.5</td>
+      <td>95.5</td>
+      <td>96.0</td>
+      <td>94.3</td>
+    </tr>
+    <tr>
+      <td>Texas</td>
+      <td>91.8</td>
+      <td>95.8</td>
+      <td>80.0</td>
+      <td>103.3</td>
+      <td>92.1</td>
+      <td>98.5</td>
+      <td>96.1</td>
+    </tr>
+    <tr>
+      <td>Mississippi</td>
+      <td>87.3</td>
+      <td>95.9</td>
+      <td>72.5</td>
+      <td>89.7</td>
+      <td>89.5</td>
+      <td>95.7</td>
+      <td>93.2</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>From this, we learn that Arkansas has the lowest food costs.</p>
+</section>
+<section id="which-state-has-the-lowest-overall-cost-of-living-which-has-the-highest">
+<h4>Which state has the lowest overall cost of living? Which has the highest?<a class="headerlink" href="#which-state-has-the-lowest-overall-cost-of-living-which-has-the-highest" title="Permalink to this heading">#</a></h4>
+<p>If you sort by the <em>Index</em> column, you will see that Oklahoma has the lowest overall cost of living, and Hawaii has the highest.</p>
+</section>
+<section id="i-only-care-about-the-lower-48-and-dc-can-i-repeat-the-analysis-for-just-those">
+<h4>I only care about the “Lower 48” and DC. Can I repeat the analysis for just those?<a class="headerlink" href="#i-only-care-about-the-lower-48-and-dc-can-i-repeat-the-analysis-for-just-those" title="Permalink to this heading">#</a></h4>
+<p>You think about it and decide that there is a very low chance that you will move to Alaska, Hawaii, or Puerto Rico. You decide that you want to exclude those from your analysis. You want to know, of the remaining states, which have the highest and lowest food costs, and which have the highest and lowest overall costs.</p>
+<p><strong>ANSWER – LOWEST:</strong> If we exclude AK, HI, and PR, our result for the lowest cost states does not change. That’s because these 3 were among the highest, so they do not change the results for the lowest.</p>
+<p><strong>ANSWER – HIGHEST:</strong> If we exclude AK, HI, and PR, then we find that California has the highest grocery costs, and Massachusetts has the highest overall cost of living.</p>
+<p><strong>HOW DID I DETERMINE THAT?</strong> I used our sorting trick, but first removed the rows for AK, HI, and PR from the dataset. This is called <em><strong>filtering</strong></em>.</p>
+<section id="highest-grocery-costs-in-the-lower-48-dc">
+<h5>Highest grocery costs in the “Lower 48” + DC<a class="headerlink" href="#highest-grocery-costs-in-the-lower-48-dc" title="Permalink to this heading">#</a></h5>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>State</th>
+      <th>Index</th>
+      <th>Grocery</th>
+      <th>Housing</th>
+      <th>Utilities</th>
+      <th>Transportation</th>
+      <th>Health</th>
+      <th>Misc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>California</td>
+      <td>141.6</td>
+      <td>108.8</td>
+      <td>197.8</td>
+      <td>140.7</td>
+      <td>138.7</td>
+      <td>105.4</td>
+      <td>115.8</td>
+    </tr>
+    <tr>
+      <td>Washington</td>
+      <td>112.0</td>
+      <td>108.2</td>
+      <td>116.8</td>
+      <td>96.7</td>
+      <td>122.4</td>
+      <td>113.0</td>
+      <td>110.7</td>
+    </tr>
+    <tr>
+      <td>Vermont</td>
+      <td>113.7</td>
+      <td>106.4</td>
+      <td>130.7</td>
+      <td>114.5</td>
+      <td>101.2</td>
+      <td>113.0</td>
+      <td>106.1</td>
+    </tr>
+    <tr>
+      <td>Maryland</td>
+      <td>114.9</td>
+      <td>105.1</td>
+      <td>133.8</td>
+      <td>114.4</td>
+      <td>103.6</td>
+      <td>105.4</td>
+      <td>107.9</td>
+    </tr>
+    <tr>
+      <td>Florida</td>
+      <td>102.0</td>
+      <td>105.1</td>
+      <td>106.0</td>
+      <td>99.3</td>
+      <td>101.2</td>
+      <td>90.3</td>
+      <td>99.9</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+<section id="highest-overall-costs-in-the-lower-48-dc">
+<h5>Highest overall costs in the “Lower 48” + DC<a class="headerlink" href="#highest-overall-costs-in-the-lower-48-dc" title="Permalink to this heading">#</a></h5>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>State</th>
+      <th>Index</th>
+      <th>Grocery</th>
+      <th>Housing</th>
+      <th>Utilities</th>
+      <th>Transportation</th>
+      <th>Health</th>
+      <th>Misc.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Massachusetts</td>
+      <td>145.1</td>
+      <td>102.7</td>
+      <td>215.0</td>
+      <td>158.9</td>
+      <td>103.0</td>
+      <td>139.0</td>
+      <td>114.6</td>
+    </tr>
+    <tr>
+      <td>California</td>
+      <td>141.6</td>
+      <td>108.8</td>
+      <td>197.8</td>
+      <td>140.7</td>
+      <td>138.7</td>
+      <td>105.4</td>
+      <td>115.8</td>
+    </tr>
+    <tr>
+      <td>District of Columbia</td>
+      <td>135.2</td>
+      <td>104.5</td>
+      <td>200.8</td>
+      <td>102.5</td>
+      <td>108.0</td>
+      <td>123.6</td>
+      <td>111.3</td>
+    </tr>
+    <tr>
+      <td>New York</td>
+      <td>124.7</td>
+      <td>104.1</td>
+      <td>174.2</td>
+      <td>100.2</td>
+      <td>108.7</td>
+      <td>110.5</td>
+      <td>105.1</td>
+    </tr>
+    <tr>
+      <td>Maryland</td>
+      <td>114.9</td>
+      <td>105.1</td>
+      <td>133.8</td>
+      <td>114.4</td>
+      <td>103.6</td>
+      <td>105.4</td>
+      <td>107.9</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+</section>
+<section id="summary">
+<h4>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h4>
+<p>What have we learned?</p>
+<ul class="simple">
+<li><p>Think about the question. Then translate that into the data.</p></li>
+<li><p>You must understand your data.</p></li>
+<li><p><em>Sorting</em> is an easy, efficient way to determine the highest or lowest value.</p></li>
+<li><p>We can sort one of two ways - highest value at the top, or lowest value at the top.</p></li>
+<li><p>Sometimes, we need to do something inefficiently (e.g., scrolling through 50 states) before realizing that there is a better way.</p></li>
+<li><p>Excluding data from an analysis is called <em>filtering</em>.</p></li>
+</ul>
+<p>Finally, note that our reasoning process is <em>independent of software</em>. We can look at data on paper and determine that we need to filter or sort. We can then perform the analysis in the software of our choice. It would be easy to perform this analysis in Excel, but we could also use SQL, Python, etc.</p>
+</section>
+</section>
+<section id="example-2-employee-spending-report">
+<h3>Example 2: Employee Spending Report<a class="headerlink" href="#example-2-employee-spending-report" title="Permalink to this heading">#</a></h3>
+<p>You work in the internal audit function of your company. You are tasked with analyzing employee credit card purchases. Your manager prints out a report showing all credit card purchases for three employees over the last year:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>TransactionDate</th>
+      <th>Name</th>
+      <th>ItemDescription</th>
+      <th>Vendor</th>
+      <th>MerchantCategoryCode</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2014-12-03</td>
+      <td>Downing,P</td>
+      <td>GENERAL PURCHASE</td>
+      <td>CAUSLEY PRODUCTIONS</td>
+      <td>MISCELLANEOUS APPAREL AND ACCESSORY STORES</td>
+      <td>3659.84</td>
+    </tr>
+    <tr>
+      <td>2014-02-03</td>
+      <td>Wallace,D</td>
+      <td>GENERAL PURCHASE</td>
+      <td>RESEARCH &amp; MARKETS</td>
+      <td>BUSINESS SERVICES NOT ELSEWHERE CLASSIFIED</td>
+      <td>1061.27</td>
+    </tr>
+    <tr>
+      <td>2014-12-18</td>
+      <td>Downing,P</td>
+      <td>GENERAL PURCHASE</td>
+      <td>AVIALL AVIALL INC.</td>
+      <td>MISC. AUTOMOTIVE,AIRCRAFT,AND FARM EQUIPMENT DEALERS</td>
+      <td>516.86</td>
+    </tr>
+    <tr>
+      <td>2014-12-10</td>
+      <td>Downing,P</td>
+      <td>GENERAL PURCHASE</td>
+      <td>UCM SKYHAVEN AIRPORT MAIN</td>
+      <td>COLLEGES,UNIVERSITIES,PROFESSIONAL SCHLS AND JR COLLEGES</td>
+      <td>297.72</td>
+    </tr>
+    <tr>
+      <td>2014-01-20</td>
+      <td>Wallace,D</td>
+      <td>GENERAL PURCHASE</td>
+      <td>2MARKET INFORMATION TECHN</td>
+      <td>BUSINESS SERVICES NOT ELSEWHERE CLASSIFIED</td>
+      <td>270.00</td>
+    </tr>
+    <tr>
+      <td>2014-02-05</td>
+      <td>Wallace,D</td>
+      <td>GENERAL PURCHASE</td>
+      <td>PRINCIPAL INVESTIGATORS A</td>
+      <td>BOOKS, PERIODICALS AND NEWSPAPERS</td>
+      <td>259.00</td>
+    </tr>
+    <tr>
+      <td>2014-03-13</td>
+      <td>Black,A</td>
+      <td>GENERAL PURCHASE</td>
+      <td>HOBBY-LOBBY #0005</td>
+      <td>HOBBY,TOY,AND GAME STORES</td>
+      <td>256.63</td>
+    </tr>
+    <tr>
+      <td>2014-01-28</td>
+      <td>Wallace,D</td>
+      <td>SABRENT MULTI-Dsply USB 2 PCE\nCTG Ultima SVGA Mon</td>
+      <td>SYX TIGERDIRECT.COM</td>
+      <td>COMPUTERS, COMPUTER PERIPHERAL EQUIPMENT, SOFTWARE</td>
+      <td>107.25</td>
+    </tr>
+    <tr>
+      <td>2014-12-01</td>
+      <td>Black,A</td>
+      <td>GENERAL PURCHASE</td>
+      <td>NATURES SUPPLY LLC</td>
+      <td>MISCELLANEOUS FOOD STORES-CONV STRS AND SPECIALTY MKTS.</td>
+      <td>63.79</td>
+    </tr>
+    <tr>
+      <td>2014-03-14</td>
+      <td>Black,A</td>
+      <td>GENERAL PURCHASE</td>
+      <td>HOBBY-LOBBY #0005</td>
+      <td>HOBBY,TOY,AND GAME STORES</td>
+      <td>35.78</td>
+    </tr>
+    <tr>
+      <td>2014-03-20</td>
+      <td>Black,A</td>
+      <td>GENERAL PURCHASE</td>
+      <td>WAL-MART #0137</td>
+      <td>GROCERY STORES,AND SUPERMARKETS</td>
+      <td>9.97</td>
+    </tr>
+    <tr>
+      <td>2014-02-05</td>
+      <td>Wallace,D</td>
+      <td>GENERAL PURCHASE</td>
+      <td>WEB LOGOYES.COM</td>
+      <td>CONTINUITY/SUBSCRIPTION MERCHANTS</td>
+      <td>0.99</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>QUESTION:</strong> What was the total spending by employee?</p>
+<p><strong>ANSWER:</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Name</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Black,A</td>
+      <td>366.17</td>
+    </tr>
+    <tr>
+      <td>Downing,P</td>
+      <td>4474.42</td>
+    </tr>
+    <tr>
+      <td>Wallace,D</td>
+      <td>1698.51</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>HOW DID I DETERMINE THAT?</strong> This was difficult.</p>
+<ol class="arabic simple">
+<li><p>I looked through the <em>Name</em> column and determined that there are 3 employees.</p></li>
+<li><p>I wrote down each employee’s name once.</p></li>
+<li><p>For each employee, I went through the list of transactions and summed spending (in the <em>Amount</em> column) for just that employee.</p></li>
+<li><p>I wrote down that employee’s total spending next to his/her name.</p></li>
+</ol>
+<p><strong>IS THERE A BETTER WAY?</strong> There is. <em>What we did is a pivot table!!!</em> The pivot table identifies unique/distinct values in one column. For each one, it computes something using data from another column. In this case, we summed whatever is in the <em>Amount</em> column for each unique value in the <em>Name</em> column.</p>
+<section id="id1">
+<h4>Summary<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>What have we learned?</p>
+<ul class="simple">
+<li><p>A <em>pivot table</em> is an easy, efficient way to compute something for each category in your data. In this example, the “categories” were employees.</p></li>
+</ul>
+<p>Again, note that our reasoning process is <em>independent of software</em>. We can look at data on paper and determine what we need to do. We can then perform the analysis in the software of your choice. It would be easy to perform this analysis in Excel, but you could also use SQL, Python, etc.</p>
+</section>
+</section>
+<section id="example-3-stock-returns">
+<h3>Example 3: Stock Returns<a class="headerlink" href="#example-3-stock-returns" title="Permalink to this heading">#</a></h3>
+<p>You get an internship at a hedge fund. Your manager gives you data on three stocks from the past three days. Note that DELL is the ticker symbol for Dell, TXN is for Texas Instruments, and XOM is for ExxonMobil.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Ticker</th>
+      <th>Date</th>
+      <th>Closing Price</th>
+      <th>Yesterday's Closing Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DELL</td>
+      <td>2025-08-20</td>
+      <td>128.48</td>
+      <td>135.20</td>
+    </tr>
+    <tr>
+      <td>TXN</td>
+      <td>2025-08-20</td>
+      <td>200.77</td>
+      <td>195.94</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>2025-08-20</td>
+      <td>108.53</td>
+      <td>107.42</td>
+    </tr>
+    <tr>
+      <td>DELL</td>
+      <td>2025-08-21</td>
+      <td>127.83</td>
+      <td>128.48</td>
+    </tr>
+    <tr>
+      <td>TXN</td>
+      <td>2025-08-21</td>
+      <td>200.71</td>
+      <td>200.77</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>2025-08-21</td>
+      <td>109.23</td>
+      <td>108.53</td>
+    </tr>
+    <tr>
+      <td>DELL</td>
+      <td>2025-08-22</td>
+      <td>130.84</td>
+      <td>127.83</td>
+    </tr>
+    <tr>
+      <td>TXN</td>
+      <td>2025-08-22</td>
+      <td>206.06</td>
+      <td>200.71</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>2025-08-22</td>
+      <td>111.28</td>
+      <td>109.23</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p><strong>QUESTION:</strong> Your manager tells you to compute the daily stock returns. She then wants you to compute the average daily return for each of the three stocks. Finally, she wants to know which stock had the <em>lowest</em> average daily return. Your firm holds positions in these three stocks and she wants to sell the stock that had the lowest return over the past three days.</p>
+<p><strong>COMPUTING STOCK RETURNS:</strong> You remember from your finance classes that the daily return on a stock is given by the following formula:</p>
+<p><span class="math notranslate nohighlight">\(\text{Return} = \frac{\text{Today closing price} - \text{yesterday closing price}}{\text{yesterday closing price}} \times 100\)</span></p>
+<p><strong>ANSWER:</strong></p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><style type="text/css">
+</style>
+<table id="T_16f3e">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_16f3e_level0_col0" class="col_heading level0 col0" >Return</th>
+    </tr>
+    <tr>
+      <th class="index_name level0" >Ticker</th>
+      <th class="blank col0" >&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_16f3e_level0_row0" class="row_heading level0 row0" >DELL</th>
+      <td id="T_16f3e_row0_col0" class="data row0 col0" >-0.01041%</td>
+    </tr>
+    <tr>
+      <th id="T_16f3e_level0_row1" class="row_heading level0 row1" >XOM</th>
+      <td id="T_16f3e_row1_col0" class="data row1 col0" >0.01185%</td>
+    </tr>
+    <tr>
+      <th id="T_16f3e_level0_row2" class="row_heading level0 row2" >TXN</th>
+      <td id="T_16f3e_row2_col0" class="data row2 col0" >0.01700%</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>From the table, we learn that Dell had the lowest average return over the last three days.</p>
+<p><strong>HOW DID I DETERMINE THAT?</strong></p>
+<p>First, for each row of the original data table, I first needed to compute the return for that stock and that day:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Ticker</th>
+      <th>Date</th>
+      <th>Closing Price</th>
+      <th>Yesterday's Closing Price</th>
+      <th>Return</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DELL</td>
+      <td>2025-08-20</td>
+      <td>128.48</td>
+      <td>135.20</td>
+      <td>-0.049704</td>
+    </tr>
+    <tr>
+      <td>TXN</td>
+      <td>2025-08-20</td>
+      <td>200.77</td>
+      <td>195.94</td>
+      <td>0.024650</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>2025-08-20</td>
+      <td>108.53</td>
+      <td>107.42</td>
+      <td>0.010333</td>
+    </tr>
+    <tr>
+      <td>DELL</td>
+      <td>2025-08-21</td>
+      <td>127.83</td>
+      <td>128.48</td>
+      <td>-0.005059</td>
+    </tr>
+    <tr>
+      <td>TXN</td>
+      <td>2025-08-21</td>
+      <td>200.71</td>
+      <td>200.77</td>
+      <td>-0.000299</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>2025-08-21</td>
+      <td>109.23</td>
+      <td>108.53</td>
+      <td>0.006450</td>
+    </tr>
+    <tr>
+      <td>DELL</td>
+      <td>2025-08-22</td>
+      <td>130.84</td>
+      <td>127.83</td>
+      <td>0.023547</td>
+    </tr>
+    <tr>
+      <td>TXN</td>
+      <td>2025-08-22</td>
+      <td>206.06</td>
+      <td>200.71</td>
+      <td>0.026655</td>
+    </tr>
+    <tr>
+      <td>XOM</td>
+      <td>2025-08-22</td>
+      <td>111.28</td>
+      <td>109.23</td>
+      <td>0.018768</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>Second, I wrote down each ticker, just once.</p>
+<p>Third, for each ticker, I average its three returns.</p>
+<p>Finally, I wrote down that ticker’s average return next to the ticker symbol.</p>
+<p><strong>IS THERE A BETTER WAY?</strong> There is. <em>This is a pivot table!!!</em> The pivot table identifies unique/distinct values in one column. For each one, it computes something in another column. In this case, I computed the average of whatever is in the <em>Return</em> column for each unique value in the <em>Ticker</em> column.</p>
+</section>
+</section>
+<section id="overall-summary-and-takeaways">
+<h2>Overall Summary and Takeaways<a class="headerlink" href="#overall-summary-and-takeaways" title="Permalink to this heading">#</a></h2>
+<p>What have we learned?</p>
+<p>Begin with the question that was asked. Then, understand your data. You must devise a plan for what to do with your data to answer the question. This plan is a sequence of steps. Write down this sequence of steps! If you write this down <em>before</em> you work with your data, you will be less likely to make mistakes.</p>
+<p>Once you have written down your sequence of steps, then get to work with your data. Try to implement the sequence of steps. If you are working with SQL, you will translate your sequence of steps into code. If you are working in Excel, you will implement your sequence of steps one at a time.</p>
+<p>When you have finished your analysis, look at the results. Do they make sense? Do they pass the “sniff test”? If so, interpret your results and answer the original question. Often, at this point, additional questions will arise.</p>
+<p>Finally, note that our reasoning process is <em>independent of software</em>.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p>[1] Chamberlin, Donald D; Boyce, Raymond F (1974). “SEQUEL: A Structured English Query Language”. <em>Proceedings of the 1974 ACM SIGFIDET Workshop on Data Description, Access and Control. Association for Computing Machinery</em>: 249-64. Archived from the original on 26 September 2007. Retrieved 9 June 2007.</p>
+<p>[2] <a class="reference external" href="https://meric.mo.gov/data/cost-living-data-series">https://meric.mo.gov/data/cost-living-data-series</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction and Welcome</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="1-2%20Tabular%20Data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tabular Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-programming">What is Programming?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-between-programming-and-cooking">Similarities between programming and cooking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-the-process-of-analytics">Programming and the Process of Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-before-you-act-excel-vs-sql">Thinking before you act: Excel vs. SQL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-to-illustrate-the-process-of-data-analytics">Examples to Illustrate the Process of Data Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-analyzing-cost-of-living-by-state">Example 1: Analyzing Cost of Living by State</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-data">Understanding the data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-of-two-states-has-the-higher-food-costs">Which of two states has the higher food costs?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-state-has-the-highest-food-costs">Which state has the highest food costs?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-state-has-the-lowest-food-costs">Which state has the lowest food costs?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#which-state-has-the-lowest-overall-cost-of-living-which-has-the-highest">Which state has the lowest overall cost of living? Which has the highest?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#i-only-care-about-the-lower-48-and-dc-can-i-repeat-the-analysis-for-just-those">I only care about the “Lower 48” and DC. Can I repeat the analysis for just those?</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#highest-grocery-costs-in-the-lower-48-dc">Highest grocery costs in the “Lower 48” + DC</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#highest-overall-costs-in-the-lower-48-dc">Highest overall costs in the “Lower 48” + DC</a></li>
+</ul>
+</li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-employee-spending-report">Example 2: Employee Spending Report</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Summary</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-stock-returns">Example 3: Stock Returns</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-summary-and-takeaways">Overall Summary and Takeaways</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
