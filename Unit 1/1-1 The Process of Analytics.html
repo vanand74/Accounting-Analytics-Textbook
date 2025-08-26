@@ -379,14 +379,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-programming">What is Programming?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-between-programming-and-cooking">Similarities between programming and cooking</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-the-process-of-analytics">Programming and the Process of Analytics</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-before-you-act-excel-vs-sql">Thinking before you act: Excel vs. SQL</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-to-illustrate-the-process-of-data-analytics">Examples to Illustrate the Process of Data Analytics</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-analyzing-cost-of-living-by-state">Example 1: Analyzing Cost of Living by State</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-data">Understanding the data</a></li>
@@ -406,7 +398,18 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Summary</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-stock-returns">Example 3: Stock Returns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-stock-returns">Example 3: Stock Returns</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-programming">What is Programming?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-between-programming-and-cooking">Similarities between programming and cooking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-the-process-of-analytics">Programming and the Process of Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-before-you-act-excel-vs-sql">Thinking before you act: Excel vs. SQL</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-summary-and-takeaways">Overall Summary and Takeaways</a></li>
@@ -425,40 +428,10 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="the-process-of-analytics">
 <h1>The Process of Analytics<a class="headerlink" href="#the-process-of-analytics" title="Permalink to this heading">#</a></h1>
 <p>Data analytics is the process of using data to gain insights into business decisions. This process is independent of software. In fact, we can learn this process with pencil and paper! In this chapter, you will learn how to reason through data analyses without using software. As you become more comfortable with this type of reasoning, you will apply it to writing SQL statements. Eventually, you will apply this reasoning process in Excel. Once you become adept at this process, you will find that you think before you act with data, and this will make you a powerful data analyst.</p>
-<p>Before we dive into some examples, let’s talk briefly about computer programming. Programming involves the exact same type of reasoning that you need for data analytics.</p>
-<section id="what-is-programming">
-<h2>What is Programming?<a class="headerlink" href="#what-is-programming" title="Permalink to this heading">#</a></h2>
-<p>Computers are dumb. They can only do what they are instructed to do. Thus, we humans use programming languages to tell computers what to do.</p>
-<p>A computer program is simply a set of instructions for a computer. When you write a computer program, your code is translated into instructions that the computer can understand. Programs are written in a programming language. There are many programming languages out there and each is a different way of telling a computer what to do. Over the years, programmers have created different languages, each with its advantages and disadvantages, and as a result these languages tend to evolve for different use cases. For example, PHP and JavaScript are frequently used to create websites, while C++ is often used to create games. SQL was originally developed at IBM as a way to manipulate and retrieve data stored in a relational database.<sup>[1]</sup> It is now one of the most popular programming languages worldwide.</p>
-<section id="similarities-between-programming-and-cooking">
-<h3>Similarities between programming and cooking<a class="headerlink" href="#similarities-between-programming-and-cooking" title="Permalink to this heading">#</a></h3>
-<p>A computer program is like a cooking recipe. A program is a set of steps that, when followed by a computer, performs an action that you desire. A recipe is a set of steps that, when followed, leads to a desired outcome (yummy food). Thus, programming and cooking recipes are similar in that they must be logically correct to achieve their objectives.</p>
-<p>As an example, here’s a recipe for making whipped cream, courtesy of <a class="reference external" href="https://www.foodnetwork.com/recipes/alton-brown/whipped-cream-recipe-1957526">this website</a>:</p>
-<hr class="docutils" />
-<ol class="arabic simple">
-<li><p>Obtain a metal mixing bowl, a metal whisk, 1 cup of heavy whipping cream, and 2 tablespoons of sugar.</p></li>
-<li><p>Place a metal mixing bowl and metal whisk into the freezer for 10 minutes.</p></li>
-<li><p>Remove bowl and whisk from freezer and place on kitchen countertop.</p></li>
-<li><p>Add 2 tablespoons of sugar to the bowl.</p></li>
-<li><p>Add 1 cup of heavy whipping cream to the bowl.</p></li>
-<li><p>Whisk cream and sugar mixture until stiff peaks are visible.</p></li>
-</ol>
-<hr class="docutils" />
-<p>If you begin with the correct ingredients (which are analogous to data!), and if you correctly follow the steps, you will have delicious whipped cream. If you can understand the above recipe, you can write a computer program.</p>
-</section>
-</section>
-<section id="programming-and-the-process-of-analytics">
-<h2>Programming and the Process of Analytics<a class="headerlink" href="#programming-and-the-process-of-analytics" title="Permalink to this heading">#</a></h2>
-<p>When you are faced with a business problem and some data, you must think through the steps required to transform the data into insights. What steps must be taken? Will those steps work? Will those steps provide the analysis that you are looking for? Will those steps work for all possible data values? This is the sort of reasoning that you must perform when working with data.</p>
-<section id="thinking-before-you-act-excel-vs-sql">
-<h3>Thinking before you act: Excel vs. SQL<a class="headerlink" href="#thinking-before-you-act-excel-vs-sql" title="Permalink to this heading">#</a></h3>
-<p>A computer program is just a way of writing down your steps. When you write a computer program, you must think before you act. This is not the case with Excel! In Excel, you can copy, paste, write formulas, autofill formulas, delete cells, undo your actions, and so on. You can do this through trial and error. Sometimes that is a good thing (the fancy term for it is “exploratory data analysis”). The problem is that, often, you will not be able to recall what you did! That means that you might not be able to reproduce your work (I have observed this with many students and faculty!). It also means that you cannot reason about whether your output in Excel is correct.</p>
-<p>By contrast, when you write a program in SQL, you can read it and reason about it. You can run it and reproduce the output. Importantly, if you write something incorrect, you will get an error. Thus, SQL will force a discipline on you. It will force you to learn how to think before you act with data.</p>
-</section>
-</section>
+<p>Let’s begin our study of the process of analytics with three examples.</p>
 <section id="examples-to-illustrate-the-process-of-data-analytics">
 <h2>Examples to Illustrate the Process of Data Analytics<a class="headerlink" href="#examples-to-illustrate-the-process-of-data-analytics" title="Permalink to this heading">#</a></h2>
-<p>I will now present three examples of data analyses. Each will begin with a description of a setting, and a question that needs to be answered. I will then describe the available data. I will then show a data analysis that answers the question, and discuss how I performed that analysis. When applicable, I will present a more efficient way of performing that analysis.</p>
+<p>Each of the following examples will begin with a description of a setting, and a question that needs to be answered. I will then describe the available data. I will then show a data analysis that answers the question, and discuss how I performed that analysis. When applicable, I will present a more efficient way of performing that analysis.</p>
 <section id="example-1-analyzing-cost-of-living-by-state">
 <h3>Example 1: Analyzing Cost of Living by State<a class="headerlink" href="#example-1-analyzing-cost-of-living-by-state" title="Permalink to this heading">#</a></h3>
 <p>Imagine that you are a senior in college and are searching for a job. You are open to living anywhere in the country, but decide to do some research on cost of living. You want to do this early in your search so that you can evaluate job offers. Say that you get competing job offers from companies in Florida and Texas. If you know the cost of living in those states, you can evaluate the attractiveness of the offers. If the salaries are similar, but one state has a higher cost of living, you might be worse off financially in the high-cost state.</p>
@@ -1542,7 +1515,8 @@ document.write(`
 <h4>Summary<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
 <p>What have we learned?</p>
 <ul class="simple">
-<li><p>A <em>pivot table</em> is an easy, efficient way to compute something for each category in your data. In this example, the “categories” were employees.</p></li>
+<li><p>When aggregating data, you must often begin with the unique, or distinct, values in a column. Often, you will want to compute something, like a sum or average, for each unique values.</p></li>
+<li><p>A <em>pivot table</em> automates this process. A pivot table is an easy, efficient way to compute something for each category in your data. In this example, the “categories” were employees.</p></li>
 </ul>
 <p>Again, note that our reasoning process is <em>independent of software</em>. We can look at data on paper and determine what we need to do. We can then perform the analysis in the software of your choice. It would be easy to perform this analysis in Excel, but you could also use SQL, Python, etc.</p>
 </section>
@@ -1627,11 +1601,11 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
 </style>
-<table id="T_fe796">
+<table id="T_3a0a9">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_fe796_level0_col0" class="col_heading level0 col0" >Return</th>
+      <th id="T_3a0a9_level0_col0" class="col_heading level0 col0" >Return</th>
     </tr>
     <tr>
       <th class="index_name level0" >Ticker</th>
@@ -1640,16 +1614,16 @@ document.write(`
   </thead>
   <tbody>
     <tr>
-      <th id="T_fe796_level0_row0" class="row_heading level0 row0" >DELL</th>
-      <td id="T_fe796_row0_col0" class="data row0 col0" >-0.01041%</td>
+      <th id="T_3a0a9_level0_row0" class="row_heading level0 row0" >DELL</th>
+      <td id="T_3a0a9_row0_col0" class="data row0 col0" >-0.01041%</td>
     </tr>
     <tr>
-      <th id="T_fe796_level0_row1" class="row_heading level0 row1" >XOM</th>
-      <td id="T_fe796_row1_col0" class="data row1 col0" >0.01185%</td>
+      <th id="T_3a0a9_level0_row1" class="row_heading level0 row1" >XOM</th>
+      <td id="T_3a0a9_row1_col0" class="data row1 col0" >0.01185%</td>
     </tr>
     <tr>
-      <th id="T_fe796_level0_row2" class="row_heading level0 row2" >TXN</th>
-      <td id="T_fe796_row2_col0" class="data row2 col0" >0.01700%</td>
+      <th id="T_3a0a9_level0_row2" class="row_heading level0 row2" >TXN</th>
+      <td id="T_3a0a9_row2_col0" class="data row2 col0" >0.01700%</td>
     </tr>
   </tbody>
 </table>
@@ -1741,6 +1715,43 @@ document.write(`
 <p>Third, for each ticker, I average its three returns.</p>
 <p>Finally, I wrote down that ticker’s average return next to the ticker symbol.</p>
 <p><strong>IS THERE A BETTER WAY?</strong> There is. <em>This is a pivot table!!!</em> The pivot table identifies unique/distinct values in one column. For each one, it computes something in another column. In this case, I computed the average of whatever is in the <em>Return</em> column for each unique value in the <em>Ticker</em> column.</p>
+<section id="id2">
+<h4>Summary<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Often, we must create a new column that is a function of existing columns. We did this when we computed the daily return in each row. Creating a new column from existing columns is called a <em>transformation</em>.</p></li>
+<li><p>You can use a pivot table to compute the average within each category.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="what-is-programming">
+<h2>What is Programming?<a class="headerlink" href="#what-is-programming" title="Permalink to this heading">#</a></h2>
+<p>Computers are dumb. They can only do what they are instructed to do. Thus, we humans use programming languages to tell computers what to do.</p>
+<p>A computer program is simply a set of instructions for a computer. When you write a computer program, your code is translated into instructions that the computer can understand. Programs are written in a programming language. There are many programming languages out there and each is a different way of telling a computer what to do. Over the years, programmers have created different languages, each with its advantages and disadvantages, and as a result these languages tend to evolve for different use cases. For example, PHP and JavaScript are frequently used to create websites, while C++ is often used to create games. SQL was originally developed at IBM as a way to manipulate and retrieve data stored in a relational database.<sup>[1]</sup> It is now one of the most popular programming languages worldwide.</p>
+<section id="similarities-between-programming-and-cooking">
+<h3>Similarities between programming and cooking<a class="headerlink" href="#similarities-between-programming-and-cooking" title="Permalink to this heading">#</a></h3>
+<p>A computer program is like a cooking recipe. A program is a set of steps that, when followed by a computer, performs an action that you desire. A recipe is a set of steps that, when followed, leads to a desired outcome (yummy food). Thus, programming and cooking recipes are similar in that they must be logically correct to achieve their objectives.</p>
+<p>As an example, here’s a recipe for making whipped cream, courtesy of <a class="reference external" href="https://www.foodnetwork.com/recipes/alton-brown/whipped-cream-recipe-1957526">this website</a>:</p>
+<hr class="docutils" />
+<ol class="arabic simple">
+<li><p>Obtain a metal mixing bowl, a metal whisk, 1 cup of heavy whipping cream, and 2 tablespoons of sugar.</p></li>
+<li><p>Place a metal mixing bowl and metal whisk into the freezer for 10 minutes.</p></li>
+<li><p>Remove bowl and whisk from freezer and place on kitchen countertop.</p></li>
+<li><p>Add 2 tablespoons of sugar to the bowl.</p></li>
+<li><p>Add 1 cup of heavy whipping cream to the bowl.</p></li>
+<li><p>Whisk cream and sugar mixture until stiff peaks are visible.</p></li>
+</ol>
+<hr class="docutils" />
+<p>If you begin with the correct ingredients (which are analogous to data!), and if you correctly follow the steps, you will have delicious whipped cream. If you can understand the above recipe, you can write a computer program.</p>
+</section>
+</section>
+<section id="programming-and-the-process-of-analytics">
+<h2>Programming and the Process of Analytics<a class="headerlink" href="#programming-and-the-process-of-analytics" title="Permalink to this heading">#</a></h2>
+<p>When you are faced with a business problem and some data, you must think through the steps required to transform the data into insights. What steps must be taken? Will those steps work? Will those steps provide the analysis that you are looking for? Will those steps work for all possible data values? This is the sort of reasoning that you must perform when working with data.</p>
+<section id="thinking-before-you-act-excel-vs-sql">
+<h3>Thinking before you act: Excel vs. SQL<a class="headerlink" href="#thinking-before-you-act-excel-vs-sql" title="Permalink to this heading">#</a></h3>
+<p>A computer program is just a way of writing down your steps. When you write a computer program, you must think before you act. This is not the case with Excel! In Excel, you can copy, paste, write formulas, autofill formulas, delete cells, undo your actions, and so on. You can do this through trial and error. Sometimes that is a good thing (the fancy term for it is “exploratory data analysis”). The problem is that, often, you will not be able to recall what you did! That means that you might not be able to reproduce your work (I have observed this with many students and faculty!). It also means that you cannot reason about whether your output in Excel is correct.</p>
+<p>By contrast, when you write a program in SQL, you can read it and reason about it. You can run it and reproduce the output. Importantly, if you write something incorrect, you will get an error. Thus, SQL will force a discipline on you. It will force you to learn how to think before you act with data.</p>
 </section>
 </section>
 <section id="overall-summary-and-takeaways">
@@ -1822,14 +1833,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-programming">What is Programming?</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-between-programming-and-cooking">Similarities between programming and cooking</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-the-process-of-analytics">Programming and the Process of Analytics</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-before-you-act-excel-vs-sql">Thinking before you act: Excel vs. SQL</a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-to-illustrate-the-process-of-data-analytics">Examples to Illustrate the Process of Data Analytics</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-analyzing-cost-of-living-by-state">Example 1: Analyzing Cost of Living by State</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-data">Understanding the data</a></li>
@@ -1849,7 +1852,18 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Summary</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-stock-returns">Example 3: Stock Returns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-stock-returns">Example 3: Stock Returns</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Summary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-programming">What is Programming?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarities-between-programming-and-cooking">Similarities between programming and cooking</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#programming-and-the-process-of-analytics">Programming and the Process of Analytics</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-before-you-act-excel-vs-sql">Thinking before you act: Excel vs. SQL</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overall-summary-and-takeaways">Overall Summary and Takeaways</a></li>
