@@ -7,4 +7,4 @@ parts:
 - caption: "Unit 1: The Process of Analytics"
   chapters:
   - file: "Unit 1/1-1 The Process of Analytics"
-  - file: "Unit 1/1-2 Tabular Data"
+  - file: "Unit 1/1-2 Types of Data"
