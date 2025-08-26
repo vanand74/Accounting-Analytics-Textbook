@@ -1,0 +1,682 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Types of Data &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 1/1-2 Types of Data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="The Process of Analytics" href="1-1%20The%20Process%20of%20Analytics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/BookLogo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: The Process of Analytics</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Types of Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 1/1-2 Types of Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 1/1-2 Types of Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Types of Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unstructured-data-the-wild-frontier">Unstructured Data: The Wild Frontier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-unstructured-data">Characteristics of Unstructured Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-unstructured-data">Examples of Unstructured Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-structured-data-bridging-the-gap">Semi-structured Data: Bridging the Gap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-semi-structured-data">Characteristics of Semi-structured Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sample-financial-statement">A Sample Financial Statement</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#xbrl-corresponding-to-the-financial-statement">XBRL Corresponding to the Financial Statement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-data-the-ordered-database">Structured Data: The Ordered Database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-structured-data">Characteristics of Structured Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data-our-focus">Tabular Data: Our Focus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-anatomy-of-a-table">The Anatomy of a Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-columns">Table Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-rows">Table Rows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="types-of-data">
+<h1>Types of Data<a class="headerlink" href="#types-of-data" title="Permalink to this heading">#</a></h1>
+<p>Not all data is created equal. The way data is organized profoundly impacts how we can use it. To effectively analyze data, we must first understand its structure. We can broadly categorize data into three main types:</p>
+<ol class="arabic simple">
+<li><p>Unstructured</p></li>
+<li><p>Semi-structured</p></li>
+<li><p>Structured</p></li>
+</ol>
+<p>This chapter will give you an overview of these three types of data. We will end this chapter with a look at tabular data, a type of structured data. <strong><em>In this class, we will focus exclusively on analyzing tabular data.</em></strong></p>
+<section id="unstructured-data-the-wild-frontier">
+<h2>Unstructured Data: The Wild Frontier<a class="headerlink" href="#unstructured-data-the-wild-frontier" title="Permalink to this heading">#</a></h2>
+<p>Imagine a vast, untamed wilderness. That’s a good analogy for unstructured data. It’s the most common and often the most challenging type of data to work with because it lacks a predefined format or organization. There’s no strict format dictating how it should be stored or what elements it should contain.</p>
+<section id="characteristics-of-unstructured-data">
+<h3>Characteristics of Unstructured Data<a class="headerlink" href="#characteristics-of-unstructured-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>It doesn’t fit neatly into traditional rows and columns.</p></li>
+<li><p>It can come in many forms.</p></li>
+<li><p>It is often generated by and for human consumption, making it rich in context but difficult for machines to parse without advanced techniques.</p></li>
+</ul>
+</section>
+<section id="examples-of-unstructured-data">
+<h3>Examples of Unstructured Data<a class="headerlink" href="#examples-of-unstructured-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Text Documents</strong>: Emails, Word documents, PDF files, articles, books, research papers, customer reviews. Think of the content of an entire library – rich in information but not easily quantifiable into categories without effort.</p></li>
+<li><p><strong>Videos, photos, and music</strong>: Images , audio recordings, video files. A photograph, for instance, contains visual information, but extracting specific features like “a red car” or “a smiling person” requires sophisticated computer vision algorithms.</p></li>
+<li><p><strong>Social Media Content</strong>: Posts, tweets, comments, likes. The free-form nature of social media updates makes them highly unstructured.</p></li>
+<li><p><strong>Sensor Data</strong>: While sometimes appearing structured, raw sensor data streams (e.g., from IoT devices before processing) can be considered unstructured due to their continuous, often varied, and high-volume nature.</p></li>
+</ul>
+<p>Analyzing unstructured data typically requires advanced techniques such as Natural Language Processing (NLP) for text, or machine learning and artificial intelligence for image and audio recognition. It’s a goldmine of information, but extracting value requires specialized tools and expertise.</p>
+</section>
+</section>
+<section id="semi-structured-data-bridging-the-gap">
+<h2>Semi-structured Data: Bridging the Gap<a class="headerlink" href="#semi-structured-data-bridging-the-gap" title="Permalink to this heading">#</a></h2>
+<p>Sitting between the chaos of unstructured data and the rigid order of structured data is semi-structured data. This type of data uses tags or markers to create a hierarchical structure, but it doesn’t conform to a strict format like a traditional database. It’s self-describing, meaning the structure is embedded within the data itself.</p>
+<section id="characteristics-of-semi-structured-data">
+<h3>Characteristics of Semi-structured Data<a class="headerlink" href="#characteristics-of-semi-structured-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Self-Describing</strong>: The data contains information about its own structure.</p></li>
+<li><p><strong>Flexible Structure</strong>: The structure can vary slightly from one record to another, offering more flexibility than fully structured data.</p></li>
+<li><p><strong>Hierarchical</strong>: Often organized in a tree-like structure.</p></li>
+</ul>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">#</a></h3>
+<p>The best example of semi-structured data for an accounting audience is XBRL (eXtensible Business Reporting Language). It is a modern way of communicating business and financial data. It uses tags in a document to describe items in financial statements. This makes it much easier to work with accounting data. In the old days, financial statements were stored in PDFs, and every company used a different format. Now, with XBRL tags in financial statements, it is much easier to search for, say, a company’s leasing footnote.</p>
+<p>Here is an example of a simple financial statement and the corresponding XBRL.</p>
+<section id="a-sample-financial-statement">
+<h4>A Sample Financial Statement<a class="headerlink" href="#a-sample-financial-statement" title="Permalink to this heading">#</a></h4>
+<p><img alt="Sample Financial Statement" src="../_images/SampleFinStmt.png" /></p>
+</section>
+<section id="xbrl-corresponding-to-the-financial-statement">
+<h4>XBRL Corresponding to the Financial Statement<a class="headerlink" href="#xbrl-corresponding-to-the-financial-statement" title="Permalink to this heading">#</a></h4>
+<p>Notice that each line item, such as revenue and COGS, has a tag. This not only makes it easy to reconstruct the statement, but also facilitates search. Each company may have different line items (for example, some companies do not perform R&amp;D), but can choose which tags to include in their statements. The system of XBRL tags is standardized and conforms to a hierarchy.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;xbrl</span><span class="w"> </span><span class="na">xmlns=</span><span class="s">&quot;http://www.xbrl.org/2003/instance&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;context</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;c2025&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;entity&gt;</span>
+<span class="w">            </span><span class="nt">&lt;identifier</span><span class="w"> </span><span class="na">scheme=</span><span class="s">&quot;http://www.sec.gov/CIK&quot;</span><span class="nt">&gt;</span>1234567890<span class="nt">&lt;/identifier&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/entity&gt;</span>
+<span class="w">        </span><span class="nt">&lt;period&gt;</span>
+<span class="w">            </span><span class="nt">&lt;startDate&gt;</span>2025-01-01<span class="nt">&lt;/startDate&gt;</span>
+<span class="w">            </span><span class="nt">&lt;endDate&gt;</span>2025-12-31<span class="nt">&lt;/endDate&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/period&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/context&gt;</span>
+<span class="w">    </span><span class="nt">&lt;unit</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;u-monetary&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;measure&gt;</span>iso4217:USD<span class="nt">&lt;/measure&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/unit&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;us-gaap:Revenues</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>100000<span class="nt">&lt;/us-gaap:Revenues&gt;</span>
+<span class="w">    </span><span class="nt">&lt;us-gaap:CostOfGoodsAndServicesSold</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>40000<span class="nt">&lt;/us-gaap:CostOfGoodsAndServicesSold&gt;</span>
+<span class="w">    </span><span class="nt">&lt;us-gaap:GrossProfit</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>60000<span class="nt">&lt;/us-gaap:GrossProfit&gt;</span>
+<span class="w">    </span><span class="nt">&lt;us-gaap:SellingGeneralAndAdministrativeExpenses</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>20000<span class="nt">&lt;/us-gaap:SellingGeneralAndAdministrativeExpenses&gt;</span>
+<span class="w">    </span><span class="nt">&lt;us-gaap:OperatingIncomeLoss</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>40000<span class="nt">&lt;/us-gaap:OperatingIncomeLoss&gt;</span>
+<span class="w">    </span><span class="nt">&lt;us-gaap:InterestExpense</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>5000<span class="nt">&lt;/us-gaap:InterestExpense&gt;</span>
+<span class="w">    </span><span class="nt">&lt;us-gaap:NetIncomeLoss</span><span class="w"> </span><span class="na">contextRef=</span><span class="s">&quot;c2025&quot;</span><span class="w"> </span><span class="na">unitRef=</span><span class="s">&quot;u-monetary&quot;</span><span class="w"> </span><span class="na">decimals=</span><span class="s">&quot;0&quot;</span><span class="nt">&gt;</span>35000<span class="nt">&lt;/us-gaap:NetIncomeLoss&gt;</span>
+
+<span class="nt">&lt;/xbrl&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="structured-data-the-ordered-database">
+<h2>Structured Data: The Ordered Database<a class="headerlink" href="#structured-data-the-ordered-database" title="Permalink to this heading">#</a></h2>
+<p>Structured data is the most organized and traditional form of data. It adheres to a predefined format, and the data elements are organized in a specific, consistent way.</p>
+<p>Structured data is incredibly powerful for analytical tasks because its consistent format allows for efficient storage, retrieval, and manipulation using standard query languages like SQL (Structured Query Language). Its predictability is its greatest strength, making it the backbone of many business intelligence and reporting systems.</p>
+<section id="characteristics-of-structured-data">
+<h3>Characteristics of Structured Data<a class="headerlink" href="#characteristics-of-structured-data" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Fixed Format</strong>: Data must conform to a rigid, predefined format.</p></li>
+<li><p><strong>Highly Organized</strong>: Typically stored in tables with rows and columns.</p></li>
+<li><p><strong>Easy to Query and Analyze</strong>: Its organization makes it straightforward to use with traditional database management systems and analytical tools.</p></li>
+</ul>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Relational Databases (SQL)</strong>: Data is stored in tables, and these tables are related to each other. Think of databases powering banking systems, e-commerce sites, or university enrollment systems.</p></li>
+<li><p><strong>Spreadsheets (e.g., Microsoft Excel, Google Sheets)</strong>: Perhaps the most familiar example for many. Data is laid out in a grid of rows and columns, with clear headings for each column.</p></li>
+<li><p><strong>Data Warehouses</strong>: Large repositories of structured data collected from various sources, designed for reporting and analysis.</p></li>
+</ul>
+</section>
+</section>
+<section id="tabular-data-our-focus">
+<h2>Tabular Data: Our Focus<a class="headerlink" href="#tabular-data-our-focus" title="Permalink to this heading">#</a></h2>
+<p>Tabular data is the most common format for storing and analyzing data. Much data, from business to science, is tabular. Every time you used Excel, you worked with tabular data.</p>
+<p>In our class, we will work exclusively with tabular data.</p>
+<section id="the-anatomy-of-a-table">
+<h3>The Anatomy of a Table<a class="headerlink" href="#the-anatomy-of-a-table" title="Permalink to this heading">#</a></h3>
+<p>A table consists of rows and columns. The columns are the more important of the two because the columns define the table’s structure.</p>
+<section id="table-columns">
+<h4>Table Columns<a class="headerlink" href="#table-columns" title="Permalink to this heading">#</a></h4>
+<p>Each table column (sometimes called a <em>field</em> or <em>variable</em>) stores one piece of information. For example, say you are creating a table to store information about students. You might create separate columns for student ID, first name, last name, major, and GPA.</p>
+<p>Note that all data in a column should be of the same type (e.g., text, number), and should contain the same type of data. You should not have separate columns for first and last name and then store the text <em>“Smith, Jack”</em> in one column while leaving the other blank.</p>
+</section>
+<section id="table-rows">
+<h4>Table Rows<a class="headerlink" href="#table-rows" title="Permalink to this heading">#</a></h4>
+<p>Each table row (sometimes called an <em>observation</em> or <em>record</em>) stores a complete piece of data. In the student example above, each row will store data for one student.</p>
+</section>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Understanding the different types of data – unstructured, semi-structured, and structured – is important as you embark on your data analytics journey. Each type presents unique challenges and opportunities. While unstructured data offers rich contextual information and semi-structured data provides flexibility, structured data, particularly in its tabular form, remains the bedrock for most traditional and modern data analysis techniques. Mastering the organization and manipulation of tabular data is an essential skill for any aspiring data analyst.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-1%20The%20Process%20of%20Analytics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Process of Analytics</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unstructured-data-the-wild-frontier">Unstructured Data: The Wild Frontier</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-unstructured-data">Characteristics of Unstructured Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-unstructured-data">Examples of Unstructured Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-structured-data-bridging-the-gap">Semi-structured Data: Bridging the Gap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-semi-structured-data">Characteristics of Semi-structured Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sample-financial-statement">A Sample Financial Statement</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#xbrl-corresponding-to-the-financial-statement">XBRL Corresponding to the Financial Statement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-data-the-ordered-database">Structured Data: The Ordered Database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-structured-data">Characteristics of Structured Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data-our-focus">Tabular Data: Our Focus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-anatomy-of-a-table">The Anatomy of a Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-columns">Table Columns</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-rows">Table Rows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
