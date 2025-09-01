@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>A Company and its Data &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.4cbf315f70debaebd550c87a6162cf0f.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 2/2-1 A Company and its Data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Types of Data" href="2-2%20Types%20of%20Data.html" />
+    <link rel="prev" title="The Process of Analytics" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <script>document.write(`<img src="../_static/BookLogo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: The Process of Analytics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-2%20Types%20of%20Data.html">Types of Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 2/2-1 A Company and its Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 2/2-1 A Company and its Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>A Company and its Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-reporting">Business Reporting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-needed">Data Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-microsoft-s-northwind-traders-database">Example: Microsoft’s Northwind Traders Database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#products-table">Products Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-table">Customers Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#employees-table">Employees Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shippers-table">Shippers Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#suppliers-table">Suppliers Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-and-order-details-tables">Orders and Order Details Tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="a-company-and-its-data">
+<h1>A Company and its Data<a class="headerlink" href="#a-company-and-its-data" title="Permalink to this heading">#</a></h1>
+<p>You decide to start a business. One of your passions is gourmet foods and you struggle to find foods that you like in your city. You therefore decide to become a distributor of these foods. You will purchase gourmet food items from suppliers in large quantities and resell them to retailers across the country. You decide to name your company <em>Northwind Traders</em>.</p>
+<p>You have written a business plan and made financial projections. You have secured financing for your business. You have found a property to serve as your warehouse and office. At this point, it occurs to you that you need a plan for your business’s data. What data should you collect and what reports will you require on a regular basis? How should you store this data? Should you write your own software or use something “off the shelf” like QuickBooks? Even if you use QuickBooks, you still need to think about data collection and analysis because you will need to set up QuickBooks. As you think about this, you decide to make data your top priority. It will be the lifeblood of your business. You cannot determine the health of your business or manage your business without data.</p>
+<section id="business-reporting">
+<h2>Business Reporting<a class="headerlink" href="#business-reporting" title="Permalink to this heading">#</a></h2>
+<p>You decide to begin your journey with data by thinking about the reports, analyses, and questions that you must answer. You will work backwards from these. You decide that your company will regularly need to generate the following:</p>
+<ul class="simple">
+<li><p><strong>Financial statements</strong> (balance sheet, income statement, cash flow statement). Your lenders and equity investors require these.</p></li>
+<li><p><strong>Product reports</strong>. You decide that you want to track product sales and profitability. You also want to track inventory levels over time and optimize your inventory replenishment policies.</p></li>
+<li><p><strong>Customer reports</strong>. How many customers do you have? Is the number of customers increasing over time, or are existing customers ordering more or less? Which customers account for the bulk of your revenues and profits? What are customers’ ordering patterns?</p></li>
+<li><p><strong>Employee reports</strong>. How many employees do you have? What are their roles? What does your org chart look like? Which employees are your top salespeople? Do you have a lot of turnover among employees?</p></li>
+<li><p><strong>Supplier reports</strong>. Which suppliers account (indirectly) for the bulk of your profits? Do some suppliers give you better terms than others?</p></li>
+<li><p><strong>Cash balance forecasting</strong>. You have credit lines with your suppliers, but your customers also have credit lines with you. You need to have enough cash on hand to make payroll and replenish inventory.</p></li>
+</ul>
+<p>And last, but not least:</p>
+<ul class="simple">
+<li><p><strong>Orders</strong>. A customer order is the basic unit of activity at your company. You decide that you want to maintain detailed information on orders. Which customer placed the order, and with which employee? How long (on average) between order placement and fulfillment? How many items per order? Were these items profitable?</p></li>
+<li><p><strong>Shippers</strong>. As a distributor, shipping is one of your biggest expenses. Do some shippers charge more than others? Do some shippers take longer than others?</p></li>
+</ul>
+</section>
+<section id="data-needed">
+<h2>Data Needed<a class="headerlink" href="#data-needed" title="Permalink to this heading">#</a></h2>
+<p>For each of the items in the previous section, you must make a list of all data items. From these, you can lay out database tables and the relationships between them. We will discuss these topics in detail in the next few chapters. Also, most commercial accounting software is designed with these requirements in mind and already has some data templates that you can use as a starting point.</p>
+</section>
+<section id="example-microsoft-s-northwind-traders-database">
+<h2>Example: Microsoft’s Northwind Traders Database<a class="headerlink" href="#example-microsoft-s-northwind-traders-database" title="Permalink to this heading">#</a></h2>
+<p>In the 1990’s, Microsoft created a sample database called <a class="reference external" href="https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs">Northwind Traders</a>. This database was distributed with Microsoft Access and was intended to help users learn database concepts in a realistic business setting. Because of its ease-of-use, Northwind Traders is still used today.</p>
+<p>The Northwind Traders database contains many tables. Below, I list some of the main tables. You can use these to generate the reports listed above. I omitted some tables that provide supporting information. In later chapters, I will discuss the relationships between tables.</p>
+<section id="products-table">
+<h3>Products Table<a class="headerlink" href="#products-table" title="Permalink to this heading">#</a></h3>
+<p>There is one row per product that Northwind Traders stocks. Each row contains a product identifier, the product’s name, the product’s supplier, the product’s selling price and your cost, the number of units in inventory, the number of units on order, and the reorder level.</p>
+<p>As you think about this, you wonder why the product’s price and cost are stored here. Might these change over time? If they do, don’t you need to track that somewhere for your financial statements?</p>
+</section>
+<section id="customers-table">
+<h3>Customers Table<a class="headerlink" href="#customers-table" title="Permalink to this heading">#</a></h3>
+<p>There is one row per customer. Each row contains a customer identifier, the customer’s name, point of contact, address, and phone number.</p>
+</section>
+<section id="employees-table">
+<h3>Employees Table<a class="headerlink" href="#employees-table" title="Permalink to this heading">#</a></h3>
+<p>There is one row per employee. Each row contains an employee identifier, the employee’s first and last name, title, birth date, hire date, address, phone, and a photo (yes, it’s possible to store photos in a database!).</p>
+</section>
+<section id="shippers-table">
+<h3>Shippers Table<a class="headerlink" href="#shippers-table" title="Permalink to this heading">#</a></h3>
+<p>There is one row per shipper that Northwind Traders uses. If this were a real company, this table would contain shippers like FedEx and UPS. However, since this is a fictitious company, fictitious shippers are listed. Each row contains a shipper identifier and the shipper’s name and phone number.</p>
+</section>
+<section id="suppliers-table">
+<h3>Suppliers Table<a class="headerlink" href="#suppliers-table" title="Permalink to this heading">#</a></h3>
+<p>There is one row per supplier that Northwind Traders uses. Each row contains a supplier identifier, the supplier’s name, point of contact, address, phone number, and web site URL.</p>
+</section>
+<section id="orders-and-order-details-tables">
+<h3>Orders and Order Details Tables<a class="headerlink" href="#orders-and-order-details-tables" title="Permalink to this heading">#</a></h3>
+<p>You notice that Northwind Traders has two tables that contain information about orders.</p>
+<p><strong>Orders Table</strong><br />
+The orders table contains one row per order. Each row contains an order identifier, a customer identifier, an employee identifier, the order date, the ship date, the freight cost, and the ship-to address.</p>
+<p><strong>Order Details Table</strong>
+This table contains one row per order per item ordered. Thus, if an order consists of three items, there will be one row in the Orders table and three rows in the Order Details table. Each row in this table contains an order identifier, a product identifier, a price, a quantity, and the percentage discount applied.</p>
+<p>As you think about this layout, it begins to make sense. Why is it not possible to all this information in one table?</p>
+</section>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
+<p>Businesses constantly think about data. They must decide which data to collect, given their reporting requirements. Once that is known, they must organize their data in a manner that reduces the chance of data errors while allowing for efficient retrieval for reporting purposes. This is an ongoing process and is one reason why chief information officers (CIO’s) and IT consultants are well compensated.</p>
+<p>In the next few chapters, you will learn how business data is stored in databases. In the next unit, you will learn how to retrieve, transform, and aggregate that data.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Unit 2"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Process of Analytics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="2-2%20Types%20of%20Data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Types of Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-reporting">Business Reporting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-needed">Data Needed</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-microsoft-s-northwind-traders-database">Example: Microsoft’s Northwind Traders Database</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#products-table">Products Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-table">Customers Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#employees-table">Employees Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shippers-table">Shippers Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#suppliers-table">Suppliers Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-and-order-details-tables">Orders and Order Details Tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
