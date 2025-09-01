@@ -7,4 +7,8 @@ parts:
 - caption: "Unit 1: The Process of Analytics"
   chapters:
   - file: "Unit 1/1-1 The Process of Analytics"
-  - file: "Unit 1/1-2 Types of Data"
+
+- caption: "Unit 2: Introduction to Databases"
+  chapters:
+  - file: "Unit 2/2-1 A Company and its Data"
+  - file: "Unit 2/2-2 Types of Data"
