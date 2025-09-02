@@ -12,3 +12,5 @@ parts:
   chapters:
   - file: "Unit 2/2-1 A Company and its Data"
   - file: "Unit 2/2-2 Types of Data"
+  - file: "Unit 2/2-3 Introduction to Databases"
+  - file: "Unit 2/2-4 Why Accountants Should Care about Databases"
