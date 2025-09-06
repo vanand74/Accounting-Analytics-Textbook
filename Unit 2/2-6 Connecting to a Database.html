@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>A Company and its Data &#8212; Data Analytics for Accountants</title>
+    <title>Connecting to a Database &#8212; Data Analytics for Accountants</title>
   
   
   
@@ -56,11 +56,11 @@
     <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 2/2-1 A Company and its Data';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 2/2-6 Connecting to a Database';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Types of Data" href="2-2%20Types%20of%20Data.html" />
-    <link rel="prev" title="The Process of Analytics" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html" />
+    <link rel="next" title="Running Queries in VS Code" href="2-7%20Running%20Queries%20in%20VS%20Code.html" />
+    <link rel="prev" title="Visual Studio Code Overview" href="2-5%20VS%20Code%20Overview.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,12 +184,12 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-2%20Types%20of%20Data.html">Types of Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Connecting to a Database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
 </ul>
 
@@ -262,7 +262,7 @@
       
       
       
-      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 2/2-1 A Company and its Data.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 2/2-6 Connecting to a Database.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +292,7 @@
       
       
       
-      <li><a href="../_sources/Unit 2/2-1 A Company and its Data.ipynb" target="_blank"
+      <li><a href="../_sources/Unit 2/2-6 Connecting to a Database.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -376,7 +376,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>A Company and its Data</h1>
+    <h1>Connecting to a Database</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -386,19 +386,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-reporting">Business Reporting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-needed">Data Needed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-microsoft-s-northwind-traders-database">Example: Microsoft’s Northwind Traders Database</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#products-table">Products Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-table">Customers Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#employees-table">Employees Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shippers-table">Shippers Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#suppliers-table">Suppliers Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-and-order-details-tables">Orders and Order Details Tables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-diagram">Relationship Diagram</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
 </ul>
             </nav>
         </div>
@@ -410,76 +398,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="a-company-and-its-data">
-<h1>A Company and its Data<a class="headerlink" href="#a-company-and-its-data" title="Permalink to this heading">#</a></h1>
-<p>You decide to start a business. One of your passions is gourmet foods and you struggle to find foods that you like in your city. You therefore decide to become a distributor of these foods. You will purchase gourmet food items from suppliers in large quantities and resell them to retailers across the country. You decide to name your company <em>Northwind Traders</em>.</p>
-<p>You have written a business plan and made financial projections. You have secured financing for your business. You have found a property to serve as your warehouse and office. At this point, it occurs to you that you need a plan for your business’s data. What data should you collect and what reports will you require on a regular basis? How should you store this data? Should you write your own software or use something “off the shelf” like QuickBooks? Even if you use QuickBooks, you still need to think about data collection and analysis because you will need to set up QuickBooks. As you think about this, you decide to make data your top priority. It will be the lifeblood of your business. You cannot determine the health of your business or manage your business without data.</p>
-<section id="business-reporting">
-<h2>Business Reporting<a class="headerlink" href="#business-reporting" title="Permalink to this heading">#</a></h2>
-<p>You decide to begin your journey with data by thinking about the reports, analyses, and questions that you must answer. You will work backwards from these. You decide that your company will regularly need to generate the following:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="connecting-to-a-database">
+<h1>Connecting to a Database<a class="headerlink" href="#connecting-to-a-database" title="Permalink to this heading">#</a></h1>
+<p>There is a video that covers everything in this chapter. Use the video if you prefer.</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=qKVQEWvaN54">https://www.youtube.com/watch?v=qKVQEWvaN54</a></p>
+<p>During the semester, we will connect to many databases. This chapter provides instructions on how to create a connection to a new database in VS Code.</p>
+<p>Note that I already showed you how to connect to a database in the tutorial video on installing VS Code. I repeat those instructions here for your convenience.</p>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open VS Code</p></li>
+<li><p>On the toolbar on the left, click on the SQL Server button, which looks like this:</p></li>
+</ol>
+<p><img alt="SQL Server button" src="../_images/SQL_Server_button.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Next to the word CONNECTIONS, click the + button.</p></li>
+</ol>
+<p><img alt="Add connection" src="../_images/Add_connection.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>You will see a form like that below. Fill in these fields and press the Connect button at the bottom.</p>
 <ul class="simple">
-<li><p><strong>Financial statements</strong> (balance sheet, income statement, cash flow statement). Your lenders and equity investors require these.</p></li>
-<li><p><strong>Product reports</strong>. You decide that you want to track product sales and profitability. You also want to track inventory levels over time and optimize your inventory replenishment policies.</p></li>
-<li><p><strong>Customer reports</strong>. How many customers do you have? Is the number of customers increasing over time, or are existing customers ordering more or less? Which customers account for the bulk of your revenues and profits? What are customers’ ordering patterns?</p></li>
-<li><p><strong>Employee reports</strong>. How many employees do you have? What are their roles? What does your org chart look like? Which employees are your top salespeople? Do you have a lot of turnover among employees?</p></li>
-<li><p><strong>Supplier reports</strong>. Which suppliers account (indirectly) for the bulk of your profits? Do some suppliers give you better terms than others?</p></li>
-<li><p><strong>Cash balance forecasting</strong>. You have credit lines with your suppliers, but your customers also have credit lines with you. You need to have enough cash on hand to make payroll and replenish inventory.</p></li>
-<li><p><strong>Shippers</strong>. As a distributor, shipping is one of your biggest expenses. Do some shippers charge more than others? Do some shippers take longer than others?</p></li>
+<li><p><strong>Profile name:</strong> your name for the connection. This can be anything, but I recommend that you use the same name as the database.</p></li>
+<li><p><strong>Server name:</strong> <a class="reference external" href="http://acc3323.database.windows.net">acc3323.database.windows.net</a></p></li>
+<li><p><strong>Authentication type:</strong> SQL Login</p></li>
+<li><p><strong>User name:</strong> student</p></li>
+<li><p><strong>Password:</strong> I will provide this on Canvas and during class.</p></li>
+<li><p><strong>Save Password:</strong> I recommend that you check this box.</p></li>
+<li><p><strong>Database name:</strong> The name of the database. This must be spelled exactly.</p></li>
 </ul>
-<p>And last, but not least:</p>
-<ul class="simple">
-<li><p><strong>Orders</strong>. A customer order is the basic unit of activity at your company. You decide that you want to maintain detailed information on orders. Which customer placed the order, and with which employee? How long (on average) between order placement and fulfillment? How many items per order? Were these items profitable?</p></li>
-</ul>
-</section>
-<section id="data-needed">
-<h2>Data Needed<a class="headerlink" href="#data-needed" title="Permalink to this heading">#</a></h2>
-<p>For each of the reports in the previous section, you must make a list of all data items needed to generate those reports. From these, you can lay out database tables and the relationships between them. We will discuss these topics in detail in the next few chapters. Also, most commercial accounting software is designed with these requirements in mind and already has some data templates that you can use as a starting point.</p>
-</section>
-<section id="example-microsoft-s-northwind-traders-database">
-<h2>Example: Microsoft’s Northwind Traders Database<a class="headerlink" href="#example-microsoft-s-northwind-traders-database" title="Permalink to this heading">#</a></h2>
-<p>In the 1990’s, Microsoft created a sample database called <a class="reference external" href="https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs">Northwind Traders</a>. This database was distributed with Microsoft Access and was intended to help users learn database concepts in a realistic business setting. Because of its ease-of-use, Northwind Traders is still used today.</p>
-<p>The Northwind Traders database contains many tables. Below, I list some of the main tables. You can use these to generate the reports listed above. I omitted some tables that provide supporting information. In later chapters, I will discuss the relationships between tables.</p>
-<section id="products-table">
-<h3>Products Table<a class="headerlink" href="#products-table" title="Permalink to this heading">#</a></h3>
-<p>There is one row per product that Northwind Traders stocks. Each row contains a product identifier, the product’s name, the product’s supplier, the product’s selling price and your cost, the number of units in inventory, the number of units on order, and the reorder level.</p>
-<p>As you think about this, you wonder why the product’s price and cost are stored here. Might these change over time? If they do, don’t you need to track that somewhere for your financial statements?</p>
-</section>
-<section id="customers-table">
-<h3>Customers Table<a class="headerlink" href="#customers-table" title="Permalink to this heading">#</a></h3>
-<p>There is one row per customer. Each row contains a customer identifier, the customer’s name, point of contact, address, and phone number.</p>
-</section>
-<section id="employees-table">
-<h3>Employees Table<a class="headerlink" href="#employees-table" title="Permalink to this heading">#</a></h3>
-<p>There is one row per employee. Each row contains an employee identifier, the employee’s first and last name, title, birth date, hire date, address, phone, and a photo (yes, it’s possible to store photos in a database!).</p>
-</section>
-<section id="shippers-table">
-<h3>Shippers Table<a class="headerlink" href="#shippers-table" title="Permalink to this heading">#</a></h3>
-<p>There is one row per shipper that Northwind Traders uses. If this were a real company, this table would contain shippers like FedEx and UPS. However, since this is a fictitious company, fictitious shippers are listed. Each row contains a shipper identifier and the shipper’s name and phone number.</p>
-</section>
-<section id="suppliers-table">
-<h3>Suppliers Table<a class="headerlink" href="#suppliers-table" title="Permalink to this heading">#</a></h3>
-<p>There is one row per supplier that Northwind Traders uses. Each row contains a supplier identifier, the supplier’s name, point of contact, address, phone number, and web site URL.</p>
-</section>
-<section id="orders-and-order-details-tables">
-<h3>Orders and Order Details Tables<a class="headerlink" href="#orders-and-order-details-tables" title="Permalink to this heading">#</a></h3>
-<p>You notice that Northwind Traders has two tables that contain information about orders.</p>
-<p><strong>Orders Table</strong><br />
-The orders table contains one row per order. Each row contains an order identifier, a customer identifier, an employee identifier, the order date, the ship date, the freight cost, and the ship-to address.</p>
-<p><strong>Order Details Table</strong>
-This table contains one row per order per item ordered. Thus, if an order consists of three items, there will be one row in the Orders table and three rows in the Order Details table. Each row in this table contains an order identifier, a product identifier, a price, a quantity, and the percentage discount applied.</p>
-<p>As you think about this layout, it begins to make sense. Why is it not possible to all this information in one table?</p>
-</section>
-<section id="relationship-diagram">
-<h3>Relationship Diagram<a class="headerlink" href="#relationship-diagram" title="Permalink to this heading">#</a></h3>
-<p>If it is difficult to remember the details about all the tables, you may find the following “relationship diagram” useful. It shows all the tables in the database. It also shows links between the tables.</p>
-<p>Consider the Suppliers and Products tables on the left side. Each product must have one, and only one supplier (in the real world, it is possible to have multiple suppliers of the same product, but let’s assume that is not the case here). This is denoted by the kinked line between the Suppliers and Products table. Notice that there is a key symbol at one end of the line, and an infinity symbol at the other (the infinity looks like two circles, but it’s actually an infinity ∞). The key means “one”, and the infinity means “many”. That means that each product must have one, and only one, supplier. Each supplier, however, can be associated with multiple products. Also notice that the line connects the SupplierID columns in both tables. That means that the number in the SupplierID column in the Products table must match a SupplierID in the Supplier table. This is a way of ensuring data integrity.</p>
-<p><img alt="" src="../_images/NWT_Relationships.png" /></p>
-</section>
-</section>
-<section id="conclusion">
-<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h2>
-<p>Businesses constantly think about data. They must decide which data to collect, given their reporting requirements. Once that is known, they must organize their data in a manner that reduces the chance of data errors while allowing for efficient retrieval for reporting purposes. This is an ongoing process and is one reason why chief information officers (CIO’s) and IT consultants are well compensated.</p>
-<p>In the next few chapters, you will learn how business data is stored in databases. In the next unit, you will learn how to retrieve, transform, and aggregate that data.</p>
+</li>
+</ol>
+<p><img alt="Connection dialog" src="../_images/Connection_dialog.png" /></p>
+<p>If your connection is successful, there should be a green dot next to the connection name in the pane on the left.</p>
 </section>
 </section>
 
@@ -514,20 +464,20 @@ This table contains one row per order per item ordered. Thus, if an order consis
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html"
+       href="2-5%20VS%20Code%20Overview.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">The Process of Analytics</p>
+        <p class="prev-next-title">Visual Studio Code Overview</p>
       </div>
     </a>
     <a class="right-next"
-       href="2-2%20Types%20of%20Data.html"
+       href="2-7%20Running%20Queries%20in%20VS%20Code.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Types of Data</p>
+        <p class="prev-next-title">Running Queries in VS Code</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -547,19 +497,7 @@ This table contains one row per order per item ordered. Thus, if an order consis
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-reporting">Business Reporting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-needed">Data Needed</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-microsoft-s-northwind-traders-database">Example: Microsoft’s Northwind Traders Database</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#products-table">Products Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customers-table">Customers Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#employees-table">Employees Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shippers-table">Shippers Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#suppliers-table">Suppliers Table</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#orders-and-order-details-tables">Orders and Order Details Tables</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-diagram">Relationship Diagram</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instructions">Instructions</a></li>
 </ul>
   </nav></div>
 
