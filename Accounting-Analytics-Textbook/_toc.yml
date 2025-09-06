@@ -14,3 +14,6 @@ parts:
   - file: "Unit 2/2-2 Types of Data"
   - file: "Unit 2/2-3 Introduction to Databases"
   - file: "Unit 2/2-4 Why Accountants Should Care about Databases"
+  - file: "Unit 2/2-5 VS Code Overview"
+  - file: "Unit 2/2-6 Connecting to a Database"
+  - file: "Unit 2/2-7 Running Queries in VS Code"
