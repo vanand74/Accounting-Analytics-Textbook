@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Running Queries in VS Code &#8212; Data Analytics for Accountants</title>
+    <title>Overview of SQL &#8212; Data Analytics for Accountants</title>
   
   
   
@@ -73,10 +73,9 @@
                 gtag('config', 'G-3W9L1EX77X');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 2/2-7 Running Queries in VS Code';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 3/3-1 Overview of SQL';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Connecting to a Database" href="2-6%20Connecting%20to%20a%20Database.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -127,6 +126,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -185,14 +186,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-2%20Types%20of%20Data.html">Types of Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Running Queries in VS Code</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-2%20Types%20of%20Data.html">Types of Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
 </ul>
 
     </div>
@@ -252,7 +253,7 @@
       
       
       
-      <li><a href="../_sources/Unit 2/2-7 Running Queries in VS Code.ipynb" target="_blank"
+      <li><a href="../_sources/Unit 3/3-1 Overview of SQL.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -315,7 +316,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -326,11 +329,23 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Running Queries in VS Code</h1>
+    <h1>Overview of SQL</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-retrieving-data">Querying (Retrieving Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pillars-of-data-retrieval">The Pillars of Data Retrieval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expressing-actions-in-sql-code">Expressing Actions in SQL Code</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -340,25 +355,62 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="running-queries-in-vs-code">
-<h1>Running Queries in VS Code<a class="headerlink" href="#running-queries-in-vs-code" title="Link to this heading">#</a></h1>
-<p>I provide detailed instructions on how to create and run queries in VS Code in the following YouTube video:</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=7DDN4dS_laA">https://www.youtube.com/watch?v=7DDN4dS_laA</a></p>
-<p>The video has the following chapters:</p>
-<ul class="simple">
-<li><p>Open VS Code and connect to database</p></li>
-<li><p>Viewing a list of database tables</p></li>
-<li><p>Relationship diagrams</p></li>
-<li><p>Writing a query - Method 1</p></li>
-<li><p>Running a query</p></li>
-<li><p>Writing and saving a query - Method 2</p></li>
-<li><p>Writing a query - Method 3</p></li>
-<li><p>Customizing window layout</p></li>
-<li><p>Saving to Excel</p></li>
-<li><p>Copying results</p></li>
-<li><p>Sorting results</p></li>
-<li><p>Filtering results</p></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="overview-of-sql">
+<h1>Overview of SQL<a class="headerlink" href="#overview-of-sql" title="Link to this heading">#</a></h1>
+<p>Structured Query Language (SQL) is a programming language designed to interact with relational databases. SQL can retrieve, insert, modify, and delete data from databases. SQL can also change the structure of databases. The following paragraphs elaborate on these capabilities.</p>
+<p><font color="red"><b>Resume here. Why learn SQL?</b></font></p>
+<section id="querying-retrieving-data">
+<h2>Querying (Retrieving Data)<a class="headerlink" href="#querying-retrieving-data" title="Link to this heading">#</a></h2>
+<p>The word <em>query</em> means to ask. When you query a database, you ask it for information. Specifically, you ask it for rows of data from the database. Sometimes, you will retrieve rows directly from a table. In other cases, you will construct rows using information from multiple tables.</p>
+<p>Most of your daily workflow will involve <em>querying</em>, or fetching, data to find the answers you need. SQL is the perfect tool for this because it simplifies the retrieval process and provides a practical, straightforward approach to accessing information.</p>
+<section id="the-pillars-of-data-retrieval">
+<h3>The Pillars of Data Retrieval<a class="headerlink" href="#the-pillars-of-data-retrieval" title="Link to this heading">#</a></h3>
+<p>To create a useful report from a database, you will typically perform one or more of the following actions:</p>
+<ol class="arabic simple">
+<li><p><strong>Specifying the data source</strong>: This is the starting point where you identify which table contains the raw information you need.</p></li>
+<li><p><strong>Merging</strong>: In accounting, data is often spread out. This step allows you to link tables together. For example, connecting a list of transactions to a list of vendor names so your report shows names instead of just ID numbers.</p></li>
+<li><p><strong>Filtering</strong>: This allows you to restrict the data to rows of interest. You can instruct SQL to only show records that meet specific criteria, such as <em>“only invoices that are more than 30 days overdue.”</em></p></li>
+<li><p><strong>Selecting</strong>: Databases often have dozens of columns you do not need. This step allows you to pick only the specific fields, like “Date,” “Amount,” and “Account Name”, that belong in your report.</p></li>
+<li><p><strong>Transforming</strong>: In this step, you can change the data that you retrieve. For example, you can perform math, such as calculating a 5% discount or computing the tax on an item.</p></li>
+<li><p><strong>Aggregating</strong>: This is where you summarize. Instead of looking at 5,000 individual sales, you can use this pillar to see the total sales per department or the average transaction value.</p></li>
+<li><p><strong>Sorting</strong>: Finally, you want your data to be readable. This step organizes your results in a logical sequence, such as listing your largest expenses at the top or arranging entries chronologically.</p></li>
+</ol>
+</section>
+<section id="expressing-actions-in-sql-code">
+<h3>Expressing Actions in SQL Code<a class="headerlink" href="#expressing-actions-in-sql-code" title="Link to this heading">#</a></h3>
+<p><font color="red"><b>Resume here. SQL as framework.</b></font></p>
+<p>The following SQL code will query the <em>Northwind Traders</em> database. It will list all customers located in Portland, Oregon, USA. For each customer, it will count the number of orders that the customer has placed with <em>Northwind Traders</em>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>SQL Code</p></th>
+<th class="head"><p>Pillar</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SELECT<br>   C.CustomerID,<br>   C.CompanyName,<br>   COUNT(*) AS [Number of Orders]</p></td>
+<td><p>Selecting</p></td>
+</tr>
+<tr class="row-odd"><td><p>FROM Orders AS O</p></td>
+<td><p>Specifying the data source</p></td>
+</tr>
+<tr class="row-even"><td><p>INNER JOIN Customers AS C<br>ON O.CustomerID = C.CustomerID</p></td>
+<td><p>Merging</p></td>
+</tr>
+<tr class="row-odd"><td><p>WHERE C.City = ‘Portland’</p></td>
+<td><p>Filtering</p></td>
+</tr>
+<tr class="row-even"><td><p>GROUP BY C.CustomerID, C.CompanyName</p></td>
+<td><p>Aggregating</p></td>
+</tr>
+<tr class="row-odd"><td><p>ORDER BY [Number of Orders] DESC</p></td>
+<td><p>Sorting</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Do not expect to understand the details of this code. Instead, read the code with a “birds eye” view. Notice how the SQL code is fairly readable and understandable.</p>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -374,7 +426,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./Unit 2"
+            path: "./Unit 3"
         },
         predefinedOutput: true
     }
@@ -391,21 +443,33 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="2-6%20Connecting%20to%20a%20Database.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Connecting to a Database</p>
-      </div>
-    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-retrieving-data">Querying (Retrieving Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pillars-of-data-retrieval">The Pillars of Data Retrieval</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expressing-actions-in-sql-code">Expressing Actions in SQL Code</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

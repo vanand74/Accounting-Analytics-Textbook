@@ -16,37 +16,40 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
@@ -78,6 +81,7 @@
     <link rel="next" title="The Process of Analytics" href="Unit%201/1-1%20The%20Process%20of%20Analytics.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -93,19 +97,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -113,7 +106,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -121,8 +113,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -140,7 +132,8 @@
       
         
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -170,21 +163,17 @@
     
     
     <img src="_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
-    <script>document.write(`<img src="_static/BookLogo.png" class="logo__image only-dark" alt="Data Analytics for Accountants - Home"/>`);</script>
+    <img src="_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -216,9 +205,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -301,7 +295,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -315,24 +309,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -361,27 +347,19 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="introduction-and-welcome">
 <h1>Introduction and Welcome<a class="headerlink" href="#introduction-and-welcome" title="Link to this heading">#</a></h1>
 <p>Welcome to ACC 3323, <em>Data Analytics for Accounting</em>!</p>
-<p>Data analytics is a <em>process</em> for using data to gain insights into business decisions. In this course, you will learn this process and apply it to accounting tasks. You can learn this process in any data-oriented software package such as Excel, Tableau, Alteryx, or Power BI. Since you will likely use such software during your interships and at your first job, and I will spend time teaching you Excel and Tableau in ACC 3323. However, such tools are <em>not</em> the best way to <em>learn</em> the process of data analytics. It is too easy to use these tools without understanding what you are doing. That leads to flawed analyses and poor work. Therefore, a better approach is needed to learn data analytics.</p>
-<p>Many practicing data analysts and data scientists use a “real” programming language like Python, R, or SQL. In fact, I just did a Google search for “<em>popular language for data analytics</em>”, and the first sentence of Google AI’s response was “<em>The most popular languages for data analytics are Python, R, and SQL.</em>” Why are these languages so popular in data analytics? Because in a “real” programming language:</p>
+<p>Data analytics is a <em>process</em> for using data to inform business decisions. In this course, you will learn this process and apply it to accounting tasks.</p>
+<p>You can learn this process in any data-oriented software package like Excel, Tableau, Alteryx, or Power BI. However, such tools are <em>not</em> the best way to <em>learn</em> the process of data analytics. It is too easy to use these tools without understanding what you are doing. That leads to flawed analyses and poor work. Therefore, a better approach is needed to learn data analytics.</p>
+<p>Many practicing data analysts and data scientists use a programming language like Python, R, or SQL. A quick search for “<em>popular language for data analytics</em>” reveals that Python, R, and SQL lead the industry. Why are these languages so popular in data analytics? Because working in a true programming language enforces best practices:</p>
 <ul class="simple">
-<li><p>You must write code that is a sequence of steps. That means:</p>
-<ul>
-<li><p>Your work will be reproducible.</p></li>
-<li><p>It is possible to <em>audit</em> your work.</p></li>
+<li><p><em>Explicit Logic:</em> You must create a sequence of steps. This forces you to think through how you transform your data.</p></li>
+<li><p><em>Auditability &amp; Reproducibility:</em> Your code is an audit trail. This allows you and others to verify, review, and reproduce your work.</p></li>
+<li><p><em>Data Integrity:</em> Your code and your data are separate (unlike in Excel). This protects your original data from accidental changes.</p></li>
+<li><p><em>Efficiency:</em> When new data arrives, you can just run your code again – no copying, pasting, or updating broken Excel formulas required.</p></li>
 </ul>
-</li>
-<li><p>Your code and your data are separated. That means:</p>
-<ul>
-<li><p>You are less likely to accidently change your data.</p></li>
-<li><p>If your data changes, you can just run your code again without having to copy and paste new data into your Excel file.</p></li>
-</ul>
-</li>
-<li><p>It is easier and faster to work with larger data sets.</p></li>
-</ul>
-<p>Don’t misunderstand. I love Excel and use it regularly. However, it is not the best tool for <em>learning</em> data analytics. If you learn how to work with data in a real programming language, you will be able to easily translate your skills to Excel. Those skills will allow you to work faster and better in Excel.</p>
-<p>I have chosen to use SQL as the primary teaching tool in ACC 3323. I will begin the course by teaching you how data is stored in databases. I will then teach you about SQL SELECT queries. As you will see, SQL provides an excellent framework for thinking about data analyses.</p>
-<p>Don’t worry! I am not trying to make you a programmer or a data scientist. My goal is to teach you some analytics concepts and skills that you will use as a practicing accountant. SQL is simply a tool for learning those concepts and skills.</p>
-<p>As an aside, you will have lots of “street cred” if you say you know SQL when you interview for jobs. Big 4 partners are always impressed when I tell them that my students know SQL. SQL is currently one of the most popular programming languages in the world, and one of the most popular for data science. Make sure to add SQL to your resume!</p>
+<p>Don’t misunderstand – Excel is a fantastic tool that I use regularly. However, once you master logic through code, transferring those skills to spreadsheet tools like Excel becomes second nature. You will find yourself working faster, smarter, and with far fewer errors.</p>
+<p>I have chosen <strong>SQL</strong> as our primary learning tool in ACC 3323. We will begin by exploring how companies store data in databases. We will then learn to write SQL <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statements to extract and transform that data. As you will see, SQL provides an ideal framework for structuring your analytical thinking.</p>
+<p>Don’t worry! My goal is <em>not</em> to turn you into a programmer or data scientist. My goal is to teach you some analytics concepts and skills that you will use as a practicing accountant. SQL is simply a tool for learning those concepts and skills.</p>
+<p>As a bonus, SQL will give you lots of “street cred” when you interview for jobs. Accounting partners and recruiters are always impressed when students possess real SQL skills. Make sure to add SQL to your resume!</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -477,8 +455,8 @@ By Dr. Vic Anand, Ph.D.
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
