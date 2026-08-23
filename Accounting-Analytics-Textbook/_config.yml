@@ -33,9 +33,5 @@ repository:
 html:
   use_issues_button: true
   use_repository_button: true
-
-
-## For Google Analytics
-html:
   analytics:
     google_analytics_id: G-3W9L1EX77X
