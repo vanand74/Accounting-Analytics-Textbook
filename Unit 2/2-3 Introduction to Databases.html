@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -343,7 +343,12 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-databases-work">How Databases Work</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-example">Table Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-example">Relationship Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principles-of-database-design">Principles of Database Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principles-of-database-design">Principles of Database Design</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-1-store-facts-not-math">Principle 1: Store Facts, Not Math</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-2-avoid-data-duplication">Principle 2: Avoid Data Duplication</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-3-data-integrity">Principle 3: Data Integrity</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interacting-with-databases">Interacting with Databases</a></li>
@@ -366,9 +371,9 @@
 <p>A database is an organized collection of data. Think of it as a digital filing cabinet where information is stored in a structured way, making it easy to access, manage, and update. This organization is crucial for everything from tracking inventory in a store to managing your contacts on your phone.</p>
 <section id="databases-versus-excel-spreadsheets">
 <h2>Databases versus Excel Spreadsheets<a class="headerlink" href="#databases-versus-excel-spreadsheets" title="Link to this heading">#</a></h2>
-<p>Wait, you say! Excel can store information, and can do so in a structured way. What can a database provide that Excel cannot?</p>
+<p>Wait, you might say! Excel can store information in a structured way. What can a database provide that Excel cannot?</p>
 <p><strong>Databases impose structure.</strong> Database tables have a fixed format. They require certain types of information in each column. For example, a column designated for numbers cannot store text. Further, each row must contain the same columns. If you are disciplined, you can force such structure in Excel, but it is easy to deviate.</p>
-<p><strong>Databases can require tables to have relationships.</strong> If you have used VLOOKUP in Excel, you have an intuitive idea of relationships. Imagine that you have a table of customer orders and a separate table of customers. With this structure, you can easily merge the order information with customer information. VLOOKUP is designed for this. A database takes this a step further. It is possible to add a <em>constraint</em> to your database and <em>require</em> that each order in the orders table is linked to a customer in the customers table. Such a constraint ensures that you never get invalid order data, that is, an order with no associated customer. Excel cannot enforce such relationships.</p>
+<p><strong>Databases can require tables to have relationships.</strong> If you have used VLOOKUP in Excel, you have an intuitive idea of relationships. Imagine that you have a table of customer orders and a separate table of customers. With this structure, you can easily merge the order information with customer information. VLOOKUP is designed for this. A database takes this a step further. Relational databases allow you to add <em>constraints</em> that <em>require</em> that each order in the orders table is linked to a customer in the customers table. Such a constraint ensures that you never get invalid order data, that is, an order with no associated customer. Excel cannot enforce such relationships.</p>
 <p><strong>Multi user access.</strong> Databases are designed to be accessed by multiple people at the same time. They not only permit thousands of people to log in simultaneously, but provide features to prevent conflicts. For example, say that you have <code class="docutils literal notranslate"><span class="pre">$500</span></code> in your bank account. You have two checks outstanding, one for <code class="docutils literal notranslate"><span class="pre">$300</span></code>, and the other for <code class="docutils literal notranslate"><span class="pre">$400</span></code>. Further, say that both checks hit your account at the same time. The bank will process them one at a time, even if they arrive simultaneously. When processing the first check, the bank locks the data for your account while it is processing the check. The database will not allow it to process the second check until processing completes on the first check. If the bank tried to process both checks at the same time, each would clear because the balance, <code class="docutils literal notranslate"><span class="pre">$500</span></code>, is enough for either check. Since the database locks the account while one check is processing, the second check will (correctly) bounce. Excel does not provide such features.</p>
 <p>For these and other reasons, companies store their most critical accounting and financial data in databases. They will often make copies of such data in Excel so they can work in Excel.</p>
 </section>
@@ -377,8 +382,8 @@
 <p>Databases store data in various ways, but they all share a core purpose: providing an efficient way to store and retrieve large amounts of information. The most common types use a structured approach to organize data.</p>
 <ul class="simple">
 <li><p><strong>Tables:</strong> A table consists of rows and columns. For instance, a customer table might have columns for name, address, and phone number, with each row containing the details of a different customer.</p></li>
-<li><p><strong>Fields (Columns):</strong> Each column represents a specific attribute or piece of information (e.g., first name, last name, or email address).</p></li>
-<li><p><strong>Records (Rows):</strong> Each row represents a single record or entry, representing a unique item or instance (e.g., one specific customer).</p></li>
+<li><p><strong>Columns</strong> (also called <strong>Fields</strong> or <strong>Variables</strong>): Each column represents a specific attribute or piece of information (e.g., first name, last name, or email address).</p></li>
+<li><p><strong>Rows</strong> (also called <strong>Records</strong> or <strong>Observations</strong>): Each row represents a single record or entry, representing a unique item or instance (e.g., one specific customer).</p></li>
 <li><p><strong>Relationships:</strong> Databases can link different tables together. For example, a customer table can be linked to an orders table using a unique customer ID, so you can see all the orders placed by a specific customer.</p></li>
 </ul>
 <section id="table-example">
@@ -400,24 +405,23 @@
 <section id="principles-of-database-design">
 <h3>Principles of Database Design<a class="headerlink" href="#principles-of-database-design" title="Link to this heading">#</a></h3>
 <p>Once a company has decided what data it wishes to store, its next step is to design a database. This is not as simple as it may sound. The company must decide how many database tables, which information should go into each table, and the relationships between those tables. This is not easy, as there are often many ways to do this. However, all ways should adhere to some commonly accepted principles of database design.</p>
+<section id="principle-1-store-facts-not-math">
+<h4>Principle 1: Store Facts, Not Math<a class="headerlink" href="#principle-1-store-facts-not-math" title="Link to this heading">#</a></h4>
+<p>A common mistake that Excel users make is to store calculated numbers in a database. In Excel, you might create a column for a subtotal (for example, multiplying UnitPrice * Quantity). However, <em>you should never store calculated values in a database</em>. You should only store facts (like the raw quantity ordered and the price of the item). If a manager needs to see the order total, write a SQL query to calculate that math on the fly when running the report.</p>
+<p>Storing calculations leads to out-of-sync data. If a customer changes their order quantity and a clerk updates the quantity in the database but forgets to recalculate the subtotal, your accounting records are corrupted. By storing only the facts, you ensure there is always a single source of truth.</p>
+</section>
+<section id="principle-2-avoid-data-duplication">
+<h4>Principle 2: Avoid Data Duplication<a class="headerlink" href="#principle-2-avoid-data-duplication" title="Link to this heading">#</a></h4>
+<p>Instead of storing a customer’s address in every order they place, you should store it once in a Customers table and link it to the Orders table using a unique customer ID. If you stored the customer’s address in the same table as orders, it is possible to get errors that make it seem as if the customer has multiple addresses. For example <code class="docutils literal notranslate"><span class="pre">1926</span> <span class="pre">Forest</span> <span class="pre">Drive</span></code> and <code class="docutils literal notranslate"><span class="pre">1926</span> <span class="pre">Forrest</span> <span class="pre">Drive</span></code> would appear as different addresses. If the customer changes his address, you only need to change it in the Customers table. However, if you had stored the address alongside each order, you would need to change it for each order. Reducing data duplication decreases the size of the database. This, in turn, increases speed of retrieving data.</p>
+</section>
+<section id="principle-3-data-integrity">
+<h4>Principle 3: Data Integrity<a class="headerlink" href="#principle-3-data-integrity" title="Link to this heading">#</a></h4>
+<p>Database designers ensure data integrity by doing the following.</p>
 <ul class="simple">
-<li><p><strong>Avoid data duplication.</strong></p>
-<ul>
-<li><p>For example, instead of storing a customer’s address in every order they place, you’d store it once in a Customers table and link it to the Orders table using a unique customer ID.</p></li>
-<li><p>If you stored the customer’s address in the same table as orders, it is possible to get errors that make it seem as if the customer has multiple addresses. For example <code class="docutils literal notranslate"><span class="pre">1926</span> <span class="pre">Forest</span> <span class="pre">Drive</span></code> and <code class="docutils literal notranslate"><span class="pre">1926</span> <span class="pre">Forrest</span> <span class="pre">Drive</span></code> would appear as different addresses.</p></li>
-<li><p>If the customer changes his address, you only need to change it in the Customers table. However, if you had stored the address alongside each order, you would need to change it for each order.</p></li>
-<li><p>Reducing data duplication decreases the size of the database. This, in turn, increases speed of retrieving data.</p></li>
-</ul>
-</li>
-</ul>
-<ul class="simple">
-<li><p><strong>Data Integrity.</strong> We ensure data integrity by doing the following:</p>
-<ul>
 <li><p>Each row of each table should have a unique identifier. This is called a <strong>primary key</strong>. This reduces the potential for data duplication.</p></li>
 <li><p>If one table depends on another, then the dependent table must link to a row in the primary table. For example, say you have an orders table and a customer table. Each order must be associated with one row in the customer table. This principle is called <strong>referential integrity</strong>.</p></li>
 </ul>
-</li>
-</ul>
+</section>
 </section>
 </section>
 <section id="interacting-with-databases">
@@ -522,7 +526,12 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-databases-work">How Databases Work</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#table-example">Table Example</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-example">Relationship Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principles-of-database-design">Principles of Database Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principles-of-database-design">Principles of Database Design</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-1-store-facts-not-math">Principle 1: Store Facts, Not Math</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-2-avoid-data-duplication">Principle 2: Avoid Data Duplication</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#principle-3-data-integrity">Principle 3: Data Integrity</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interacting-with-databases">Interacting with Databases</a></li>

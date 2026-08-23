@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -349,13 +349,17 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sample-financial-statement">A Sample Financial Statement</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#xbrl-corresponding-to-the-financial-statement">XBRL Corresponding to the Financial Statement</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-you-will-audit-these-tags-if-you-work-as-an-auditor">Why You Will Audit These Tags If You Work As An Auditor</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-data-the-ordered-database">Structured Data: The Ordered Database</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-structured-data">Characteristics of Structured Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#are-spreadsheets-really-structured">Are Spreadsheets Really Structured?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data-our-focus">Tabular Data: Our Focus</a><ul class="nav section-nav flex-column">
@@ -422,7 +426,8 @@
 </section>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
-<p>The best example of semi-structured data for an accounting audience is XBRL (eXtensible Business Reporting Language). It is a modern way of communicating business and financial data. It uses tags in a document to describe items in financial statements. This makes it much easier to work with accounting data. In the old days, financial statements were stored in PDFs, and every company used a different format. Now, with XBRL tags in financial statements, it is much easier to search for, say, a company’s leasing footnote.</p>
+<p>The best example of semi-structured data for an accounting audience is <strong>XBRL</strong> (eXtensible Business Reporting Language). Today, the Securities and Exchange Commission (SEC) <em>mandates that all public companies tag their financial disclosures using XBRL</em>.</p>
+<p>This regulation completely transformed financial reporting. In the old days, financial statements were published as PDFs or scanned paper documents, forcing investment analysts and regulators to manually type numbers into spreadsheets. Now, because companies apply standardized XBRL tags to every line item of every financial statement, software can instantly scrape and analyze financial data. If an analyst wants to pull a specific leasing footnote or calculate interest coverage ratios for the entire retail sector, XBRL tags allow them to do so in seconds.</p>
 <p>Here is an example of a simple financial statement and the corresponding XBRL.</p>
 <section id="a-sample-financial-statement">
 <h4>A Sample Financial Statement<a class="headerlink" href="#a-sample-financial-statement" title="Link to this heading">#</a></h4>
@@ -458,6 +463,12 @@
 </pre></div>
 </div>
 </section>
+<section id="why-you-will-audit-these-tags-if-you-work-as-an-auditor">
+<h4>Why You Will Audit These Tags If You Work As An Auditor<a class="headerlink" href="#why-you-will-audit-these-tags-if-you-work-as-an-auditor" title="Link to this heading">#</a></h4>
+<p>Many accounting students look at XBRL code and assume that tagging financial statement line items is a technical chore best left to the IT department. However, if you enter public accounting as an auditor, <em>you will audit these XBRL tags</em>.</p>
+<p>Modern financial markets rely heavily on automated systems that scrape SEC data. Because of this, a misapplied XBRL tag is just as severe as a material misstatement on a physical balance sheet. If a client mistakenly tags <em>Operating Income</em> as <em>Net Income</em>, or maps a unique company transaction to the wrong GAAP taxonomy tag, the algorithms that read that disclosure will receive faulty data.</p>
+<p>As an auditor, you must verify that the tags applied to the financial statements are accurate. Understanding how semi-structured data is nested and read under the hood is an essential skill for the future of our profession.</p>
+</section>
 </section>
 </section>
 <section id="structured-data-the-ordered-database">
@@ -479,6 +490,10 @@
 <li><p><strong>Spreadsheets (e.g., Microsoft Excel, Google Sheets)</strong>: Perhaps the most familiar example for many. Data is laid out in a grid of rows and columns, with clear headings for each column.</p></li>
 <li><p><strong>Data Warehouses</strong>: Large repositories of structured data collected from various sources, designed for reporting and analysis.</p></li>
 </ul>
+<section id="are-spreadsheets-really-structured">
+<h4>Are Spreadsheets Really Structured?<a class="headerlink" href="#are-spreadsheets-really-structured" title="Link to this heading">#</a></h4>
+<p>Technically, spreadsheets are categorized as structured data because of their grid layout. However, Excel does not strictly enforce this structure. In Excel, you can be as sloppy as you want. For example, you can mix dates, text, and numbers in a single column. By contrast, in a relational database, you cannot enter a text name into a numeric salary column; the system will block you. Thus, spreadsheets are only structured if the user has the discipline to keep them that way!</p>
+</section>
 </section>
 </section>
 <section id="tabular-data-our-focus">
@@ -490,12 +505,12 @@
 <p>A table consists of rows and columns. The columns are the more important of the two because the columns define the table’s structure.</p>
 <section id="table-columns">
 <h4>Table Columns<a class="headerlink" href="#table-columns" title="Link to this heading">#</a></h4>
-<p>Each table column (sometimes called a <em>field</em> or <em>variable</em>) stores one piece of information. For example, say you are creating a table to store information about students. You might create separate columns for student ID, first name, last name, major, and GPA.</p>
-<p>Note that all data in a column should be of the same type (e.g., text, number), and should store the same information. You should not have separate columns for first and last name and then store the text <em>“Smith, Jack”</em> in one column while leaving the other blank.</p>
+<p>Each table column (sometimes called a <strong>field</strong> or <strong>variable</strong>) stores one piece of information. For example, say you are creating a table to store information about students. You might create separate columns for student ID, first name, last name, major, and GPA.</p>
+<p>Note that all data in a column should be of the same type (e.g., text, number), and should store the same information. For example, if you have separate columns for First_Name and Last_Name, you should not store the combined text “Smith, Jack” in the First_Name column while leaving the Last_Name column blank. Doing so would violate the core rule of structured data: each field must store exactly one distinct attribute.</p>
 </section>
 <section id="table-rows">
 <h4>Table Rows<a class="headerlink" href="#table-rows" title="Link to this heading">#</a></h4>
-<p>Each table row (sometimes called an <em>observation</em> or <em>record</em>) stores a complete piece of data. In the student example above, each row will store data for one student.</p>
+<p>Each table row (sometimes called an <strong>observation</strong> or <strong>record</strong>) stores a complete piece of data. In the student example above, each row will store data for one student.</p>
 </section>
 </section>
 </section>
@@ -581,13 +596,17 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-sample-financial-statement">A Sample Financial Statement</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#xbrl-corresponding-to-the-financial-statement">XBRL Corresponding to the Financial Statement</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-you-will-audit-these-tags-if-you-work-as-an-auditor">Why You Will Audit These Tags If You Work As An Auditor</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-data-the-ordered-database">Structured Data: The Ordered Database</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#characteristics-of-structured-data">Characteristics of Structured Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#are-spreadsheets-really-structured">Are Spreadsheets Really Structured?</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-data-our-focus">Tabular Data: Our Focus</a><ul class="nav section-nav flex-column">
