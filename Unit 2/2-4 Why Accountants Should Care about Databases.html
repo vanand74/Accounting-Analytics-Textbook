@@ -387,7 +387,11 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-of-modern-accounting">The Foundation of Modern Accounting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-relational-databases-store-journal-entries">How Relational Databases Store Journal Entries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-relational-databases-store-journal-entries">How Relational Databases Store Journal Entries</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-one-to-many-relationship">Understanding the One-to-Many Relationship</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-vs-reporting">Storage vs. Reporting</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empowering-audits-and-ensuring-integrity">Empowering Audits and Ensuring Integrity</a><ul class="nav section-nav flex-column">
@@ -418,11 +422,12 @@
 <p>These systems integrate information from all parts of a business (sales, inventory, human resources) into a central database. As an accountant, you interact with an application’s interface, but the <em>single source of truth</em> is the database. Understanding how that database is structured helps you grasp how a sales transaction in one department correctly impacts the financial statements you’re responsible for.</p>
 <section id="how-relational-databases-store-journal-entries">
 <h3>How Relational Databases Store Journal Entries<a class="headerlink" href="#how-relational-databases-store-journal-entries" title="Link to this heading">#</a></h3>
-<p>To see how this works in practice, think of a standard journal entry. In your accounting classes, you recorded journal entries as a single block of debits and credits. In a relational database, however, storing this in one flat table would cause massive data duplication. Instead, accounting databases split a single transaction across two linked tables:</p>
+<p>Think of a standard journal entry. In your accounting classes, you recorded journal entries as a single block of debits and credits. In a relational database, this single transaction would be split across two tables:</p>
 <ul class="simple">
-<li><p><strong>Journal entry header table</strong>: This table stores the “one-time” facts about each transaction, such as the date on which the transaction occurred, a description, and the entry’s status (e.g., posted or pending).</p></li>
-<li><p><strong>Journal entry line items table</strong>: This table stores the individual debits and credits, which are linked to the header table using a shared transaction ID.</p></li>
+<li><p><strong>Journal entry header table</strong>: stores the one-time facts about each transaction, such as the date on which the transaction occurred, a description, and the status (e.g., posted or pending).</p></li>
+<li><p><strong>Journal entry line items table</strong>: stores the individual debits and credits, which are linked to the header table using a shared journal entry ID.</p></li>
 </ul>
+<p>Here’s how these tables look under the hood:</p>
 <div style="width: 60%; margin: 0 auto; font-size: 0.85em;">
   <table class="table">
     <thead>
@@ -457,8 +462,7 @@
   <p style="text-align: center; font-style: italic; color: #555; margin-top: 5px;">
     <b>Journal Entry Header Table</b>
   </p>
-</div>
-<div style="width: 60%; margin: 0 auto; font-size: 0.85em;">
+</div><div style="width: 60%; margin: 0 auto; font-size: 0.85em;">
   <table class="table">
     <thead>
       <tr>
@@ -510,9 +514,23 @@
   <p style="text-align: center; font-style: italic; color: #555; margin-top: 5px;">
     <b>Journal Entry Line Items Table</b>
   </p>
-</div>
-<p>These two tables have a “one-to-many” relationship. Every row in the journal entry header table can be associated with many rows in the line items table. However, every row in the line items table must be associated with one, and only one, row in the header table.</p>
-<p>Also note that this structure ensures no data duplication and no wasted space. The entry’s description and status are stored once. There is one row per line item in the line item table, thus ensuring no empty columns in the header table.</p>
+</div><section id="understanding-the-one-to-many-relationship">
+<h4>Understanding the One-to-Many Relationship<a class="headerlink" href="#understanding-the-one-to-many-relationship" title="Link to this heading">#</a></h4>
+<p>Look closely at how these tables connect:</p>
+<ul class="simple">
+<li><p><strong>Shared Keys:</strong> Journal entry 101 in the header table links to the first two rows in the line items table. We know this because those two rows have 101 in their journal entry ID column.</p></li>
+<li><p><strong>One-to-Many Relationship:</strong> These two tables have a one-to-many relationship. A row in the header table can be linked to multiple rows in the line items table, but each line item belongs to exactly one header.</p></li>
+<li><p><strong>Referential Integrity:</strong> The database enforces strict rules here. You cannot add a line item with a Journal Entry ID of 999 unless ID 999 already exists in the Header table. This prevents orphan debit and credit rows from floating around in your ledger.</p></li>
+</ul>
+<p>This split structure ensures no data duplication, no empty columns, and zero wasted storage space.</p>
+</section>
+<section id="storage-vs-reporting">
+<h4>Storage vs. Reporting<a class="headerlink" href="#storage-vs-reporting" title="Link to this heading">#</a></h4>
+<p>You might think, <em>“Splitting my journal entries across two tables seems like a lot of work just to view a simple transaction.”</em></p>
+<p>But here is the secret: databases separate <strong>how we store data</strong> from <strong>how we view data</strong>.</p>
+<p>Splitting the tables allows the database to store your transactions with zero redundancy and the lowest likelihood of data errors. When you need to read the ledger, you can write a simple SQL query (which you will learn to do in Unit 3) to merge the data from the two tables back together instantly.</p>
+<p>In sum, relational databases allow you to have your cake and eat it too: bulletproof, duplication-free storage on the way in, and a complete, beautifully compiled report on the way out.</p>
+</section>
 </section>
 </section>
 <section id="empowering-audits-and-ensuring-integrity">
@@ -621,7 +639,11 @@ Knowing about databases opens up career paths in:</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-of-modern-accounting">The Foundation of Modern Accounting</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-relational-databases-store-journal-entries">How Relational Databases Store Journal Entries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-relational-databases-store-journal-entries">How Relational Databases Store Journal Entries</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-one-to-many-relationship">Understanding the One-to-Many Relationship</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-vs-reporting">Storage vs. Reporting</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empowering-audits-and-ensuring-integrity">Empowering Audits and Ensuring Integrity</a><ul class="nav section-nav flex-column">
