@@ -245,6 +245,53 @@
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 2/2-3 Introduction to Databases.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -374,7 +421,7 @@
 <p>Wait, you might say! Excel can store information in a structured way. What can a database provide that Excel cannot?</p>
 <p><strong>Databases impose structure.</strong> Database tables have a fixed format. They require certain types of information in each column. For example, a column designated for numbers cannot store text. Further, each row must contain the same columns. If you are disciplined, you can force such structure in Excel, but it is easy to deviate.</p>
 <p><strong>Databases can require tables to have relationships.</strong> If you have used VLOOKUP in Excel, you have an intuitive idea of relationships. Imagine that you have a table of customer orders and a separate table of customers. With this structure, you can easily merge the order information with customer information. VLOOKUP is designed for this. A database takes this a step further. Relational databases allow you to add <em>constraints</em> that <em>require</em> that each order in the orders table is linked to a customer in the customers table. Such a constraint ensures that you never get invalid order data, that is, an order with no associated customer. Excel cannot enforce such relationships.</p>
-<p><strong>Multi user access.</strong> Databases are designed to be accessed by multiple people at the same time. They not only permit thousands of people to log in simultaneously, but provide features to prevent conflicts. For example, say that you have <code class="docutils literal notranslate"><span class="pre">$500</span></code> in your bank account. You have two checks outstanding, one for <code class="docutils literal notranslate"><span class="pre">$300</span></code>, and the other for <code class="docutils literal notranslate"><span class="pre">$400</span></code>. Further, say that both checks hit your account at the same time. The bank will process them one at a time, even if they arrive simultaneously. When processing the first check, the bank locks the data for your account while it is processing the check. The database will not allow it to process the second check until processing completes on the first check. If the bank tried to process both checks at the same time, each would clear because the balance, <code class="docutils literal notranslate"><span class="pre">$500</span></code>, is enough for either check. Since the database locks the account while one check is processing, the second check will (correctly) bounce. Excel does not provide such features.</p>
+<p><strong>Multi-user access.</strong> Databases are designed to be accessed by multiple people at the same time. They not only permit thousands of people to log in simultaneously, but also provide features to prevent conflicts. For example, say that you have <code class="docutils literal notranslate"><span class="pre">$500</span></code> in your bank account. You have two checks outstanding, one for <code class="docutils literal notranslate"><span class="pre">$300</span></code>, and the other for <code class="docutils literal notranslate"><span class="pre">$400</span></code>. Further, say that both checks hit your account at the same time. The bank will process them one at a time, even if they arrive simultaneously. When processing the first check, the bank locks the data for your account while it is processing the check. The database will not allow the system to process the second check until processing completes on the first check. If the bank tried to process both checks at the same time, each would clear because the balance, <code class="docutils literal notranslate"><span class="pre">$500</span></code>, is enough for either check. Since the database locks the account while one check is processing, the second check will (correctly) bounce. Excel does not provide such features.</p>
 <p>For these and other reasons, companies store their most critical accounting and financial data in databases. They will often make copies of such data in Excel so they can work in Excel.</p>
 </section>
 <section id="how-databases-work">

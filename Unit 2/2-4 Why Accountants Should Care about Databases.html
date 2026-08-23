@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -245,6 +245,53 @@
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 2/2-4 Why Accountants Should Care about Databases.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -339,8 +386,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-of-modern-accounting">The Foundation of Modern Accounting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empowering-audits-and-ensuring-integrity">Empowering Audits and Ensuring Integrity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-of-modern-accounting">The Foundation of Modern Accounting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-relational-databases-store-journal-entries">How Relational Databases Store Journal Entries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empowering-audits-and-ensuring-integrity">Empowering Audits and Ensuring Integrity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-case-of-the-devious-client">The Case of the Devious Client</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-financial-analysis-and-reporting">Enhancing Financial Analysis and Reporting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-proofing-your-career">Future-Proofing Your Career</a></li>
 </ul>
@@ -359,8 +412,108 @@
 <p>Accounting students should learn about databases because virtually all modern accounting and financial data is stored, managed, and processed within them. Understanding databases moves you from simply being a user of accounting software to a professional who understands the structure and flow of the data itself.</p>
 <section id="the-foundation-of-modern-accounting">
 <h2>The Foundation of Modern Accounting<a class="headerlink" href="#the-foundation-of-modern-accounting" title="Link to this heading">#</a></h2>
-<p>Think of the old, green-paged ledgers. Today, that ledger is a database. All major accounting and business management software - from QuickBooks for small businesses to massive enterprise resource planning (ERP) systems like SAP, Oracle, and NetSuite for large corporations—are built on databases.</p>
+<p>Think of the old, green-paged ledgers. Today, that ledger is a database. All major accounting and business management software - from QuickBooks for small businesses to massive enterprise resource planning (ERP) systems like SAP, Oracle, and NetSuite for large corporations - is built on databases.</p>
+<a class="reference internal image-reference" href="../_images/Old_Fashioned_Ledger.jpg"><img alt="Old Fashioned Accounting Ledger" class="align-center" src="../_images/Old_Fashioned_Ledger.jpg" style="width: 400px;" />
+</a>
 <p>These systems integrate information from all parts of a business (sales, inventory, human resources) into a central database. As an accountant, you interact with an application’s interface, but the <em>single source of truth</em> is the database. Understanding how that database is structured helps you grasp how a sales transaction in one department correctly impacts the financial statements you’re responsible for.</p>
+<section id="how-relational-databases-store-journal-entries">
+<h3>How Relational Databases Store Journal Entries<a class="headerlink" href="#how-relational-databases-store-journal-entries" title="Link to this heading">#</a></h3>
+<p>To see how this works in practice, think of a standard journal entry. In your accounting classes, you recorded journal entries as a single block of debits and credits. In a relational database, however, storing this in one flat table would cause massive data duplication. Instead, accounting databases split a single transaction across two linked tables:</p>
+<ul class="simple">
+<li><p><strong>Journal entry header table</strong>: This table stores the “one-time” facts about each transaction, such as the date on which the transaction occurred, a description, and the entry’s status (e.g., posted or pending).</p></li>
+<li><p><strong>Journal entry line items table</strong>: This table stores the individual debits and credits, which are linked to the header table using a shared transaction ID.</p></li>
+</ul>
+<div style="width: 60%; margin: 0 auto; font-size: 0.85em;">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Journal Entry ID</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>101</td>
+        <td>2026-03-15</td>
+        <td>Paid office rent</td>
+        <td>Posted</td>
+      </tr>
+      <tr>
+        <td>102</td>
+        <td>2026-03-16</td>
+        <td>Cash sale of goods</td>
+        <td>Posted</td>
+      </tr>
+      <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="text-align: center; font-style: italic; color: #555; margin-top: 5px;">
+    <b>Journal Entry Header Table</b>
+  </p>
+</div>
+<div style="width: 60%; margin: 0 auto; font-size: 0.85em;">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Line Item ID</th>
+        <th>Journal Entry ID</th>
+        <th>Account ID</th>
+        <th>Debit</th>
+        <th>Credit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>101</td>
+        <td>5100 (rent expense)</td>
+        <td>1200.00</td>
+        <td>0.00</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>101</td>
+        <td>1010 (cash)</td>
+        <td>0.00</td>
+        <td>1200.00</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>102</td>
+        <td>1010 (cash)</td>
+        <td>450.00</td>
+        <td>0.00</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>102</td>
+        <td>4000 (revenue)</td>
+        <td>0.00</td>
+        <td>450.00</td>
+      </tr>
+      <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="text-align: center; font-style: italic; color: #555; margin-top: 5px;">
+    <b>Journal Entry Line Items Table</b>
+  </p>
+</div>
+<p>These two tables have a “one-to-many” relationship. Every row in the journal entry header table can be associated with many rows in the line items table. However, every row in the line items table must be associated with one, and only one, row in the header table.</p>
+<p>Also note that this structure ensures no data duplication and no wasted space. The entry’s description and status are stored once. There is one row per line item in the line item table, thus ensuring no empty columns in the header table.</p>
+</section>
 </section>
 <section id="empowering-audits-and-ensuring-integrity">
 <h2>Empowering Audits and Ensuring Integrity<a class="headerlink" href="#empowering-audits-and-ensuring-integrity" title="Link to this heading">#</a></h2>
@@ -370,6 +523,18 @@
 <li><p><strong>Fraud Detection</strong>: An auditor with database knowledge can search for anomalies that would be nearly impossible to find manually. For example, they could write a query to find invoices approved after midnight, payments made to vendors with employee-matching addresses, or duplicate invoice numbers.</p></li>
 <li><p><strong>Testing Controls</strong>: IT auditors specifically assess the controls within the database itself, such as user access rights and data validation rules, to ensure data integrity is maintained at its source.</p></li>
 </ul>
+<section id="the-case-of-the-devious-client">
+<h3>The Case of the Devious Client<a class="headerlink" href="#the-case-of-the-devious-client" title="Link to this heading">#</a></h3>
+<p>To understand why database access is so powerful for auditors, imagine you are conducting an audit of a client’s cash accounts. You ask the client for a list of all transactions over \$10,000, which is the maximum allowed amount under internal control rules. The client smiles and emails you an empty Excel spreadsheet.</p>
+<p>Should you trust it? An experienced auditor wouldn’t.</p>
+<p>In Excel, it is incredibly easy for a client to manually delete or filter out suspicious transactions before emailing you the file. However, if you have read-only access to the client’s database, you don’t have to rely on their reports. You can write a SQL query to pull the transaction population directly. For example:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Transactions</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="nb">Date</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">Amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10000</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This simple query bypasses the client’s spreadsheet and ensures you are working with the absolute truth. Database knowledge transforms you from an auditor who passively receives data into an auditor who independently investigates it.</p>
+</section>
 </section>
 <section id="enhancing-financial-analysis-and-reporting">
 <h2>Enhancing Financial Analysis and Reporting<a class="headerlink" href="#enhancing-financial-analysis-and-reporting" title="Link to this heading">#</a></h2>
@@ -383,7 +548,7 @@ Knowing about databases opens up career paths in:</p>
 <ul class="simple">
 <li><p><strong>Forensic Accounting</strong>: Investigating financial discrepancies often involves deep dives into database records.</p></li>
 <li><p><strong>IT Audit</strong>: Specializing in auditing the IT systems and databases that manage financial data.</p></li>
-<li><p><strong>Financial Systems Analyst</strong>: Working as a bridge between the accounting department and the IT department to implement and improve financial systems.</p></li>
+<li><p><strong>Financial Systems Analysis</strong>: Working as a bridge between the accounting department and the IT department to implement and improve financial systems.</p></li>
 </ul>
 <p>In short, learning about databases gives you control, insight, and a significant competitive advantage in a rapidly evolving profession.</p>
 </section>
@@ -455,8 +620,14 @@ Knowing about databases opens up career paths in:</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-of-modern-accounting">The Foundation of Modern Accounting</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empowering-audits-and-ensuring-integrity">Empowering Audits and Ensuring Integrity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-of-modern-accounting">The Foundation of Modern Accounting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-relational-databases-store-journal-entries">How Relational Databases Store Journal Entries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#empowering-audits-and-ensuring-integrity">Empowering Audits and Ensuring Integrity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-case-of-the-devious-client">The Case of the Devious Client</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#enhancing-financial-analysis-and-reporting">Enhancing Financial Analysis and Reporting</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#future-proofing-your-career">Future-Proofing Your Career</a></li>
 </ul>
