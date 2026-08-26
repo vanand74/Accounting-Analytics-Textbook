@@ -395,13 +395,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-helpful-features">Some Helpful Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-text-coloring">Automatic Text Coloring</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hovering">Hovering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-highlighting">Text Highlighting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-checking-squiggly-lines">Error Checking / Squiggly Lines</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-complete">Auto Complete</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions">Extensions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-button">Extensions Button</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-that-extension-is-installed">Proof that Extension is Installed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confirming-the-extension-is-installed">Confirming the Extension is Installed</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
@@ -418,8 +418,8 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="visual-studio-code-overview">
 <h1>Visual Studio Code Overview<a class="headerlink" href="#visual-studio-code-overview" title="Link to this heading">#</a></h1>
-<p>There is a video that covers everything in this chapter. Use the video if you prefer.</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=rm1iMrSYbLU">https://www.youtube.com/watch?v=rm1iMrSYbLU</a></p>
+<p>There is a video that covers everything on this page. Use the video if you prefer.</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=rm1iMrSYbLU">Click here for video overview of VS Code</a></p>
 <section id="what-is-visual-studio-code">
 <h2>What is Visual Studio Code?<a class="headerlink" href="#what-is-visual-studio-code" title="Link to this heading">#</a></h2>
 <p>Visual Studio Code (VS Code) is a word processor for programmers. Just like Microsoft Word and Google Docs are designed for creating documents, VS Code is designed for creating, testing, debugging, and running computer code. At the time of this writing, VS Code is the most popular code editor in the world.<sup>[1]</sup></p>
@@ -434,8 +434,12 @@
 <section id="dark-theme">
 <h3>Dark Theme<a class="headerlink" href="#dark-theme" title="Link to this heading">#</a></h3>
 <p><img alt="Dark Theme" src="../_images/Dark.png" /></p>
-<p>You can choose whichever of these themes that you prefer. You can also choose from other built-in themes or download a new theme.</p>
-<p>To set the color theme, go to the <em>File menu &gt; Preferences &gt; Themes &gt; Color Theme</em>. Then choose a theme from the menu that appears.</p>
+<p>You can choose whichever of these themes you prefer. You can also choose from other built-in themes or download a new theme.</p>
+<p>To set the color theme:</p>
+<ul class="simple">
+<li><p><strong>Windows:</strong>  Go to the <em>File menu &gt; Preferences &gt; Themes &gt; Color Theme</em>.</p></li>
+<li><p><strong>Mac:</strong> Go to the <em>Code menu &gt; Settings &gt; Themes &gt; Color Theme</em>.</p></li>
+</ul>
 </section>
 </section>
 <section id="some-helpful-features">
@@ -454,8 +458,8 @@
 <p>The graphic shows a snapshot of the same SQL query, but with my mouse hovering over the text <code class="docutils literal notranslate"><span class="pre">Employees</span></code>. The resulting popup tells me that Employees is a table in the Northwind Traders database.</p>
 <p>Hovering is super useful, as it quickly provides you with relevant information without the need to switch windows.</p>
 </section>
-<section id="text-highlighting">
-<h3>Text Highlighting<a class="headerlink" href="#text-highlighting" title="Link to this heading">#</a></h3>
+<section id="error-checking-squiggly-lines">
+<h3>Error Checking / Squiggly Lines<a class="headerlink" href="#error-checking-squiggly-lines" title="Link to this heading">#</a></h3>
 <p><img alt="Text Highlighting" src="../_images/Highlighting.png" /></p>
 <p>The graphic shows a snapshot of a SQL query in VS Code. I deliberately made an error by inserting the nonsensical word “Moo” into my query. Notice that VS Code drew a red squiggly line underneath “Moo” and, when I hover, provides an error message.</p>
 <p><img alt="Text Highlighting2" src="../_images/Highlighting2.png" /></p>
@@ -465,7 +469,7 @@
 <h3>Auto Complete<a class="headerlink" href="#auto-complete" title="Link to this heading">#</a></h3>
 <p><img alt="Auto Complete 2" src="../_images/AutoComplete.png" /></p>
 <p>Auto completion is one of my favorite features. It makes life easier when coding. Say that you are typing a column name. You must spell it correctly or else your code will not work. In this case, I want to add the <code class="docutils literal notranslate"><span class="pre">BirthDate</span></code> column, but I cannot remember whether the correct spelling is “Birth Date”, “Birthday”, “Birth day”, or “BirthDate”. I can look this up in many ways, but that is not necessary with auto complete. Just type a few characters of the column name, and VS Code will create a list of possible completions. Notice that I typed “Bir” and it is already suggesting the column name. VS Code tries to guess what you want and puts that at the top of the list. Its guess is usually good!</p>
-<p>Once the item you want is in sight, hit TAB if it is the first in the list. If not, use the arrow keys to select it, then hit TAB, or select it with your mouse.</p>
+<p>Once the item you want is in sight, hit TAB or ENTER if it is the first in the list. If not, use the arrow keys to select it, then hit TAB or ENTER, or select it with your mouse.</p>
 <p><img alt="Auto Complete 2" src="../_images/AutoComplete2.png" /></p>
 <p>You do not need to type the first few letters of the thing you want. <em>Any</em> letters will do. In this example, I could not remember the name of the ZIP Code column, so I typed “code”. The first suggestion is the one I want.</p>
 </section>
@@ -482,8 +486,8 @@
 <h3>Extensions Button<a class="headerlink" href="#extensions-button" title="Link to this heading">#</a></h3>
 <p><img alt="Extensions button" src="../_images/Extensions_button.png" /></p>
 </section>
-<section id="proof-that-extension-is-installed">
-<h3>Proof that Extension is Installed<a class="headerlink" href="#proof-that-extension-is-installed" title="Link to this heading">#</a></h3>
+<section id="confirming-the-extension-is-installed">
+<h3>Confirming the Extension is Installed<a class="headerlink" href="#confirming-the-extension-is-installed" title="Link to this heading">#</a></h3>
 <p><img alt="Proof that extension is installed" src="../_images/Extensions2.png" /></p>
 </section>
 </section>
@@ -568,13 +572,13 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-helpful-features">Some Helpful Features</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-text-coloring">Automatic Text Coloring</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hovering">Hovering</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#text-highlighting">Text Highlighting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-checking-squiggly-lines">Error Checking / Squiggly Lines</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#auto-complete">Auto Complete</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions">Extensions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extensions-button">Extensions Button</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-that-extension-is-installed">Proof that Extension is Installed</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confirming-the-extension-is-installed">Confirming the Extension is Installed</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
