@@ -448,9 +448,9 @@
 <p>In a professional setting, sloppy file organization leads to severe consequences. If an auditor or financial analyst cannot locate the exact version of a raw data file used for a regulatory filing, or if a client-provided ledger is overwritten and lost, the audit trail is broken.</p>
 <p>A broken audit trail means your work is neither <strong>auditable</strong> nor <strong>reproducible</strong>. In professional accounting, if your analysis cannot be verified and reproduced by someone else, your analysis is effectively useless. Proper file and folder discipline ensures:</p>
 <ul class="simple">
-<li><p><strong>Audit Trails</strong>: A clear record of where your raw data came from, what transformations were applied, and where the final output is saved.</p></li>
-<li><p><strong>Version Control</strong>: Ensuring that you are always working with the master, up-to-date version of a dataset, rather than a stale duplicate.</p></li>
-<li><p><strong>Client Organization</strong>: Keeping confidential client data strictly separated and structured.</p></li>
+<li><p><strong>Audit Trails:</strong> A clear record of where your raw data came from, what transformations were applied, and where the final output is saved.</p></li>
+<li><p><strong>Version Control:</strong> Ensuring that you are always working with the master, up-to-date version of a dataset, rather than a stale duplicate.</p></li>
+<li><p><strong>Client Organization:</strong> Keeping confidential client data strictly separated and structured.</p></li>
 </ul>
 </section>
 </section>
@@ -535,7 +535,7 @@
 <p>At the very top of this organizational structure on every drive is the <strong>root folder</strong>. The root folder has no parent folder; it is the starting point of the entire file system.</p>
 <ul class="simple">
 <li><p>On Windows, the root folder of your primary hard drive is represented by C:.</p></li>
-<li><p>On MacOS, the root folder is represented by a single forward slash / .</p></li>
+<li><p>On macOS, the root folder is represented by a single forward slash / .</p></li>
 </ul>
 <p>Within this root folder, the operating system creates separate folder hierarchies for system files, installed programs, and user files. Users should create and manage their own folder hierarchies under their dedicated user directories (such as <strong>Documents</strong> or <strong>Desktop</strong>).</p>
 <p>Below is a typical folder hierarchy on the Windows operating system. The hierarchy on macOS is remarkably similar. In this example, the user has created a job search folder in his documents, with one subfolder for each application submitted. Similarly, he has a folder for classes, with a separate subfolder for each class, and separate subfolders within each class folder for the different assignments.</p>
@@ -546,8 +546,8 @@
 <p>Every folder (except the root folder) is nested inside exactly one parent folder. Every file resides in exactly one folder. Therefore, <em>every single file on a computer has a unique file path</em>. Think of a file path as your file’s digital street address. It provides the sequence of directories that a program must follow to locate and read that file on the disk.</p>
 <p>There are two primary file path syntaxes, depending on your operating system:</p>
 <ul class="simple">
-<li><p><strong>Windows File Path</strong>: Windows uses backslashes () to separate folders, starting with the drive letter. For example, <code class="docutils literal notranslate"><span class="pre">C:\Users\username\Documents\ACC_3323\query.sql</span></code></p></li>
-<li><p><strong>macOS File Path</strong>: Mac uses forward slashes (/) to separate folders, starting from the root folder. For example,
+<li><p><strong>Windows File Path</strong>: Windows uses backslashes ( \ ) to separate folders, starting with the drive letter. For example, <code class="docutils literal notranslate"><span class="pre">C:\Users\username\Documents\ACC_3323\query.sql</span></code></p></li>
+<li><p><strong>macOS File Path</strong>: Mac uses forward slashes ( / ) to separate folders, starting from the root folder. For example,
 <code class="docutils literal notranslate"><span class="pre">/Users/username/Documents/ACC_3323/query.sql</span></code></p></li>
 </ul>
 <section id="pro-tip-copying-file-paths-quickly">
@@ -574,7 +574,7 @@
 </ul>
 </li>
 </ol>
-<p>Your final folder structure should look like this:
+<p>Your final folder structure should look like this:<br />
 <img alt="New Folder Structure" src="../_images/NewFolderStructure.png" /></p>
 <section id="pinning-your-folder-to-quick-access-or-favorites">
 <h3>Pinning Your Folder to Quick Access or Favorites<a class="headerlink" href="#pinning-your-folder-to-quick-access-or-favorites" title="Link to this heading">#</a></h3>
@@ -590,7 +590,7 @@
 <h2>Managing Files and Folders in Visual Studio Code<a class="headerlink" href="#managing-files-and-folders-in-visual-studio-code" title="Link to this heading">#</a></h2>
 <p>Visual Studio Code (VS Code) is a powerful, professional tool with excellent file and folder management capabilities. However, to utilize it properly, you must follow one golden rule:</p>
 <blockquote>
-<div><p><strong>The Open Folder Rule</strong>: You must always open a folder in VS Code (File &gt; Open Folder) and work within that folder. Do not simply double-click and open standalone SQL files.</p>
+<div><p><strong>The Open Folder Rule:</strong> You must always open a folder in VS Code (File &gt; Open Folder) and work within that folder. Do not simply double-click and open standalone SQL files.</p>
 </div></blockquote>
 <p>Opening a folder sets the “workspace” for VS Code. It populates the left-hand explorer sidebar with your entire folder hierarchy, allowing you to create, save, and manage your queries directly inside your organized class folders.</p>
 <p>Step-by-Step Workspace Setup in VS Code:</p>
@@ -605,13 +605,13 @@
 <h3>Creating, Saving, and Deleting SQL Files<a class="headerlink" href="#creating-saving-and-deleting-sql-files" title="Link to this heading">#</a></h3>
 <p>Now that your folder is open in VS Code, you can manage files directly in VS Code.</p>
 <ul class="simple">
-<li><p><strong>To Create a File</strong>: Hover your mouse over the Queries folder in the left sidebar and click the New File icon (which looks like a sheet of paper with a plus sign). Name the file class_demo.sql.</p>
+<li><p><strong>To Create a File:</strong> Hover your mouse over the Queries folder in the left sidebar and click the New File icon (which looks like a sheet of paper with a plus sign). Name the file class_demo.sql.</p>
 <ul>
 <li><p><em>Crucial Step</em>: You must type the .sql extension. This tells VS Code that you are writing SQL code, which instantly activates automatic text coloring, error highlighting, and autocomplete.</p></li>
 </ul>
 </li>
-<li><p><strong>To Save Your Work</strong>: Press Ctrl + S (Windows) or Cmd + S (Mac). This writes the temporary text from your RAM directly to your permanent disk storage.</p></li>
-<li><p><strong>To Delete a File</strong>: If you need to remove a file, simply right-click it in the VS Code sidebar and select Delete. This will safely move the file to your computer’s Recycle Bin or Trash.</p></li>
+<li><p><strong>To Save Your Work:</strong> Press Ctrl + S (Windows) or Cmd + S (Mac). This writes the temporary text from your RAM directly to your permanent disk storage.</p></li>
+<li><p><strong>To Delete a File:</strong> If you need to remove a file, simply right-click it in the VS Code sidebar and select Delete. This will safely move the file to your computer’s Recycle Bin or Trash.</p></li>
 </ul>
 </section>
 </section>
