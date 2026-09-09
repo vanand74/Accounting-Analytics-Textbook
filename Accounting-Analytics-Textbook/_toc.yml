@@ -17,3 +17,7 @@ parts:
   - file: "Unit 2/2-5 VS Code Overview"
   - file: "Unit 2/2-6 Connecting to a Database"
   - file: "Unit 2/2-7 Running Queries in VS Code"
+
+- caption: "Unit 3: SQL"
+  chapters:
+  - file: "Unit 3/3-0 Working with Files and Folders"
