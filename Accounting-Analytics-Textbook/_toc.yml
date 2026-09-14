@@ -21,3 +21,5 @@ parts:
 - caption: "Unit 3: SQL"
   chapters:
   - file: "Unit 3/3-0 Working with Files and Folders"
+  - file: "Unit 3/3-1 Overview of SQL"
+  
