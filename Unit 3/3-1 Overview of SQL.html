@@ -473,13 +473,13 @@
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
 <span class="w">    </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span>
 <span class="w">    </span><span class="k">C</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span>
-<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Orders</span><span class="p">]</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumberOfOrders</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span>
 <span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">C</span>
 <span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerID</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Portland'</span>
 <span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CompanyName</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">[</span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Orders</span><span class="p">]</span><span class="w"> </span><span class="k">DESC</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">NumberOfOrders</span><span class="w"> </span><span class="k">DESC</span>
 </pre></div>
 </div>
 <p>The following table explains each line of the SQL code and how it maps to the business question:</p>
@@ -502,7 +502,7 @@
         <span style="color: #008000; font-weight: bold;">SELECT</span><br>
         &nbsp;&nbsp;C.CustomerID,<br>
         &nbsp;&nbsp;C.CompanyName,<br>
-        &nbsp;&nbsp;<span style="color: #008000; font-weight: bold;">COUNT</span>(*) <span style="color: #008000; font-weight: bold;">AS</span> [Number <span style="color: #008000; font-weight: bold;">of</span> Orders]
+        &nbsp;&nbsp;<span style="color: #008000; font-weight: bold;">COUNT</span>(*) <span style="color: #008000; font-weight: bold;">AS</span> NumberOfOrders
       </td>
       <td style="padding: 10px; vertical-align: top;">Selecting &amp; Transforming</td>
       <td style="padding: 10px; vertical-align: top;">Selects customer identifiers and counts the number of orders per customer.</td>
@@ -538,7 +538,7 @@
     </tr>
     <tr style="border-bottom: 1px solid #e1e4e8;">
       <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">ORDER BY</span> [Number <span style="color: #008000; font-weight: bold;">of</span> Orders] <span style="color: #008000; font-weight: bold;">DESC</span>
+        <span style="color: #008000; font-weight: bold;">ORDER BY</span> NumberOfOrders <span style="color: #008000; font-weight: bold;">DESC</span>
       </td>
       <td style="padding: 10px; vertical-align: top;">Sorting</td>
       <td style="padding: 10px; vertical-align: top;">Sorts the resulting summary table so the top customer appears first.</td>
