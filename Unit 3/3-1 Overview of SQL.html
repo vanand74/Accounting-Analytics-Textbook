@@ -76,6 +76,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 3/3-1 Overview of SQL';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Working with Files and Folders" href="3-0%20Working%20with%20Files%20and%20Folders.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -126,8 +127,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -196,8 +195,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: SQL</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="3-0%20Working%20with%20Files%20and%20Folders.html">Working with Files and Folders</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Overview of SQL</a></li>
 </ul>
 
     </div>
@@ -390,11 +390,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-retrieving-data">Querying (Retrieving Data)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pillars-of-data-retrieval">The Pillars of Data Retrieval</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expressing-actions-in-sql-code">Expressing Actions in SQL Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-sql">What is SQL?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-focus-data-retrieval">Our Focus: Data Retrieval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-a-query">Defining a Query</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-sql-the-accountant-s-advantage">Why Learn SQL? The Accountant’s Advantage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-as-a-universal-framework">SQL as a Universal Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-a-real-accounting-query">Deconstructing a Real Accounting Query</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-looking-ahead">Summary and Looking Ahead</a></li>
 </ul>
             </nav>
         </div>
@@ -408,59 +414,144 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="overview-of-sql">
 <h1>Overview of SQL<a class="headerlink" href="#overview-of-sql" title="Link to this heading">#</a></h1>
-<p>Structured Query Language (SQL) is a programming language designed to interact with relational databases. SQL can retrieve, insert, modify, and delete data from databases. SQL can also change the structure of databases. The following paragraphs elaborate on these capabilities.</p>
-<p><font color="red"><b>Resume here. Why learn SQL?</b></font></p>
-<section id="querying-retrieving-data">
-<h2>Querying (Retrieving Data)<a class="headerlink" href="#querying-retrieving-data" title="Link to this heading">#</a></h2>
-<p>The word <em>query</em> means to ask. When you query a database, you ask it for information. Specifically, you ask it for rows of data from the database. Sometimes, you will retrieve rows directly from a table. In other cases, you will construct rows using information from multiple tables.</p>
-<p>Most of your daily workflow will involve <em>querying</em>, or fetching, data to find the answers you need. SQL is the perfect tool for this because it simplifies the retrieval process and provides a practical, straightforward approach to accessing information.</p>
-<section id="the-pillars-of-data-retrieval">
-<h3>The Pillars of Data Retrieval<a class="headerlink" href="#the-pillars-of-data-retrieval" title="Link to this heading">#</a></h3>
-<p>To create a useful report from a database, you will typically perform one or more of the following actions:</p>
+<section id="what-is-sql">
+<h2>What is SQL?<a class="headerlink" href="#what-is-sql" title="Link to this heading">#</a></h2>
+<p>Structured Query Language (SQL) – pronounced as either “S-Q-L” or “sequel” – is a programming language designed to interact with relational databases. SQL differs from many mainstream programming languages. In SQL, you describe what data you want to retrieve and how you want to transform it. The database management system then handles the low-level details under the hood. SQL is also unique because it reads like English.</p>
+<p>SQL has extensive capabilities. It can:</p>
+<ul class="simple">
+<li><p><em>Retrieve Data:</em> Extract specific rows, columns, and aggregated summaries from tables.</p></li>
+<li><p><em>Modify Data:</em> Insert new records, update existing records, or delete records.</p></li>
+<li><p><em>Define and Modify Database Structure:</em> Create new tables, alter column definitions, set data constraints, or establish primary and foreign keys.</p></li>
+<li><p><em>Control Access:</em> Grant or revoke user permissions to secure sensitive financial records.</p></li>
+</ul>
+</section>
+<section id="our-focus-data-retrieval">
+<h2>Our Focus: Data Retrieval<a class="headerlink" href="#our-focus-data-retrieval" title="Link to this heading">#</a></h2>
+<p>While SQL can perform all of the functions listed above, your daily responsibility as an accountant, financial analyst, or auditor will focus almost exclusively on <strong>data retrieval.</strong></p>
+<p>In corporate accounting, data integrity and system security are paramount. Enterprise resource planning (ERP) systems – such as SAP, Oracle, or NetSuite – manage live operational data. Allowing staff accountants or external auditors to modify or delete data in production databases poses immense operational risk. A single incorrect command could alter historical general ledger balances or corrupt transaction logs.</p>
+<p>For this reason, accounting professionals and auditors are typically granted <strong>read-only access</strong> to databases. By focusing exclusively on retrieving data using the SQL <strong>SELECT</strong> statement, we emulate the exact procedures used by external auditors and forensic accounting teams to independently extract and verify financial data in the field.</p>
+<section id="defining-a-query">
+<h3>Defining a Query<a class="headerlink" href="#defining-a-query" title="Link to this heading">#</a></h3>
+<p>In computer science, the word <strong>query</strong> literally means to ask. When you write a SQL statement to retrieve data, you are querying the database – asking it a specific business question, such as:</p>
+<ul class="simple">
+<li><p>“<em>Which corporate credit card transactions exceeded $10,000 this month?</em>”</p></li>
+<li><p>“<em>What were our total sales by product category in 1997?</em>”</p></li>
+<li><p>“<em>Which vendor invoices were entered into the system after midnight?</em>”</p></li>
+</ul>
+<p>SQL provides a standardized, precise method for asking these questions and returning exact answers in table form.</p>
+</section>
+</section>
+<section id="why-learn-sql-the-accountant-s-advantage">
+<h2>Why Learn SQL? The Accountant’s Advantage<a class="headerlink" href="#why-learn-sql-the-accountant-s-advantage" title="Link to this heading">#</a></h2>
+<p>Data analytics is a process for using data to gain insights for business decision-making. While you can perform data analytics in spreadsheet software like Microsoft Excel, programming languages like SQL enforce a level of mental discipline that spreadsheets simply cannot match.</p>
+<p>Mastering SQL gives accountants four crucial operational advantages:</p>
 <ol class="arabic simple">
-<li><p><strong>Specifying the data source</strong>: This is the starting point where you identify which table contains the raw information you need.</p></li>
-<li><p><strong>Merging</strong>: In accounting, data is often spread out. This step allows you to link tables together. For example, connecting a list of transactions to a list of vendor names so your report shows names instead of just ID numbers.</p></li>
-<li><p><strong>Filtering</strong>: This allows you to restrict the data to rows of interest. You can instruct SQL to only show records that meet specific criteria, such as <em>“only invoices that are more than 30 days overdue.”</em></p></li>
-<li><p><strong>Selecting</strong>: Databases often have dozens of columns you do not need. This step allows you to pick only the specific fields, like “Date,” “Amount,” and “Account Name”, that belong in your report.</p></li>
-<li><p><strong>Transforming</strong>: In this step, you can change the data that you retrieve. For example, you can perform math, such as calculating a 5% discount or computing the tax on an item.</p></li>
-<li><p><strong>Aggregating</strong>: This is where you summarize. Instead of looking at 5,000 individual sales, you can use this pillar to see the total sales per department or the average transaction value.</p></li>
-<li><p><strong>Sorting</strong>: Finally, you want your data to be readable. This step organizes your results in a logical sequence, such as listing your largest expenses at the top or arranging entries chronologically.</p></li>
+<li><p><strong>Explicit Logic:</strong> In Excel, analytical steps are hidden inside individual cell formulas, buried across multiple worksheets, or executed through unrecorded mouse clicks. <em>SQL forces you to write a sequence of instructions.</em> This prevents haphazard trial-and-error and ensures you understand every step of your analytical process.</p></li>
+<li><p><strong>Auditability &amp; Reproducibility:</strong> In professional accounting, an analysis that cannot be audited or reproduced by a peer, supervisor, or regulator is effectively useless. A SQL file serves as a permanent, readable audit trail. Months after an analysis is completed, another accountant can open your SQL file, review your exact logic, and re-execute the code with complete confidence.</p></li>
+<li><p><strong>Data Integrity:</strong> In a spreadsheet, data and calculations are combined; it is difficult to distinguish between raw and calculated data. This makes it easy to accidentally overwrite raw numbers or break formula references. SQL separates calculation logic (your code) from raw data storage (the database). Your query reads the database without modifying a single underlying record.</p></li>
+<li><p><strong>Efficiency:</strong> Accounting is defined by recurring reporting cycles – monthly closes, quarterly reviews, and annual audits. In Excel, updating a report for a new period often requires tedious copying, pasting, and formula adjustments. With SQL, when new transaction data enters the database, you simply rerun your saved script to generate an updated report instantly.</p></li>
 </ol>
+<p>Beyond these technical benefits, having genuine SQL proficiency on your resume provides significant “street cred” during job interviews. Accounting firm partners, corporate controllers, and recruiters consistently report that while basic Excel skills are expected of all accounting graduates, true database and query skills set job candidates apart as forward-thinking professionals who can work directly with enterprise data.</p>
 </section>
-<section id="expressing-actions-in-sql-code">
-<h3>Expressing Actions in SQL Code<a class="headerlink" href="#expressing-actions-in-sql-code" title="Link to this heading">#</a></h3>
-<p><font color="red"><b>Resume here. SQL as framework.</b></font></p>
-<p>The following SQL code will query the <em>Northwind Traders</em> database. It will list all customers located in Portland, Oregon, USA. For each customer, it will count the number of orders that the customer has placed with <em>Northwind Traders</em>.</p>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>SQL Code</p></th>
-<th class="head"><p>Pillar</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>SELECT<br>   C.CustomerID,<br>   C.CompanyName,<br>   COUNT(*) AS [Number of Orders]</p></td>
-<td><p>Selecting</p></td>
-</tr>
-<tr class="row-odd"><td><p>FROM Orders AS O</p></td>
-<td><p>Specifying the data source</p></td>
-</tr>
-<tr class="row-even"><td><p>INNER JOIN Customers AS C<br>ON O.CustomerID = C.CustomerID</p></td>
-<td><p>Merging</p></td>
-</tr>
-<tr class="row-odd"><td><p>WHERE C.City = ‘Portland’</p></td>
-<td><p>Filtering</p></td>
-</tr>
-<tr class="row-even"><td><p>GROUP BY C.CustomerID, C.CompanyName</p></td>
-<td><p>Aggregating</p></td>
-</tr>
-<tr class="row-odd"><td><p>ORDER BY [Number of Orders] DESC</p></td>
-<td><p>Sorting</p></td>
-</tr>
-</tbody>
-</table>
+<section id="sql-as-a-universal-framework">
+<h2>SQL as a Universal Framework<a class="headerlink" href="#sql-as-a-universal-framework" title="Link to this heading">#</a></h2>
+<p>Regardless of whether you are querying a SQL database, building an Excel Pivot Table, designing a dashboard in Tableau, or modeling data in Power BI, almost every data-oriented task in accounting boils down to <strong>seven fundamental operations.</strong></p>
+<p>Think of these seven operations as the universal blueprint for analytical thinking:</p>
+<ol class="arabic simple">
+<li><p><strong>Specifying the data source (FROM):</strong> Identifying the primary database table containing the raw records you need.</p></li>
+<li><p><strong>Merging (JOIN):</strong> Linking related tables together (e.g., merging an <em>Orders</em> table to a <em>Customers</em> table so your report shows company names instead of customer IDs).</p></li>
+<li><p><strong>Filtering (WHERE):</strong> Restricting your analysis to specific rows of interest (e.g., filtering for transactions in a specific fiscal year or identifying accounts receivable that are more than 90 days past due).</p></li>
+<li><p><strong>Selecting (SELECT):</strong> Choosing the specific columns required for your final report, eliminating unnecessary data fields.</p></li>
+<li><p><strong>Transforming (Operators &amp; Functions):</strong> Creating new calculated columns from existing data (e.g., multiplying unit price by quantity to compute line-item revenue, or calculating days elapsed between order and shipment).</p></li>
+<li><p><strong>Aggregating (GROUP BY):</strong> Summarizing detailed transaction-level data into high-level categories (e.g., computing total sales revenue per region or average transaction amount per employee).</p></li>
+<li><p><strong>Sorting (ORDER BY):</strong> Arranging the final results in a logical order (e.g., sorting highest expenses at the top or ordering transactions chronologically).</p></li>
+</ol>
+<section id="deconstructing-a-real-accounting-query">
+<h3>Deconstructing a Real Accounting Query<a class="headerlink" href="#deconstructing-a-real-accounting-query" title="Link to this heading">#</a></h3>
+<p>To see how these seven operations come together, consider an example from the <em>Northwind Traders</em> sample database. Imagine your sales manager asks: <em>“List all customers located in Portland, Oregon, and show the total number of orders placed by each customer, sorted from highest to lowest.”</em></p>
+<p>The SQL query below answers this exact business question.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span>
+<span class="w">    </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">C</span><span class="p">.</span><span class="n">CompanyName</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Orders</span><span class="p">]</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Customers</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">C</span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">CustomerID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerID</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">City</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Portland'</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="k">C</span><span class="p">.</span><span class="n">CompanyName</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">[</span><span class="nb">Number</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Orders</span><span class="p">]</span><span class="w"> </span><span class="k">DESC</span>
+</pre></div>
 </div>
-<p>Do not expect to understand the details of this code. Instead, read the code with a “birds eye” view. Notice how the SQL code is fairly readable and understandable.</p>
+<p>The following table explains each line of the SQL code and how it maps to the business question:</p>
+<table style="width: 100%; border-collapse: collapse; margin-top: 1em;">
+  <colgroup>
+    <col style="width: 38%;">
+    <col style="width: 22%;">
+    <col style="width: 40%;">
+  </colgroup>
+  <thead>
+    <tr style="background-color: #f6f8fa; border-bottom: 2px solid #d0d7de; text-align: left;">
+      <th style="padding: 10px;">SQL Code Clause</th>
+      <th style="padding: 10px;">Fundamental Operation</th>
+      <th style="padding: 10px;">What It Accomplishes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom: 1px solid #e1e4e8;">
+      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span style="color: #008000; font-weight: bold;">SELECT</span><br>
+        &nbsp;&nbsp;C.CustomerID,<br>
+        &nbsp;&nbsp;C.CompanyName,<br>
+        &nbsp;&nbsp;<span style="color: #008000; font-weight: bold;">COUNT</span>(*) <span style="color: #008000; font-weight: bold;">AS</span> [Number <span style="color: #008000; font-weight: bold;">of</span> Orders]
+      </td>
+      <td style="padding: 10px; vertical-align: top;">Selecting &amp; Transforming</td>
+      <td style="padding: 10px; vertical-align: top;">Selects customer identifiers and counts the number of orders per customer.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e1e4e8;">
+      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span style="color: #008000; font-weight: bold;">FROM</span> Orders <span style="color: #008000; font-weight: bold;">AS</span> O
+      </td>
+      <td style="padding: 10px; vertical-align: top;">Specifying Data Source</td>
+      <td style="padding: 10px; vertical-align: top;">Identifies the primary table (<code style="background: #f3f4f6; padding: 2px 4px;">Orders</code>).</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e1e4e8;">
+      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span style="color: #008000; font-weight: bold;">INNER JOIN</span> Customers <span style="color: #008000; font-weight: bold;">AS</span> C<br>
+        &nbsp;&nbsp;<span style="color: #008000; font-weight: bold;">ON</span> O.CustomerID = C.CustomerID
+      </td>
+      <td style="padding: 10px; vertical-align: top;">Merging</td>
+      <td style="padding: 10px; vertical-align: top;">Links orders to customer records using shared <code style="background: #f3f4f6; padding: 2px 4px;">CustomerID</code> keys.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e1e4e8;">
+      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span style="color: #008000; font-weight: bold;">WHERE</span> C.City = <span style="color: #a31515;">'Portland'</span>
+      </td>
+      <td style="padding: 10px; vertical-align: top;">Filtering</td>
+      <td style="padding: 10px; vertical-align: top;">Restricts records strictly to customers located in Portland, Oregon.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e1e4e8;">
+      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span style="color: #008000; font-weight: bold;">GROUP BY</span> C.CustomerID, C.CompanyName
+      </td>
+      <td style="padding: 10px; vertical-align: top;">Aggregating</td>
+      <td style="padding: 10px; vertical-align: top;">Groups individual order rows into separate "piles" per unique customer.</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #e1e4e8;">
+      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span style="color: #008000; font-weight: bold;">ORDER BY</span> [Number <span style="color: #008000; font-weight: bold;">of</span> Orders] <span style="color: #008000; font-weight: bold;">DESC</span>
+      </td>
+      <td style="padding: 10px; vertical-align: top;">Sorting</td>
+      <td style="padding: 10px; vertical-align: top;">Sorts the resulting summary table so the top customer appears first.</td>
+    </tr>
+  </tbody>
+</table><p><em>Note: At this stage in the course, you are not expected to memorize this code. Look at it from a “bird’s-eye view” to see how clean, structured, and readable SQL is, and how the SQL corresponds to the task you perform with the data.</em></p>
 </section>
+</section>
+<section id="summary-and-looking-ahead">
+<h2>Summary and Looking Ahead<a class="headerlink" href="#summary-and-looking-ahead" title="Link to this heading">#</a></h2>
+<p>Learning SQL is not about memorizing commands. It is about training your mind to think sequentially about data.</p>
+<p>Once you internalize these seven fundamental operations, your entire approach to data analysis will change. When you open Excel, Power BI, or Tableau, you will no longer click around haphazardly trying to guess a solution. Instead, you will pause, formulate your logical plan, identify the necessary transformations, and implement them cleanly.</p>
+<p>Now that you understand the broad capabilities of SQL and the analytical framework behind it, you are ready to write your very first queries. In the next section, we will begin exploring how to retrieve specific columns, use aliases, and sort data in SQL Server.</p>
 </section>
 </section>
 
@@ -473,16 +564,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jupyterbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jupyterbook",
             path: "./Unit 3"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jupyterbook'</script>
 
                 </article>
               
@@ -494,6 +585,15 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="3-0%20Working%20with%20Files%20and%20Folders.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Working with Files and Folders</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -512,11 +612,17 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#querying-retrieving-data">Querying (Retrieving Data)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-pillars-of-data-retrieval">The Pillars of Data Retrieval</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expressing-actions-in-sql-code">Expressing Actions in SQL Code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-sql">What is SQL?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#our-focus-data-retrieval">Our Focus: Data Retrieval</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-a-query">Defining a Query</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-learn-sql-the-accountant-s-advantage">Why Learn SQL? The Accountant’s Advantage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-as-a-universal-framework">SQL as a Universal Framework</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deconstructing-a-real-accounting-query">Deconstructing a Real Accounting Query</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-looking-ahead">Summary and Looking Ahead</a></li>
 </ul>
   </nav></div>
 
