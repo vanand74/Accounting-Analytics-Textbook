@@ -498,47 +498,47 @@
   </thead>
   <tbody>
     <tr style="border-bottom: 1px solid #e1e4e8;">
-      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">SELECT</span><br>
+      <td class="highlight" style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span class="k" style="color: #007020; font-weight: bold;">SELECT</span><br>
         &nbsp;&nbsp;C.CustomerID,<br>
         &nbsp;&nbsp;C.CompanyName,<br>
-        &nbsp;&nbsp;<span style="color: #008000; font-weight: bold;">COUNT</span>(*) <span style="color: #008000; font-weight: bold;">AS</span> NumberOfOrders
+        &nbsp;&nbsp;<span class="nb" style="color: #007020; font-weight: bold;">COUNT</span>(*) <span class="k" style="color: #007020; font-weight: bold;">AS</span> NumberOfOrders
       </td>
       <td style="padding: 10px; vertical-align: top;">Selecting &amp; Transforming</td>
       <td style="padding: 10px; vertical-align: top;">Selects customer identifiers and counts the number of orders per customer.</td>
     </tr>
     <tr style="border-bottom: 1px solid #e1e4e8;">
-      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">FROM</span> Orders <span style="color: #008000; font-weight: bold;">AS</span> O
+      <td class="highlight" style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span class="k" style="color: #007020; font-weight: bold;">FROM</span> Orders <span class="k" style="color: #007020; font-weight: bold;">AS</span> O
       </td>
       <td style="padding: 10px; vertical-align: top;">Specifying Data Source</td>
       <td style="padding: 10px; vertical-align: top;">Identifies the primary table (<code style="background: #f3f4f6; padding: 2px 4px;">Orders</code>).</td>
     </tr>
     <tr style="border-bottom: 1px solid #e1e4e8;">
-      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">INNER JOIN</span> Customers <span style="color: #008000; font-weight: bold;">AS</span> C<br>
-        &nbsp;&nbsp;<span style="color: #008000; font-weight: bold;">ON</span> O.CustomerID = C.CustomerID
+      <td class="highlight" style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span class="k" style="color: #007020; font-weight: bold;">INNER JOIN</span> Customers <span class="k" style="color: #007020; font-weight: bold;">AS</span> C<br>
+        &nbsp;&nbsp;<span class="k" style="color: #007020; font-weight: bold;">ON</span> O.CustomerID = C.CustomerID
       </td>
       <td style="padding: 10px; vertical-align: top;">Merging</td>
       <td style="padding: 10px; vertical-align: top;">Links orders to customer records using shared <code style="background: #f3f4f6; padding: 2px 4px;">CustomerID</code> keys.</td>
     </tr>
     <tr style="border-bottom: 1px solid #e1e4e8;">
-      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">WHERE</span> C.City = <span style="color: #a31515;">'Portland'</span>
+      <td class="highlight" style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span class="k" style="color: #007020; font-weight: bold;">WHERE</span> C.City = <span class="s1" style="color: #4070a0;">'Portland'</span>
       </td>
       <td style="padding: 10px; vertical-align: top;">Filtering</td>
       <td style="padding: 10px; vertical-align: top;">Restricts records strictly to customers located in Portland, Oregon.</td>
     </tr>
     <tr style="border-bottom: 1px solid #e1e4e8;">
-      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">GROUP BY</span> C.CustomerID, C.CompanyName
+      <td class="highlight" style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span class="k" style="color: #007020; font-weight: bold;">GROUP BY</span> C.CustomerID, C.CompanyName
       </td>
       <td style="padding: 10px; vertical-align: top;">Aggregating</td>
       <td style="padding: 10px; vertical-align: top;">Groups individual order rows into separate "piles" per unique customer.</td>
     </tr>
     <tr style="border-bottom: 1px solid #e1e4e8;">
-      <td style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
-        <span style="color: #008000; font-weight: bold;">ORDER BY</span> NumberOfOrders <span style="color: #008000; font-weight: bold;">DESC</span>
+      <td class="highlight" style="padding: 10px; font-family: Consolas, 'Courier New', monospace; font-size: 0.9em; vertical-align: top;">
+        <span class="k" style="color: #007020; font-weight: bold;">ORDER BY</span> NumberOfOrders <span class="k" style="color: #007020; font-weight: bold;">DESC</span>;
       </td>
       <td style="padding: 10px; vertical-align: top;">Sorting</td>
       <td style="padding: 10px; vertical-align: top;">Sorts the resulting summary table so the top customer appears first.</td>
