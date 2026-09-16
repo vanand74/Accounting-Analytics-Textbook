@@ -395,7 +395,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-asking-questions-with-the-select-statement">Introduction: Asking Questions with the SELECT Statement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-specific-columns-and-code-style">Selecting Specific Columns and Code Style</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-column-selection">Explicit Column Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selection">Column Selection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-syntax-and-formatting-rules">SQL Syntax and Formatting Rules</a></li>
 </ul>
 </li>
@@ -494,8 +494,8 @@
 <section id="selecting-specific-columns-and-code-style">
 <h2>Selecting Specific Columns and Code Style<a class="headerlink" href="#selecting-specific-columns-and-code-style" title="Link to this heading">#</a></h2>
 <p>While using <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> is convenient when exploring a table for the first time, retrieving every column is rarely necessary in professional reporting. Large enterprise tables can contain hundreds of columns. Pulling unnecessary columns wastes memory and clutters your analysis.</p>
-<section id="explicit-column-selection">
-<h3>Explicit Column Selection<a class="headerlink" href="#explicit-column-selection" title="Link to this heading">#</a></h3>
+<section id="column-selection">
+<h3>Column Selection<a class="headerlink" href="#column-selection" title="Link to this heading">#</a></h3>
 <p>To retrieve specific columns, list their names after the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> keyword, separated by commas:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EmployeeID</span><span class="p">,</span><span class="w"> </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span><span class="n">Title</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
@@ -536,8 +536,14 @@
 </pre></div>
 </div>
 <p>When VS Code executes this query, the query results window displays all records and notes at the bottom: <em>“9 rows returned.”</em></p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/RowCountInVSCode.png"><img alt="Row count in VS Code" src="../_images/RowCountInVSCode.png" style="width: 75%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Row count in VS Code</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <p>While this works for small tables, retrieving millions of rows just to read a count from a software status bar is inefficient and slow.</p>
-<p><font color="red"><b>RESUME HERE. Get a snapshot from VS Code and insert it here. Then figure out where you want to discuss the risks of methods 2a and 2b</b></font></p>
 </section>
 <section id="method-2a-multi-step-logic-top-order-by">
 <h3>Method 2a: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)<a class="headerlink" href="#method-2a-multi-step-logic-top-order-by" title="Link to this heading">#</a></h3>
@@ -563,6 +569,12 @@
   </tbody>
 </table></div></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong>
+This method relies on a dangerous assumption: that <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> values are strictly sequential without gaps. Imagine an employee was hired and assigned ID 5. That employee later resigns and their record is deleted from the database. Another possible scenario is that the company’s human resource software generates employee IDs in non-sequential blocks. In these scenarios, the maximum <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> might be <code class="docutils literal notranslate"><span class="pre">9</span></code>, but there may only be <code class="docutils literal notranslate"><span class="pre">8</span></code> active employees in the table!</p>
+<p>Thus, this method reports the <strong>highest ID number</strong>, not the <strong>actual headcount</strong>.</p>
+</div>
 </section>
 <section id="method-2b-aggregate-function-max">
 <h3>Method 2b: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)<a class="headerlink" href="#method-2b-aggregate-function-max" title="Link to this heading">#</a></h3>
@@ -572,20 +584,10 @@
 </pre></div>
 </div>
 <p>This query returns a single summary result: <code class="docutils literal notranslate"><span class="pre">9</span></code>.</p>
-<div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output text_html"><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table></div></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong>
+This method relies on the same assumption that plagues method 2a. It returns the highest ID number, not the actual headcount. <em>The takeaway is that you must understand the company’s business processes and data flows when developing your strategy for retrieving data.</em></p>
 </div>
 </section>
 <section id="method-2c-direct-row-counting-count">
@@ -596,45 +598,64 @@
 </pre></div>
 </div>
 <p>This query instructs the database to count all rows in the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table, returning <code class="docutils literal notranslate"><span class="pre">9</span></code>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong>
-Why are Methods 2a and 2b risky in professional practice?</p>
-<p>Methods 2a (<code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">(1)</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">DESC</span></code>) and 2b (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>) rely on a dangerous assumption: that <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> values are strictly sequential without gaps. Imagine an employee was hired (assigned ID 5) and later terminated, and their record was deleted from the database. Or imagine an enterprise system where primary key IDs are generated in non-sequential blocks. In these scenarios, the maximum <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> might be <code class="docutils literal notranslate"><span class="pre">9</span></code>, but there may only be <code class="docutils literal notranslate"><span class="pre">8</span></code> active employees in the table!</p>
-<p>Methods 2a and 2b report the <strong>highest ID number</strong>, not the <strong>actual headcount</strong>. Method 2c (<code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code>) is the only logically sound approach because it counts actual data records rather than inferring counts from ID sequence numbers.</p>
-</div>
+<p>Of the described methods, this one is computationally quickest and has the least risk. It simply counts the number of rows in the database table. Since there is one row per employee, it returns the number of employees in the database.</p>
+<p>The only potential risk here is in the data itself. There is no table column indicating whether the employees are currently employed. It is possible that an employee has left the company but their information remains in the database table.</p>
 </section>
 </section>
 <section id="sorting-results-with-order-by">
 <h2>Sorting Results with ORDER BY<a class="headerlink" href="#sorting-results-with-order-by" title="Link to this heading">#</a></h2>
 <p>By default, a database does not guarantee any specific order when returning query results. To sort your data, you must explicitly add an <strong><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong> clause.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause syntax is:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Column1</span><span class="p">,</span><span class="w"> </span><span class="n">Column2</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Column1</span><span class="p">,</span><span class="w"> </span><span class="n">Column2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ColumnToSort</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">];</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ColumnToSort</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>Ascending Order (<code class="docutils literal notranslate"><span class="pre">ASC</span></code>):</strong> Sorts numbers from smallest to largest, dates from oldest to newest, and text alphabetically (A to Z). This is the default setting in SQL. You can include the <code class="docutils literal notranslate"><span class="pre">ASC</span></code> keyword, but it is optional.</p></li>
-<li><p><strong>Descending Order (<code class="docutils literal notranslate"><span class="pre">DESC</span></code>):</strong> Sorts numbers from largest to smallest, dates from newest to oldest, and text in reverse alphabetical order (Z to A). You must explicitly append <code class="docutils literal notranslate"><span class="pre">DESC</span></code> after the column name.</p></li>
+<li><p><strong>Ascending Order (<code class="docutils literal notranslate"><span class="pre">ASC</span></code>):</strong> Sorts numbers from smallest to largest, dates from oldest to newest, and text alphabetically (A to Z). This is the default setting in SQL, so the <code class="docutils literal notranslate"><span class="pre">ASC</span></code> keyword is optional.</p></li>
+<li><p><strong>Descending Order (<code class="docutils literal notranslate"><span class="pre">DESC</span></code>):</strong> Sorts numbers from largest to smallest, dates from newest to oldest, and text in reverse alphabetical order (Z to A).</p></li>
 </ul>
 <section id="single-column-sort-example">
 <h3>Single-Column Sort Example<a class="headerlink" href="#single-column-sort-example" title="Link to this heading">#</a></h3>
 <p>Imagine the sales manager wants a list of all Northwind employees, sorted from youngest to oldest based on their birth date:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EmployeeID</span><span class="p">,</span><span class="w"> </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span><span class="n">BirthDate</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">BirthDate</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">BirthDate</span><span class="w"> </span><span class="k">DESC</span>
 </pre></div>
 </div>
 <p>Because we specified <code class="docutils literal notranslate"><span class="pre">DESC</span></code>, the employee with the most recent birth date appears first.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------+-----------+----------+------------+</span>
-<span class="o">|</span> <span class="n">EmployeeID</span> <span class="o">|</span> <span class="n">FirstName</span> <span class="o">|</span> <span class="n">LastName</span> <span class="o">|</span> <span class="n">BirthDate</span>  <span class="o">|</span>
-<span class="o">+------------+-----------+----------+------------+</span>
-<span class="o">|</span> <span class="mi">9</span>          <span class="o">|</span> <span class="n">Anne</span>      <span class="o">|</span> <span class="n">Dodsworth</span><span class="o">|</span> <span class="mi">1966</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span> <span class="o">|</span>
-<span class="o">|</span> <span class="mi">6</span>          <span class="o">|</span> <span class="n">Michael</span>   <span class="o">|</span> <span class="n">Suyama</span>   <span class="o">|</span> <span class="mi">1963</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">02</span> <span class="o">|</span>
-<span class="o">|</span> <span class="mi">1</span>          <span class="o">|</span> <span class="n">Nancy</span>     <span class="o">|</span> <span class="n">Davolio</span>  <span class="o">|</span> <span class="mi">1948</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">08</span> <span class="o">|</span>
-<span class="o">+------------+-----------+----------+------------+</span>
-</pre></div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>EmployeeID</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>BirthDate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>9</td>
+      <td>Anne</td>
+      <td>Dodsworth</td>
+      <td>1966-01-27</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Janet</td>
+      <td>Leverling</td>
+      <td>1963-08-30</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Michael</td>
+      <td>Suyama</td>
+      <td>1963-07-02</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 </section>
 <section id="clause-sequence-rule">
@@ -650,46 +671,63 @@ Why are Methods 2a and 2b risky in professional practice?</p>
 </section>
 <section id="limiting-output-with-top">
 <h2>Limiting Output with TOP<a class="headerlink" href="#limiting-output-with-top" title="Link to this heading">#</a></h2>
-<p>In large corporate databases, tables often contain millions of transaction rows. Running a query that returns millions of rows can freeze your computer and strain network bandwidth. When exploring data, you will often want to view only a small sample of records using the <strong><code class="docutils literal notranslate"><span class="pre">TOP</span></code></strong> clause.</p>
+<p>In large corporate databases, tables often contain millions of rows. Running a query that returns millions of rows can freeze your computer and strain network bandwidth. When exploring data, you will often want to view only a small sample of records using the <strong><code class="docutils literal notranslate"><span class="pre">TOP</span></code></strong> clause.</p>
 <section id="the-top-clause-syntax">
 <h3>The <code class="docutils literal notranslate"><span class="pre">TOP</span></code> Clause Syntax<a class="headerlink" href="#the-top-clause-syntax" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">TOP</span></code> clause specifies the maximum number (or percentage) of rows to return:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">ColumnList</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span><span class="p">;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
 </pre></div>
 </div>
 <p>For example, to retrieve the first 5 records from the <code class="docutils literal notranslate"><span class="pre">Orders</span></code> table:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="n">OrderDate</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="p">;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
 </pre></div>
 </div>
 <p>You can also specify a percentage of rows using <code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">(n)</span> <span class="pre">PERCENT</span></code>:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="n">PERCENT</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="n">OrderDate</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="p">;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
 </pre></div>
 </div>
 </section>
 <section id="pairing-top-with-order-by">
 <h3>Pairing <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code><a class="headerlink" href="#pairing-top-with-order-by" title="Link to this heading">#</a></h3>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Without an <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause, using <code class="docutils literal notranslate"><span class="pre">TOP</span></code> returns an arbitrary set of rows based on whatever order the database happens to store them in on disk. To obtain meaningful, deterministic results—such as the top 5 highest sales transactions or the 3 most recent orders—you <strong>must pair <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong>.</p>
-</div>
+<p>Without an <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause, using <code class="docutils literal notranslate"><span class="pre">TOP</span></code> returns an arbitrary set of rows based on whatever order the database happens to store them in on disk. To obtain meaningful, repeatable results - such as the top 5 highest sales transactions or the 3 most recent orders - you <strong>must pair <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong>.</p>
 <p>Consider finding the three most expensive products sold by Northwind Traders:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span><span class="n">UnitPrice</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">UnitPrice</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">UnitPrice</span><span class="w"> </span><span class="k">DESC</span>
 </pre></div>
 </div>
 <p>SQL processes this query by first sorting all products by <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code> in descending order, and then returning the top three rows from that sorted list:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------+------------------+-----------+</span>
-<span class="o">|</span> <span class="n">ProductID</span> <span class="o">|</span> <span class="n">ProductName</span>      <span class="o">|</span> <span class="n">UnitPrice</span> <span class="o">|</span>
-<span class="o">+-----------+------------------+-----------+</span>
-<span class="o">|</span> <span class="mi">38</span>        <span class="o">|</span> <span class="n">Côte</span> <span class="n">de</span> <span class="n">Blaye</span>    <span class="o">|</span> <span class="mf">263.50</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">29</span>        <span class="o">|</span> <span class="n">Thüringer</span> <span class="n">Imp</span><span class="o">.</span>   <span class="o">|</span> <span class="mf">123.79</span>    <span class="o">|</span>
-<span class="o">|</span> <span class="mi">9</span>         <span class="o">|</span> <span class="n">Mishi</span> <span class="n">Kobe</span> <span class="n">Niku</span>  <span class="o">|</span> <span class="mf">97.00</span>     <span class="o">|</span>
-<span class="o">+-----------+------------------+-----------+</span>
-</pre></div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductID</th>
+      <th>ProductName</th>
+      <th>UnitPrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>38</td>
+      <td>Côte de Blaye</td>
+      <td>263.50</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>Thüringer Rostbratwurst</td>
+      <td>123.79</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Mishi Kobe Niku</td>
+      <td>97.00</td>
+    </tr>
+  </tbody>
+</table></div></div>
 </div>
 </section>
 <section id="clause-sequence-with-top">
@@ -705,12 +743,12 @@ Why are Methods 2a and 2b risky in professional practice?</p>
 </section>
 <section id="introductory-aggregations-max-and-count">
 <h2>Introductory Aggregations: MAX and COUNT<a class="headerlink" href="#introductory-aggregations-max-and-count" title="Link to this heading">#</a></h2>
-<p>Throughout this course, you will frequently need to calculate summary statistics across entire tables. While detailed multi-group aggregations will be covered in later chapters, SQL provides built-in aggregate functions that can be used directly in a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement to calculate single summary metrics.</p>
+<p>Throughout this course, you will frequently need to calculate summary statistics. SQL provides built-in aggregate functions that can be used directly in a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement to calculate single summary metrics.</p>
 <section id="the-max-function">
 <h3>The <code class="docutils literal notranslate"><span class="pre">MAX()</span></code> Function<a class="headerlink" href="#the-max-function" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">MAX()</span></code> function returns the highest value in a specified column. For example, to find the single highest freight charge in the <code class="docutils literal notranslate"><span class="pre">Orders</span></code> table:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">Freight</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">HighestFreight</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span><span class="p">;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
 </pre></div>
 </div>
 <p>Notice the use of <code class="docutils literal notranslate"><span class="pre">AS</span> <span class="pre">HighestFreight</span></code>. The <strong><code class="docutils literal notranslate"><span class="pre">AS</span></code></strong> keyword creates an <strong>alias</strong>—a descriptive custom column header for the output. If you omit <code class="docutils literal notranslate"><span class="pre">AS</span></code>, SQL will display <code class="docutils literal notranslate"><span class="pre">(No</span> <span class="pre">column</span> <span class="pre">name)</span></code> for the calculated result.</p>
@@ -725,11 +763,11 @@ Why are Methods 2a and 2b risky in professional practice?</p>
 <p>Consider the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table, where some employees report to a manager (<code class="docutils literal notranslate"><span class="pre">ReportsTo</span></code>), while top executives have a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> (blank) value in that field:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Counts all 9 employee records in the table</span>
 <span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalEmployees</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span><span class="p">;</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
 
-<span class="c1">-- Counts only employees who have a non-null entry in the Region column</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">Region</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">EmployeesWithRegion</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span><span class="p">;</span>
+<span class="c1">-- Counts only employees who have a non-null entry in the ReportsTo column</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="n">ReportsTo</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">EmployeesWithManager</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
 </pre></div>
 </div>
 <p>Understanding this distinction is vital for auditors when verifying whether mandatory data fields are populated across enterprise records.</p>
@@ -743,7 +781,7 @@ Why are Methods 2a and 2b risky in professional practice?</p>
 <p>Programming requires strict adherence to rules. As you build queries, memorize the required order of the SQL clauses learned so far:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">ColumnList</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ColumnToSort</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">];</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ColumnToSort</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -777,7 +815,7 @@ Why are Methods 2a and 2b risky in professional practice?</p>
 </section>
 <section id="looking-ahead">
 <h2>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Link to this heading">#</a></h2>
-<p>In the next section, <strong>Chapter 3.3: Filtering Data (The <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> Clause and Operators)</strong>, we will learn how to filter data tables to extract only the rows that meet specific business criteria—such as identifying overdue invoices, out-of-stock products, or sales transactions in specific geographic territories.</p>
+<p>In the next section, we will learn how to filter data tables to extract only the rows that meet specific business criteria, such as identifying overdue invoices, out-of-stock products, or sales transactions in specific geographic territories.</p>
 </section>
 <section id="notes">
 <h2>Notes<a class="headerlink" href="#notes" title="Link to this heading">#</a></h2>
@@ -844,7 +882,7 @@ Why are Methods 2a and 2b risky in professional practice?</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-asking-questions-with-the-select-statement">Introduction: Asking Questions with the SELECT Statement</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-specific-columns-and-code-style">Selecting Specific Columns and Code Style</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#explicit-column-selection">Explicit Column Selection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selection">Column Selection</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-syntax-and-formatting-rules">SQL Syntax and Formatting Rules</a></li>
 </ul>
 </li>
