@@ -394,23 +394,23 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-asking-questions-with-the-select-statement">Introduction: Asking Questions with the SELECT Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-specific-columns-and-code-style">Selecting Specific Columns and Code Style</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selection">Column Selection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-syntax-and-formatting-rules">SQL Syntax and Formatting Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-specific-columns">Selecting Specific Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-syntax-and-formatting-rules">SQL Syntax and Formatting Rules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-sql-s-flexibility-to-improve-code-readability">Using SQL’s Flexibility to Improve Code Readability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-like-an-analyst-four-ways-to-answer-how-many-employees">Thinking Like an Analyst: Four Ways to Answer “How Many Employees?”</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-retrieve-all-rows-select">Method 1: Retrieve All Rows (<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2a-multi-step-logic-top-order-by">Method 2a: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2b-aggregate-function-max">Method 2b: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2c-direct-row-counting-count">Method 2c: Direct Row Counting (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-multi-step-logic-top-order-by">Method 2: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-aggregate-function-max">Method 3: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-4-direct-row-counting-count">Method 4: Direct Row Counting (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-results-with-order-by">Sorting Results with ORDER BY</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-column-sort-example">Single-Column Sort Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-sequence-rule">Clause Sequence Rule</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-sequence-rule">Clause Sequence Rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-output-with-top">Limiting Output with TOP</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-top-clause-syntax">The <code class="docutils literal notranslate"><span class="pre">TOP</span></code> Clause Syntax</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pairing-top-with-order-by">Pairing <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
@@ -455,7 +455,7 @@
 <span class="k">FROM</span><span class="w"> </span><span class="n">Shippers</span>
 </pre></div>
 </div>
-<p>In SQL, the asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) is a shortcut that means “retrieve all columns.” When you execute this query, the database returns every row and every column from the <code class="docutils literal notranslate"><span class="pre">Shippers</span></code> table.</p>
+<p>This query tells SQL to retrieve all rows and all columns of the <code class="docutils literal notranslate"><span class="pre">Shippers</span></code> table. In SQL, the asterisk (<code class="docutils literal notranslate"><span class="pre">*</span></code>) is a shortcut that means “retrieve all columns.” By default, SQL will return all rows. To choose specific rows, you will use the keyword <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, which you will learn in the next section of this book.</p>
 <div class="cell tag_remove-input docutils container">
 </div>
 <div class="cell tag_remove-input docutils container">
@@ -489,13 +489,11 @@
   </tbody>
 </table></div></div>
 </div>
-<p>Note that a SQL <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query <strong>will never alter or modify</strong> the data stored in a database. A <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement simply returns a temporary, read-only copy of the requested data.</p>
+<p>Note that a SQL <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query <strong>will never alter or modify</strong> the data stored in a database. A <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement  returns a temporary, read-only copy of the requested data.</p>
 </section>
-<section id="selecting-specific-columns-and-code-style">
-<h2>Selecting Specific Columns and Code Style<a class="headerlink" href="#selecting-specific-columns-and-code-style" title="Link to this heading">#</a></h2>
+<section id="selecting-specific-columns">
+<h2>Selecting Specific Columns<a class="headerlink" href="#selecting-specific-columns" title="Link to this heading">#</a></h2>
 <p>While using <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> is convenient when exploring a table for the first time, retrieving every column is rarely necessary in professional reporting. Large enterprise tables can contain hundreds of columns. Pulling unnecessary columns wastes memory and clutters your analysis.</p>
-<section id="column-selection">
-<h3>Column Selection<a class="headerlink" href="#column-selection" title="Link to this heading">#</a></h3>
 <p>To retrieve specific columns, list their names after the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> keyword, separated by commas:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">EmployeeID</span><span class="p">,</span><span class="w"> </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span><span class="n">Title</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
@@ -504,15 +502,22 @@
 <p>You can select columns in <strong>any order you choose</strong>, regardless of how they are physically arranged in the underlying database table. You can even request the same column multiple times if needed.</p>
 </section>
 <section id="sql-syntax-and-formatting-rules">
-<h3>SQL Syntax and Formatting Rules<a class="headerlink" href="#sql-syntax-and-formatting-rules" title="Link to this heading">#</a></h3>
+<h2>SQL Syntax and Formatting Rules<a class="headerlink" href="#sql-syntax-and-formatting-rules" title="Link to this heading">#</a></h2>
 <p>As you write SQL queries, keep these fundamental syntax rules in mind:</p>
 <ul class="simple">
 <li><p><strong>SQL is Not Case-Sensitive:</strong> SQL keywords (<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">FROM</span></code>) and column names can be written in uppercase, lowercase, or mixed case. The queries <code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">firstname</span> <span class="pre">from</span> <span class="pre">employees</span></code> and <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">FirstName</span> <span class="pre">FROM</span> <span class="pre">Employees</span></code> will execute identically. However, by convention, we <strong>capitalize SQL keywords</strong> and use <strong>CamelCase</strong> for column names to make our code clean and readable.</p></li>
 <li><p><strong>Flexible Spacing and Line Breaks:</strong> SQL ignores extra spaces, tabs, and line breaks. You can write an entire query on a single line or spread it across multiple lines.</p></li>
-<li><p><strong>No Spaces in Identifiers:</strong> You cannot insert spaces inside a column or table name. For example, <code class="docutils literal notranslate"><span class="pre">LastName</span></code> is a valid identifier, whereas <code class="docutils literal notranslate"><span class="pre">Last</span> <span class="pre">Name</span></code> will cause a syntax error unless enclosed in square brackets (<code class="docutils literal notranslate"><span class="pre">[Last</span> <span class="pre">Name]</span></code>).</p></li>
-<li><p><strong>Comma Placement:</strong> Column names in a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause must be separated by commas, but there must be <strong>no comma after the final column</strong> before the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> keyword.</p></li>
+<li><p><strong>No Spaces in Identifiers:</strong> You cannot insert spaces inside a column or table name. SQL treats <code class="docutils literal notranslate"><span class="pre">LastName</span></code> and <code class="docutils literal notranslate"><span class="pre">Last</span> <span class="pre">Name</span></code> as distinct column names.</p></li>
+<li><p><strong>Comma Placement:</strong> Column names in a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause must be separated by commas, but there must be <strong>no comma after the final column name</strong>.</p></li>
 </ul>
-<p>Here is an example demonstrating how spacing and indentation improve code readability:</p>
+<section id="using-sql-s-flexibility-to-improve-code-readability">
+<h3>Using SQL’s Flexibility to Improve Code Readability<a class="headerlink" href="#using-sql-s-flexibility-to-improve-code-readability" title="Link to this heading">#</a></h3>
+<p>SQL provides you with considerable flexibility when writing your code. You should use this flexibility to improve the readability of your code. Doing so will make it easier for yourself and others to understand and debug your code.</p>
+<p>As an example, consider this SQL code:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="n">employeeid</span><span class="p">,</span><span class="n">firstname</span><span class="p">,</span><span class="n">lastname</span><span class="p">,</span><span class="n">title</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">employees</span>
+</pre></div>
+</div>
+<p>We can rewrite this code with different capitalization, spacing, and indentation to improve its readability:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
 <span class="w">    </span><span class="n">EmployeeID</span><span class="p">,</span><span class="w"> </span>
 <span class="w">    </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span>
@@ -521,16 +526,16 @@
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
 </pre></div>
 </div>
-<p>Writing clean, well-formatted code is not just about aesthetics—it is a core accounting control that makes your logic easy to audit, review, and maintain.</p>
+<p>Writing clean, well-formatted code is not just about aesthetics - it is a core accounting control that makes your logic easy to audit, review, and maintain.</p>
 </section>
 </section>
 <section id="thinking-like-an-analyst-four-ways-to-answer-how-many-employees">
 <h2>Thinking Like an Analyst: Four Ways to Answer “How Many Employees?”<a class="headerlink" href="#thinking-like-an-analyst-four-ways-to-answer-how-many-employees" title="Link to this heading">#</a></h2>
 <p>Let’s put your budding SQL skills to work and tackle a business problem. Say that the president of Northwind Traders wants to know how many employees work at the company.</p>
-<p>In a spreadsheet, you might scroll to the bottom of a worksheet or highlight a column to check the status bar. However, in SQL, we must express our logical process explicitly. This introduces a degree of freedom that may feel new to you. There are many ways to answer this question, all of which are correct. Each method has its own underlying logic and operational risks, and no method is superior to the others. However, the beauty of SQL is that the logic is embedded in the code, so readers of the code will easily be able to understand your logic.</p>
+<p>In a spreadsheet, you might scroll to the bottom of a worksheet or highlight a column to check the status bar. However, in SQL, we must express our logical process explicitly. This introduces a degree of freedom that may feel new to you. There are several ways to approach this question in SQL. We will examine some different methods to show how different  assumptions about the data and the data-generating process carry different operational risks.</p>
 <section id="method-1-retrieve-all-rows-select">
 <h3>Method 1: Retrieve All Rows (<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>)<a class="headerlink" href="#method-1-retrieve-all-rows-select" title="Link to this heading">#</a></h3>
-<p>The most straightforward approach is to retrieve all rows from the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table and inspect the total record count reported by your database tool (such as Visual Studio Code):</p>
+<p>The most straightforward approach is to retrieve all rows from the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table and inspect the total record count reported by Visual Studio Code:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
 </pre></div>
@@ -545,8 +550,8 @@
 </figure>
 <p>While this works for small tables, retrieving millions of rows just to read a count from a software status bar is inefficient and slow.</p>
 </section>
-<section id="method-2a-multi-step-logic-top-order-by">
-<h3>Method 2a: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)<a class="headerlink" href="#method-2a-multi-step-logic-top-order-by" title="Link to this heading">#</a></h3>
+<section id="method-2-multi-step-logic-top-order-by">
+<h3>Method 2: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)<a class="headerlink" href="#method-2-multi-step-logic-top-order-by" title="Link to this heading">#</a></h3>
 <p>If we know that every employee is assigned a unique, sequential <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> starting at 1, we can sort the table in descending order by <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> and retrieve the single highest ID:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">EmployeeID</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
@@ -571,13 +576,13 @@
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong>
+<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong><br />
 This method relies on a dangerous assumption: that <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> values are strictly sequential without gaps. Imagine an employee was hired and assigned ID 5. That employee later resigns and their record is deleted from the database. Another possible scenario is that the company’s human resource software generates employee IDs in non-sequential blocks. In these scenarios, the maximum <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> might be <code class="docutils literal notranslate"><span class="pre">9</span></code>, but there may only be <code class="docutils literal notranslate"><span class="pre">8</span></code> active employees in the table!</p>
 <p>Thus, this method reports the <strong>highest ID number</strong>, not the <strong>actual headcount</strong>.</p>
 </div>
 </section>
-<section id="method-2b-aggregate-function-max">
-<h3>Method 2b: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)<a class="headerlink" href="#method-2b-aggregate-function-max" title="Link to this heading">#</a></h3>
+<section id="method-3-aggregate-function-max">
+<h3>Method 3: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)<a class="headerlink" href="#method-3-aggregate-function-max" title="Link to this heading">#</a></h3>
 <p>Rather than sorting the entire table to find the top row, we can use SQL’s built-in <code class="docutils literal notranslate"><span class="pre">MAX()</span></code> function to find the highest value in the <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> column directly:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">EmployeeID</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
@@ -586,12 +591,12 @@ This method relies on a dangerous assumption: that <code class="docutils literal
 <p>This query returns a single summary result: <code class="docutils literal notranslate"><span class="pre">9</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong>
-This method relies on the same assumption that plagues method 2a. It returns the highest ID number, not the actual headcount. <em>The takeaway is that you must understand the company’s business processes and data flows when developing your strategy for retrieving data.</em></p>
+<p><strong>The Auditor’s Perspective: Evaluating Operational Risks</strong><br />
+This method relies on the same assumption that plagues method 2. It returns the highest ID number, not the actual headcount. <em>The takeaway is that you must understand the company’s business processes and data flows when developing your strategy for retrieving data.</em></p>
 </div>
 </section>
-<section id="method-2c-direct-row-counting-count">
-<h3>Method 2c: Direct Row Counting (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>)<a class="headerlink" href="#method-2c-direct-row-counting-count" title="Link to this heading">#</a></h3>
+<section id="method-4-direct-row-counting-count">
+<h3>Method 4: Direct Row Counting (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>)<a class="headerlink" href="#method-4-direct-row-counting-count" title="Link to this heading">#</a></h3>
 <p>The most direct way to count records in SQL is using the <code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> function:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
@@ -604,7 +609,7 @@ This method relies on the same assumption that plagues method 2a. It returns the
 </section>
 <section id="sorting-results-with-order-by">
 <h2>Sorting Results with ORDER BY<a class="headerlink" href="#sorting-results-with-order-by" title="Link to this heading">#</a></h2>
-<p>By default, a database does not guarantee any specific order when returning query results. To sort your data, you must explicitly add an <strong><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong> clause.</p>
+<p>By default, a database does not guarantee any specific order when returning query results. To sort your data, you must add an <strong><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong> clause.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause syntax is:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Column1</span><span class="p">,</span><span class="w"> </span><span class="n">Column2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
@@ -654,12 +659,49 @@ This method relies on the same assumption that plagues method 2a. It returns the
       <td>Suyama</td>
       <td>1963-07-02</td>
     </tr>
+    <tr>
+      <td>7</td>
+      <td>Robert</td>
+      <td>King</td>
+      <td>1960-05-29</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Laura</td>
+      <td>Callahan</td>
+      <td>1958-01-09</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Steven</td>
+      <td>Buchanan</td>
+      <td>1955-03-04</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Andrew</td>
+      <td>Fuller</td>
+      <td>1952-02-19</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Nancy</td>
+      <td>Davolio</td>
+      <td>1948-12-08</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Margaret</td>
+      <td>Peacock</td>
+      <td>1937-09-19</td>
+    </tr>
   </tbody>
 </table></div></div>
 </div>
 </section>
+</section>
 <section id="clause-sequence-rule">
-<h3>Clause Sequence Rule<a class="headerlink" href="#clause-sequence-rule" title="Link to this heading">#</a></h3>
+<h2>Clause Sequence Rule<a class="headerlink" href="#clause-sequence-rule" title="Link to this heading">#</a></h2>
 <p>In SQL, clause order is strictly enforced. The <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause must always appear <strong>after</strong> the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code></p></li>
@@ -668,10 +710,9 @@ This method relies on the same assumption that plagues method 2a. It returns the
 </ol>
 <p>Attempting to place <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> before <code class="docutils literal notranslate"><span class="pre">FROM</span></code> will result in a syntax error.</p>
 </section>
-</section>
 <section id="limiting-output-with-top">
 <h2>Limiting Output with TOP<a class="headerlink" href="#limiting-output-with-top" title="Link to this heading">#</a></h2>
-<p>In large corporate databases, tables often contain millions of rows. Running a query that returns millions of rows can freeze your computer and strain network bandwidth. When exploring data, you will often want to view only a small sample of records using the <strong><code class="docutils literal notranslate"><span class="pre">TOP</span></code></strong> clause.</p>
+<p>In large databases, tables often contain millions of rows. Running a query that returns millions of rows can freeze your computer and strain network bandwidth. When exploring data, you will often want to view only a small sample of records using the <strong><code class="docutils literal notranslate"><span class="pre">TOP</span></code></strong> clause.</p>
 <section id="the-top-clause-syntax">
 <h3>The <code class="docutils literal notranslate"><span class="pre">TOP</span></code> Clause Syntax<a class="headerlink" href="#the-top-clause-syntax" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">TOP</span></code> clause specifies the maximum number (or percentage) of rows to return:</p>
@@ -692,7 +733,7 @@ This method relies on the same assumption that plagues method 2a. It returns the
 </section>
 <section id="pairing-top-with-order-by">
 <h3>Pairing <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code><a class="headerlink" href="#pairing-top-with-order-by" title="Link to this heading">#</a></h3>
-<p>Without an <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause, using <code class="docutils literal notranslate"><span class="pre">TOP</span></code> returns an arbitrary set of rows based on whatever order the database happens to store them in on disk. To obtain meaningful, repeatable results - such as the top 5 highest sales transactions or the 3 most recent orders - you <strong>must pair <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong>.</p>
+<p>Without an <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause, using <code class="docutils literal notranslate"><span class="pre">TOP</span></code> returns an arbitrary set of rows based on whatever order the database happens to store them in on disk. To obtain meaningful, repeatable results - such as the top 5 highest sales transactions or the 3 most recent orders - you <strong>must pair <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>.</strong></p>
 <p>Consider finding the three most expensive products sold by Northwind Traders:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span><span class="n">UnitPrice</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
@@ -751,14 +792,14 @@ This method relies on the same assumption that plagues method 2a. It returns the
 <span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
 </pre></div>
 </div>
-<p>Notice the use of <code class="docutils literal notranslate"><span class="pre">AS</span> <span class="pre">HighestFreight</span></code>. The <strong><code class="docutils literal notranslate"><span class="pre">AS</span></code></strong> keyword creates an <strong>alias</strong>—a descriptive custom column header for the output. If you omit <code class="docutils literal notranslate"><span class="pre">AS</span></code>, SQL will display <code class="docutils literal notranslate"><span class="pre">(No</span> <span class="pre">column</span> <span class="pre">name)</span></code> for the calculated result.</p>
+<p>Notice the use of <code class="docutils literal notranslate"><span class="pre">AS</span> <span class="pre">HighestFreight</span></code>. The <strong><code class="docutils literal notranslate"><span class="pre">AS</span></code></strong> keyword creates an <strong>alias</strong> - a descriptive custom column header for the output. If you omit <code class="docutils literal notranslate"><span class="pre">AS</span></code>, SQL will display <code class="docutils literal notranslate"><span class="pre">(No</span> <span class="pre">column</span> <span class="pre">name)</span></code> for the calculated result.</p>
 </section>
 <section id="understanding-count-vs-count-column">
 <h3>Understanding <code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code> vs. <code class="docutils literal notranslate"><span class="pre">COUNT(column)</span></code><a class="headerlink" href="#understanding-count-vs-count-column" title="Link to this heading">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> function counts records, but its behavior changes depending on what is placed inside the parentheses:</p>
 <ul class="simple">
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code></strong>: Counts <strong>all rows</strong> in the table, including rows that contain missing or null values in individual columns.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">COUNT(column_name)</span></code></strong>: Counts only rows where the specified column contains a <strong>non-null (valid) value</strong>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code>:</strong> Counts <strong>all rows</strong> in the table, including rows that contain missing or null values in individual columns.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COUNT(column_name)</span></code>:</strong> Counts only rows where the specified column contains a <strong>non-null (valid) value</strong>.</p></li>
 </ul>
 <p>Consider the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table, where some employees report to a manager (<code class="docutils literal notranslate"><span class="pre">ReportsTo</span></code>), while top executives have a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> (blank) value in that field:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Counts all 9 employee records in the table</span>
@@ -798,7 +839,7 @@ This method relies on the same assumption that plagues method 2a. It returns the
 </tr>
 <tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">(n)</span></code></strong></p></td>
 <td class="text-left"><p>Limits the output to <span class="math notranslate nohighlight">\(n\)</span> rows or <span class="math notranslate nohighlight">\(n\%\)</span> of rows.</p></td>
-<td class="text-left"><p>Optional (placed after <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>)</p></td>
+<td class="text-left"><p>Optional (placed immediately after <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">FROM</span></code></strong></p></td>
 <td class="text-left"><p>Identifies the database source table.</p></td>
@@ -881,23 +922,23 @@ This method relies on the same assumption that plagues method 2a. It returns the
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-asking-questions-with-the-select-statement">Introduction: Asking Questions with the SELECT Statement</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-specific-columns-and-code-style">Selecting Specific Columns and Code Style</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column-selection">Column Selection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-syntax-and-formatting-rules">SQL Syntax and Formatting Rules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-specific-columns">Selecting Specific Columns</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sql-syntax-and-formatting-rules">SQL Syntax and Formatting Rules</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-sql-s-flexibility-to-improve-code-readability">Using SQL’s Flexibility to Improve Code Readability</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thinking-like-an-analyst-four-ways-to-answer-how-many-employees">Thinking Like an Analyst: Four Ways to Answer “How Many Employees?”</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-retrieve-all-rows-select">Method 1: Retrieve All Rows (<code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2a-multi-step-logic-top-order-by">Method 2a: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2b-aggregate-function-max">Method 2b: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2c-direct-row-counting-count">Method 2c: Direct Row Counting (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-2-multi-step-logic-top-order-by">Method 2: Multi-Step Logic (<code class="docutils literal notranslate"><span class="pre">TOP</span></code> + <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-3-aggregate-function-max">Method 3: Aggregate Function (<code class="docutils literal notranslate"><span class="pre">MAX</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-4-direct-row-counting-count">Method 4: Direct Row Counting (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-results-with-order-by">Sorting Results with ORDER BY</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#single-column-sort-example">Single-Column Sort Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-sequence-rule">Clause Sequence Rule</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clause-sequence-rule">Clause Sequence Rule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-output-with-top">Limiting Output with TOP</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-top-clause-syntax">The <code class="docutils literal notranslate"><span class="pre">TOP</span></code> Clause Syntax</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pairing-top-with-order-by">Pairing <code class="docutils literal notranslate"><span class="pre">TOP</span></code> with <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
