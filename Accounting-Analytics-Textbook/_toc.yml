@@ -23,4 +23,4 @@ parts:
   - file: "Unit 3/3-0 Working with Files and Folders"
   - file: "Unit 3/3-1 Overview of SQL"
   - file: "Unit 3/3-2 The SQL SELECT Statement"
-  
+  - file: "Unit 3/3-3 Filtering Data with SQL WHERE"
