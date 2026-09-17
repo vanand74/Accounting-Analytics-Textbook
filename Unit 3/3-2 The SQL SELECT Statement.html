@@ -462,32 +462,264 @@
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>ShipperID</th>
-      <th>CompanyName</th>
-      <th>Phone</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Speedy Express</td>
-      <td>(503) 555-9831</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>United Package</td>
-      <td>(503) 555-3199</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Federal Shipping</td>
-      <td>(503) 555-9931</td>
-    </tr>
-  </tbody>
-</table></div></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w"> </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd"> The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd"> """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w"> </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd"> The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd"> """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span> <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>     <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>     <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w"> </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span> <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span> <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span> <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">'SELECT * FROM Shippers'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:700,</span> in <span class="ni">read_sql</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, columns, chunksize, dtype_backend, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>     <span class="n">dtype_backend</span> <span class="o">=</span> <span class="s2">"numpy"</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> <span class="k">assert</span> <span class="n">dtype_backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span>
+<span class="ne">--&gt; </span><span class="mi">700</span> <span class="k">with</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span> <span class="k">as</span> <span class="n">pandas_sql</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pandas_sql</span><span class="p">,</span> <span class="n">SQLiteDatabase</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">710</span>             <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:908,</span> in <span class="ni">pandasSQL_builder</span><span class="nt">(con, schema, need_transaction)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>         <span class="sa">f</span><span class="s2">"Using URI string without version '</span><span class="si">{</span><span class="n">VERSIONS</span><span class="p">[</span><span class="s1">'sqlalchemy'</span><span class="p">]</span><span class="si">}</span><span class="s2">' or newer "</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>         <span class="s2">"of 'sqlalchemy' installed."</span>
+<span class="g g-Whitespace">    </span><span class="mi">905</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">907</span> <span class="k">if</span> <span class="n">sqlalchemy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">Connectable</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">908</span>     <span class="k">return</span> <span class="n">SQLDatabase</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">need_transaction</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">adbc</span> <span class="o">=</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">"adbc_driver_manager.dbapi"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">911</span> <span class="k">if</span> <span class="n">adbc</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">adbc</span><span class="o">.</span><span class="n">Connection</span><span class="p">):</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:1649,</span> in <span class="ni">SQLDatabase.__init__</span><span class="nt">(self, con, schema, need_transaction)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">dispose</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">Engine</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1649</span>     <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">connect</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">1650</span> <span class="k">if</span> <span class="n">need_transaction</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">con</span><span class="o">.</span><span class="n">in_transaction</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">1651</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">begin</span><span class="p">())</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3295,</span> in <span class="ni">Engine.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3272</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3273</span><span class="w">     </span><span class="sd">"""Return a new :class:`_engine.Connection` object.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3274</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3275</span><span class="sd">     The :class:`_engine.Connection` acts as a Python context manager, so</span>
+<span class="sd">   (...)   3292 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3293</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3295</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:146,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">raise</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:2450,</span> in <span class="ni">Connection._handle_dbapi_exception_noconnection</span><span class="nt">(cls, e, dialect, engine, is_disconnect, invalidate_pool_on_disconnect, is_pre_ping)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2448</span> <span class="k">elif</span> <span class="n">should_wrap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2449</span>     <span class="k">assert</span> <span class="n">sqlalchemy_exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">2450</span>     <span class="k">raise</span> <span class="n">sqlalchemy_exception</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">2451</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2452</span>     <span class="k">assert</span> <span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3297</span> <span class="k">def</span><span class="w"> </span><span class="nf">raw_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w">     </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd">     The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w">     </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd">     The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span>     <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span> <span class="k">def</span><span class="w"> </span><span class="nf">_checkout</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1269</span>     <span class="n">fairy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ConnectionFairy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1270</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ConnectionFairy</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>         <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>         <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span>             <span class="n">threadconns</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">fairy</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">_ConnectionRecord</span><span class="p">,</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">raise</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inc_overflow</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">def</span><span class="w"> </span><span class="nf">_create_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConnectionPoolEntry</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w">     </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span>     <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pool</span> <span class="o">=</span> <span class="n">pool</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>     <span class="c1"># in SQLAlchemy 1.4 the first_connect event is not used by</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>     <span class="c1"># the engine, so this will usually not be set</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">894</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span>     <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span>     <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span>     <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">mutable_cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">mutable_cparams</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: (pyodbc.InterfaceError) ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+<span class="p">(</span><span class="n">Background</span> <span class="n">on</span> <span class="n">this</span> <span class="n">error</span> <span class="n">at</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sqlalche</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">e</span><span class="o">/</span><span class="mi">20</span><span class="o">/</span><span class="n">rvf5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>Note that a SQL <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> query <strong>will never alter or modify</strong> the data stored in a database. A <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement  returns a temporary, read-only copy of the requested data.</p>
 </section>
@@ -561,18 +793,264 @@
 <p>This query sorts the table so the largest <code class="docutils literal notranslate"><span class="pre">EmployeeID</span></code> appears at the top, and <code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">(1)</span></code> restricts the output to that first row, returning <code class="docutils literal notranslate"><span class="pre">9</span></code>.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>EmployeeID</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>9</td>
-    </tr>
-  </tbody>
-</table></div></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w"> </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd"> The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd"> """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w"> </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd"> The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd"> """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span> <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>     <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>     <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w"> </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span> <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span> <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span> <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">'SELECT TOP (1) EmployeeID FROM Employees ORDER BY EmployeeID DESC'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:700,</span> in <span class="ni">read_sql</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, columns, chunksize, dtype_backend, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>     <span class="n">dtype_backend</span> <span class="o">=</span> <span class="s2">"numpy"</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> <span class="k">assert</span> <span class="n">dtype_backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span>
+<span class="ne">--&gt; </span><span class="mi">700</span> <span class="k">with</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span> <span class="k">as</span> <span class="n">pandas_sql</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pandas_sql</span><span class="p">,</span> <span class="n">SQLiteDatabase</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">710</span>             <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:908,</span> in <span class="ni">pandasSQL_builder</span><span class="nt">(con, schema, need_transaction)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>         <span class="sa">f</span><span class="s2">"Using URI string without version '</span><span class="si">{</span><span class="n">VERSIONS</span><span class="p">[</span><span class="s1">'sqlalchemy'</span><span class="p">]</span><span class="si">}</span><span class="s2">' or newer "</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>         <span class="s2">"of 'sqlalchemy' installed."</span>
+<span class="g g-Whitespace">    </span><span class="mi">905</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">907</span> <span class="k">if</span> <span class="n">sqlalchemy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">Connectable</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">908</span>     <span class="k">return</span> <span class="n">SQLDatabase</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">need_transaction</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">adbc</span> <span class="o">=</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">"adbc_driver_manager.dbapi"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">911</span> <span class="k">if</span> <span class="n">adbc</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">adbc</span><span class="o">.</span><span class="n">Connection</span><span class="p">):</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:1649,</span> in <span class="ni">SQLDatabase.__init__</span><span class="nt">(self, con, schema, need_transaction)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">dispose</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">Engine</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1649</span>     <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">connect</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">1650</span> <span class="k">if</span> <span class="n">need_transaction</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">con</span><span class="o">.</span><span class="n">in_transaction</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">1651</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">begin</span><span class="p">())</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3295,</span> in <span class="ni">Engine.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3272</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3273</span><span class="w">     </span><span class="sd">"""Return a new :class:`_engine.Connection` object.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3274</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3275</span><span class="sd">     The :class:`_engine.Connection` acts as a Python context manager, so</span>
+<span class="sd">   (...)   3292 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3293</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3295</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:146,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">raise</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:2450,</span> in <span class="ni">Connection._handle_dbapi_exception_noconnection</span><span class="nt">(cls, e, dialect, engine, is_disconnect, invalidate_pool_on_disconnect, is_pre_ping)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2448</span> <span class="k">elif</span> <span class="n">should_wrap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2449</span>     <span class="k">assert</span> <span class="n">sqlalchemy_exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">2450</span>     <span class="k">raise</span> <span class="n">sqlalchemy_exception</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">2451</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2452</span>     <span class="k">assert</span> <span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3297</span> <span class="k">def</span><span class="w"> </span><span class="nf">raw_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w">     </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd">     The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w">     </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd">     The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span>     <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span> <span class="k">def</span><span class="w"> </span><span class="nf">_checkout</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1269</span>     <span class="n">fairy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ConnectionFairy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1270</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ConnectionFairy</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>         <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>         <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span>             <span class="n">threadconns</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">fairy</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">_ConnectionRecord</span><span class="p">,</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">raise</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inc_overflow</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">def</span><span class="w"> </span><span class="nf">_create_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConnectionPoolEntry</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w">     </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span>     <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pool</span> <span class="o">=</span> <span class="n">pool</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>     <span class="c1"># in SQLAlchemy 1.4 the first_connect event is not used by</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>     <span class="c1"># the engine, so this will usually not be set</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">894</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span>     <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span>     <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span>     <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">mutable_cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">mutable_cparams</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: (pyodbc.InterfaceError) ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+<span class="p">(</span><span class="n">Background</span> <span class="n">on</span> <span class="n">this</span> <span class="n">error</span> <span class="n">at</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sqlalche</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">e</span><span class="o">/</span><span class="mi">20</span><span class="o">/</span><span class="n">rvf5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -631,72 +1109,264 @@ This method relies on the same assumption that plagues method 2. It returns the 
 <p>Because we specified <code class="docutils literal notranslate"><span class="pre">DESC</span></code>, the employee with the most recent birth date appears first.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>EmployeeID</th>
-      <th>FirstName</th>
-      <th>LastName</th>
-      <th>BirthDate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>9</td>
-      <td>Anne</td>
-      <td>Dodsworth</td>
-      <td>1966-01-27</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Janet</td>
-      <td>Leverling</td>
-      <td>1963-08-30</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Michael</td>
-      <td>Suyama</td>
-      <td>1963-07-02</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Robert</td>
-      <td>King</td>
-      <td>1960-05-29</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Laura</td>
-      <td>Callahan</td>
-      <td>1958-01-09</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Steven</td>
-      <td>Buchanan</td>
-      <td>1955-03-04</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Andrew</td>
-      <td>Fuller</td>
-      <td>1952-02-19</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Nancy</td>
-      <td>Davolio</td>
-      <td>1948-12-08</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Margaret</td>
-      <td>Peacock</td>
-      <td>1937-09-19</td>
-    </tr>
-  </tbody>
-</table></div></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w"> </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd"> The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd"> """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w"> </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd"> The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd"> """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span> <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>     <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>     <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w"> </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span> <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span> <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span> <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">'SELECT EmployeeID, FirstName, LastName, BirthDate FROM Employees ORDER BY BirthDate DESC'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:700,</span> in <span class="ni">read_sql</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, columns, chunksize, dtype_backend, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>     <span class="n">dtype_backend</span> <span class="o">=</span> <span class="s2">"numpy"</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> <span class="k">assert</span> <span class="n">dtype_backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span>
+<span class="ne">--&gt; </span><span class="mi">700</span> <span class="k">with</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span> <span class="k">as</span> <span class="n">pandas_sql</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pandas_sql</span><span class="p">,</span> <span class="n">SQLiteDatabase</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">710</span>             <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:908,</span> in <span class="ni">pandasSQL_builder</span><span class="nt">(con, schema, need_transaction)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>         <span class="sa">f</span><span class="s2">"Using URI string without version '</span><span class="si">{</span><span class="n">VERSIONS</span><span class="p">[</span><span class="s1">'sqlalchemy'</span><span class="p">]</span><span class="si">}</span><span class="s2">' or newer "</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>         <span class="s2">"of 'sqlalchemy' installed."</span>
+<span class="g g-Whitespace">    </span><span class="mi">905</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">907</span> <span class="k">if</span> <span class="n">sqlalchemy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">Connectable</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">908</span>     <span class="k">return</span> <span class="n">SQLDatabase</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">need_transaction</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">adbc</span> <span class="o">=</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">"adbc_driver_manager.dbapi"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">911</span> <span class="k">if</span> <span class="n">adbc</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">adbc</span><span class="o">.</span><span class="n">Connection</span><span class="p">):</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:1649,</span> in <span class="ni">SQLDatabase.__init__</span><span class="nt">(self, con, schema, need_transaction)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">dispose</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">Engine</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1649</span>     <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">connect</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">1650</span> <span class="k">if</span> <span class="n">need_transaction</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">con</span><span class="o">.</span><span class="n">in_transaction</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">1651</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">begin</span><span class="p">())</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3295,</span> in <span class="ni">Engine.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3272</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3273</span><span class="w">     </span><span class="sd">"""Return a new :class:`_engine.Connection` object.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3274</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3275</span><span class="sd">     The :class:`_engine.Connection` acts as a Python context manager, so</span>
+<span class="sd">   (...)   3292 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3293</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3295</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:146,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">raise</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:2450,</span> in <span class="ni">Connection._handle_dbapi_exception_noconnection</span><span class="nt">(cls, e, dialect, engine, is_disconnect, invalidate_pool_on_disconnect, is_pre_ping)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2448</span> <span class="k">elif</span> <span class="n">should_wrap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2449</span>     <span class="k">assert</span> <span class="n">sqlalchemy_exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">2450</span>     <span class="k">raise</span> <span class="n">sqlalchemy_exception</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">2451</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2452</span>     <span class="k">assert</span> <span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3297</span> <span class="k">def</span><span class="w"> </span><span class="nf">raw_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w">     </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd">     The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w">     </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd">     The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span>     <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span> <span class="k">def</span><span class="w"> </span><span class="nf">_checkout</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1269</span>     <span class="n">fairy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ConnectionFairy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1270</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ConnectionFairy</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>         <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>         <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span>             <span class="n">threadconns</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">fairy</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">_ConnectionRecord</span><span class="p">,</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">raise</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inc_overflow</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">def</span><span class="w"> </span><span class="nf">_create_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConnectionPoolEntry</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w">     </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span>     <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pool</span> <span class="o">=</span> <span class="n">pool</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>     <span class="c1"># in SQLAlchemy 1.4 the first_connect event is not used by</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>     <span class="c1"># the engine, so this will usually not be set</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">894</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span>     <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span>     <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span>     <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">mutable_cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">mutable_cparams</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: (pyodbc.InterfaceError) ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+<span class="p">(</span><span class="n">Background</span> <span class="n">on</span> <span class="n">this</span> <span class="n">error</span> <span class="n">at</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sqlalche</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">e</span><span class="o">/</span><span class="mi">20</span><span class="o">/</span><span class="n">rvf5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -743,32 +1413,264 @@ This method relies on the same assumption that plagues method 2. It returns the 
 <p>SQL processes this query by first sorting all products by <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code> in descending order, and then returning the top three rows from that sorted list:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>ProductID</th>
-      <th>ProductName</th>
-      <th>UnitPrice</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>38</td>
-      <td>Côte de Blaye</td>
-      <td>263.50</td>
-    </tr>
-    <tr>
-      <td>29</td>
-      <td>Thüringer Rostbratwurst</td>
-      <td>123.79</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Mishi Kobe Niku</td>
-      <td>97.00</td>
-    </tr>
-  </tbody>
-</table></div></div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span> <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w"> </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd"> The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd"> """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w"> </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd"> The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd"> """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span> <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>     <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>     <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w"> </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span> <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span> <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span> <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span> <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+
+<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
+
+<span class="ne">InterfaceError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s1">'SELECT TOP (3) ProductID, ProductName, UnitPrice FROM Products ORDER BY UnitPrice DESC'</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)))</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:700,</span> in <span class="ni">read_sql</span><span class="nt">(sql, con, index_col, coerce_float, params, parse_dates, columns, chunksize, dtype_backend, dtype)</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span>     <span class="n">dtype_backend</span> <span class="o">=</span> <span class="s2">"numpy"</span>  <span class="c1"># type: ignore[assignment]</span>
+<span class="g g-Whitespace">    </span><span class="mi">698</span> <span class="k">assert</span> <span class="n">dtype_backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">lib</span><span class="o">.</span><span class="n">no_default</span>
+<span class="ne">--&gt; </span><span class="mi">700</span> <span class="k">with</span> <span class="n">pandasSQL_builder</span><span class="p">(</span><span class="n">con</span><span class="p">)</span> <span class="k">as</span> <span class="n">pandas_sql</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pandas_sql</span><span class="p">,</span> <span class="n">SQLiteDatabase</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="k">return</span> <span class="n">pandas_sql</span><span class="o">.</span><span class="n">read_query</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span>             <span class="n">sql</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>             <span class="n">index_col</span><span class="o">=</span><span class="n">index_col</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">710</span>             <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:908,</span> in <span class="ni">pandasSQL_builder</span><span class="nt">(con, schema, need_transaction)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span>     <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>         <span class="sa">f</span><span class="s2">"Using URI string without version '</span><span class="si">{</span><span class="n">VERSIONS</span><span class="p">[</span><span class="s1">'sqlalchemy'</span><span class="p">]</span><span class="si">}</span><span class="s2">' or newer "</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>         <span class="s2">"of 'sqlalchemy' installed."</span>
+<span class="g g-Whitespace">    </span><span class="mi">905</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">907</span> <span class="k">if</span> <span class="n">sqlalchemy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">Connectable</span><span class="p">)):</span>
+<span class="ne">--&gt; </span><span class="mi">908</span>     <span class="k">return</span> <span class="n">SQLDatabase</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">schema</span><span class="p">,</span> <span class="n">need_transaction</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">910</span> <span class="n">adbc</span> <span class="o">=</span> <span class="n">import_optional_dependency</span><span class="p">(</span><span class="s2">"adbc_driver_manager.dbapi"</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">"ignore"</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">911</span> <span class="k">if</span> <span class="n">adbc</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">adbc</span><span class="o">.</span><span class="n">Connection</span><span class="p">):</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\pandas\io\sql.py:1649,</span> in <span class="ni">SQLDatabase.__init__</span><span class="nt">(self, con, schema, need_transaction)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1647</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">dispose</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1648</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">Engine</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1649</span>     <span class="n">con</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">connect</span><span class="p">())</span>
+<span class="g g-Whitespace">   </span><span class="mi">1650</span> <span class="k">if</span> <span class="n">need_transaction</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">con</span><span class="o">.</span><span class="n">in_transaction</span><span class="p">():</span>
+<span class="g g-Whitespace">   </span><span class="mi">1651</span>     <span class="bp">self</span><span class="o">.</span><span class="n">exit_stack</span><span class="o">.</span><span class="n">enter_context</span><span class="p">(</span><span class="n">con</span><span class="o">.</span><span class="n">begin</span><span class="p">())</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3295,</span> in <span class="ni">Engine.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3272</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Connection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3273</span><span class="w">     </span><span class="sd">"""Return a new :class:`_engine.Connection` object.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3274</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3275</span><span class="sd">     The :class:`_engine.Connection` acts as a Python context manager, so</span>
+<span class="sd">   (...)   3292 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3293</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3295</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connection_cls</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:146,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">raise</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span> <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:2450,</span> in <span class="ni">Connection._handle_dbapi_exception_noconnection</span><span class="nt">(cls, e, dialect, engine, is_disconnect, invalidate_pool_on_disconnect, is_pre_ping)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2448</span> <span class="k">elif</span> <span class="n">should_wrap</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2449</span>     <span class="k">assert</span> <span class="n">sqlalchemy_exception</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">2450</span>     <span class="k">raise</span> <span class="n">sqlalchemy_exception</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_info</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+<span class="g g-Whitespace">   </span><span class="mi">2451</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">2452</span>     <span class="k">assert</span> <span class="n">exc_info</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:144,</span> in <span class="ni">Connection.__init__</span><span class="nt">(self, engine, connection, _has_events, _allow_revalidate, _allow_autobegin)</span>
+<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="k">if</span> <span class="n">connection</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">144</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dbapi_connection</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">raw_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">145</span>     <span class="k">except</span> <span class="n">dialect</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">146</span>         <span class="n">Connection</span><span class="o">.</span><span class="n">_handle_dbapi_exception_noconnection</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">147</span>             <span class="n">err</span><span class="p">,</span> <span class="n">dialect</span><span class="p">,</span> <span class="n">engine</span>
+<span class="g g-Whitespace">    </span><span class="mi">148</span>         <span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\base.py:3319,</span> in <span class="ni">Engine.raw_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3297</span> <span class="k">def</span><span class="w"> </span><span class="nf">raw_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">3298</span><span class="w">     </span><span class="sd">"""Return a "raw" DBAPI connection from the connection pool.</span>
+<span class="g g-Whitespace">   </span><span class="mi">3299</span><span class="sd"> </span>
+<span class="g g-Whitespace">   </span><span class="mi">3300</span><span class="sd">     The returned object is a proxied version of the DBAPI</span>
+<span class="sd">   (...)   3317 </span>
+<span class="g g-Whitespace">   </span><span class="mi">3318</span><span class="sd">     """</span>
+<span class="ne">-&gt; </span><span class="mi">3319</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:448,</span> in <span class="ni">Pool.connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PoolProxiedConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span><span class="w">     </span><span class="sd">"""Return a DBAPI connection from the pool.</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span><span class="sd">     The connection is instrumented such that when its</span>
+<span class="sd">   (...)    446 </span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span><span class="sd">     """</span>
+<span class="ne">--&gt; </span><span class="mi">448</span>     <span class="k">return</span> <span class="n">_ConnectionFairy</span><span class="o">.</span><span class="n">_checkout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:1272,</span> in <span class="ni">_ConnectionFairy._checkout</span><span class="nt">(cls, pool, threadconns, fairy)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span> <span class="nd">@classmethod</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span> <span class="k">def</span><span class="w"> </span><span class="nf">_checkout</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1266</span>     <span class="bp">cls</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>   <span class="mi">1269</span>     <span class="n">fairy</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">_ConnectionFairy</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1270</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_ConnectionFairy</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1271</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">fairy</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1272</span>         <span class="n">fairy</span> <span class="o">=</span> <span class="n">_ConnectionRecord</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>         <span class="k">if</span> <span class="n">threadconns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span>             <span class="n">threadconns</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">fairy</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:712,</span> in <span class="ni">_ConnectionRecord.checkout</span><span class="nt">(cls, pool)</span>
+<span class="g g-Whitespace">    </span><span class="mi">710</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">_ConnectionRecord</span><span class="p">,</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">711</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">712</span>     <span class="n">rec</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_do_get</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>     <span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">rec</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:178,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span> <span class="k">except</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">178</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_dec_overflow</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>     <span class="k">raise</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\impl.py:176,</span> in <span class="ni">QueuePool._do_get</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inc_overflow</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">176</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_connection</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="k">except</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:389,</span> in <span class="ni">Pool._create_connection</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span> <span class="k">def</span><span class="w"> </span><span class="nf">_create_connection</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConnectionPoolEntry</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="w">     </span><span class="sd">"""Called by subclasses to create a new ConnectionRecord."""</span>
+<span class="ne">--&gt; </span><span class="mi">389</span>     <span class="k">return</span> <span class="n">_ConnectionRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:674,</span> in <span class="ni">_ConnectionRecord.__init__</span><span class="nt">(self, pool, connect)</span>
+<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="bp">self</span><span class="o">.</span><span class="n">__pool</span> <span class="o">=</span> <span class="n">pool</span>
+<span class="g g-Whitespace">    </span><span class="mi">673</span> <span class="k">if</span> <span class="n">connect</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="bp">self</span><span class="o">.</span><span class="n">__connect</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">675</span> <span class="bp">self</span><span class="o">.</span><span class="n">finalize_callback</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:900,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">899</span> <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">900</span>     <span class="k">with</span> <span class="n">util</span><span class="o">.</span><span class="n">safe_reraise</span><span class="p">():</span>
+<span class="g g-Whitespace">    </span><span class="mi">901</span>         <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Error on connect(): </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">902</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">903</span>     <span class="c1"># in SQLAlchemy 1.4 the first_connect event is not used by</span>
+<span class="g g-Whitespace">    </span><span class="mi">904</span>     <span class="c1"># the engine, so this will usually not be set</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\util\langhelpers.py:122,</span> in <span class="ni">safe_reraise.__exit__</span><span class="nt">(self, type_, value, traceback)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span>     <span class="k">assert</span> <span class="n">exc_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+<span class="ne">--&gt; </span><span class="mi">122</span>     <span class="k">raise</span> <span class="n">exc_value</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="n">exc_tb</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_exc_info</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># remove potential circular references</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\pool\base.py:896,</span> in <span class="ni">_ConnectionRecord.__connect</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">894</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">895</span>     <span class="bp">self</span><span class="o">.</span><span class="n">starttime</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">896</span>     <span class="bp">self</span><span class="o">.</span><span class="n">dbapi_connection</span> <span class="o">=</span> <span class="n">connection</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">_invoke_creator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">897</span>     <span class="n">pool</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Created new connection </span><span class="si">%r</span><span class="s2">"</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">898</span>     <span class="bp">self</span><span class="o">.</span><span class="n">fresh</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\create.py:667,</span> in <span class="ni">create_engine.&lt;locals&gt;.connect</span><span class="nt">(connection_record)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">mutable_cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">mutable_cparams</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">666</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>     <span class="k">return</span> <span class="n">dialect</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs_tup</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\JupyterBook\Lib\site-packages\sqlalchemy\engine\default.py:630,</span> in <span class="ni">DefaultDialect.connect</span><span class="nt">(self, *cargs, **cparams)</span>
+<span class="g g-Whitespace">    </span><span class="mi">628</span> <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">cargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DBAPIConnection</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="c1"># inherits the docstring from interfaces.Dialect.connect</span>
+<span class="ne">--&gt; </span><span class="mi">630</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_dbapi</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="o">*</span><span class="n">cargs</span><span class="p">,</span> <span class="o">**</span><span class="n">cparams</span><span class="p">)</span>
+
+<span class="ne">InterfaceError</span>: (pyodbc.InterfaceError) ('28000', '[28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456) (SQLDriverConnect); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Login failed for user \'VIC-PC-2025\\vican\'. (18456); [28000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Cannot open database "NorthwindTraders" requested by the login. The login failed. (4060)')
+<span class="p">(</span><span class="n">Background</span> <span class="n">on</span> <span class="n">this</span> <span class="n">error</span> <span class="n">at</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">sqlalche</span><span class="o">.</span><span class="n">me</span><span class="o">/</span><span class="n">e</span><span class="o">/</span><span class="mi">20</span><span class="o">/</span><span class="n">rvf5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="clause-sequence-with-top">
