@@ -489,7 +489,7 @@ In computer programming and database design, the number <code class="docutils li
 <p>If you forget the single quotes around <code class="docutils literal notranslate"><span class="pre">'London'</span></code>, SQL will treat <code class="docutils literal notranslate"><span class="pre">London</span></code> as if it were a column name rather than a text value, resulting in a syntax error.</p>
 <blockquote>
 <div><p><strong>Note on Case Sensitivity:</strong><br />
-In Microsoft SQL Server, text comparisons are <strong>not case-sensitive</strong>. Therefore, <code class="docutils literal notranslate"><span class="pre">'London'</span></code>, <code class="docutils literal notranslate"><span class="pre">'london'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'LONDON'</span></code> will return the exact same matching rows.</p>
+In Microsoft SQL Server, text comparisons are <strong>not case-sensitive.</strong> Therefore, <code class="docutils literal notranslate"><span class="pre">'London'</span></code>, <code class="docutils literal notranslate"><span class="pre">'london'</span></code>, and <code class="docutils literal notranslate"><span class="pre">'LONDON'</span></code> will return the exact same matching rows.</p>
 </div></blockquote>
 </section>
 </section>
@@ -789,7 +789,7 @@ In automated accounting controls, a subtle precedence error in code can leave ma
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">%</span></code> <strong>(Percent sign):</strong> Matches <strong>zero or more</strong> characters.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">_</span></code> <strong>(Underscore):</strong> Matches exactly <strong>one</strong> single character.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code>:</strong> Matches any single character inside the brackets.</p>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> (square brackets):</strong> Matches any single character inside the brackets.</p>
 <ul>
 <li><p>For example, <code class="docutils literal notranslate"><span class="pre">[aeiou]</span></code> matches a single vowel.</p></li>
 <li><p>For example, <code class="docutils literal notranslate"><span class="pre">[w-z]</span></code> matches any character between w and z, so w, x, y, or z.</p></li>
