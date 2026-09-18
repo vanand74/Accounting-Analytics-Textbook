@@ -1,0 +1,1368 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Transforming Data &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3W9L1EX77X"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 3/3-4 Transforming Data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Filtering Data with SQL WHERE" href="3-3%20Filtering%20Data%20with%20SQL%20WHERE.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: The Process of Analytics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-2%20Types%20of%20Data.html">Types of Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: SQL</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3-0%20Working%20with%20Files%20and%20Folders.html">Working with Files and Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1%20Overview%20of%20SQL.html">Overview of SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2%20The%20SQL%20SELECT%20Statement.html">The SQL SELECT Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3%20Filtering%20Data%20with%20SQL%20WHERE.html">Filtering Data with SQL WHERE</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Transforming Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 3/3-4 Transforming Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 3/3-4 Transforming Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Transforming Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-what-is-a-data-transformation">Introduction: What is a Data Transformation?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-a-transformation">Example of a Transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-as-keyword-column-aliasing">The <code class="docutils literal notranslate"><span class="pre">AS</span></code> Keyword (Column Aliasing)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-data-with-operators">Transforming Data with Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operators">Arithmetic Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-data-types-int-smallint-tinyint-bigint">Integer Data Types (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">smallint</span></code>, <code class="docutils literal notranslate"><span class="pre">tinyint</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-integer-division-trap">The Integer Division Trap</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-numbers-float-and-the-need-for-integers">Floating-Point Numbers (<code class="docutils literal notranslate"><span class="pre">float</span></code>) and the Need for Integers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#financial-and-currency-data-types-money-smallmoney">Financial and Currency Data Types (<code class="docutils literal notranslate"><span class="pre">money</span></code>, <code class="docutils literal notranslate"><span class="pre">smallmoney</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-boolean-data-type-bit">Logical / Boolean Data Type (<code class="docutils literal notranslate"><span class="pre">bit</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#date-and-time-data-types-date-time-datetime2">Date and Time Data Types (<code class="docutils literal notranslate"><span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime2</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-data-types-nvarchar-varchar-nchar-char">Text Data Types (<code class="docutils literal notranslate"><span class="pre">nvarchar</span></code>, <code class="docutils literal notranslate"><span class="pre">varchar</span></code>, <code class="docutils literal notranslate"><span class="pre">nchar</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-type-precedence">Data Type Precedence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-precedence-and-parentheses">Operator Precedence and Parentheses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operators-concatenation">String Operators: Concatenation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-data-with-functions">Transforming Data with Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-function-terminology">Understanding Function Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#date-and-time-functions">Date and Time Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-elapsed-days-datediff">Calculating Elapsed Days (<code class="docutils literal notranslate"><span class="pre">DATEDIFF</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-date-components-year-month-day">Extracting Date Components (<code class="docutils literal notranslate"><span class="pre">YEAR</span></code>, <code class="docutils literal notranslate"><span class="pre">MONTH</span></code>, <code class="docutils literal notranslate"><span class="pre">DAY</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-system-time-getdate">Working with System Time (<code class="docutils literal notranslate"><span class="pre">GETDATE</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-functions">Mathematical Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-functions-iif">Logical Functions (<code class="docutils literal notranslate"><span class="pre">IIF</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">String Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-application-data-cleaning-and-forensic-auditing">Real-World Application: Data Cleaning and Forensic Auditing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-cleaning-state-purchasing-card-p-card-data">Case Study: Cleaning State Purchasing Card (P-Card) Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-transformation-checklist">Summary and Transformation Checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="transforming-data">
+<h1>Transforming Data<a class="headerlink" href="#transforming-data" title="Link to this heading">#</a></h1>
+<section id="introduction-what-is-a-data-transformation">
+<h2>Introduction: What is a Data Transformation?<a class="headerlink" href="#introduction-what-is-a-data-transformation" title="Link to this heading">#</a></h2>
+<p>In the previous sections, you learned how to retrieve existing columns from a database table using <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> and how to filter rows using <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>. However, raw database tables rarely contain data in the exact format required for executive reporting or financial analysis.</p>
+<p>Recall a principle of database design from unit 2: <em>store facts, not math</em>. Relational databases store raw, immutable facts - such as the unit price of an item and the quantity ordered - rather than pre-calculated totals like line-item revenue or net profit. Storing calculated values in a database introduces risks to data integrity; for example, a change to a quantity without recalculating the total will create out of sync records.</p>
+<p>Since storing calculated values violates best practices, anytime an analyst needs to compute a value from raw data, they perform a data transformation.</p>
+<p>A <strong>transformation</strong> creates a calculated column. Transformations do not alter the underlying data; rather, they construct dynamic, temporary calculated fields in your query output.</p>
+<p>In SQL, transformations are constructed in the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause using two primary tools:</p>
+<ol class="arabic simple">
+<li><p><strong>Operators:</strong> Symbols (such as <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>) that perform arithmetic or string concatenation directly on column values.</p></li>
+<li><p><strong>Functions:</strong> Built-in programming routines (such as <code class="docutils literal notranslate"><span class="pre">DATEDIFF()</span></code>, <code class="docutils literal notranslate"><span class="pre">ROUND()</span></code>, <code class="docutils literal notranslate"><span class="pre">IIF()</span></code>, or <code class="docutils literal notranslate"><span class="pre">UPPER()</span></code>) that accept input values, perform calculations, and return a result.</p></li>
+</ol>
+<section id="example-of-a-transformation">
+<h3>Example of a Transformation<a class="headerlink" href="#example-of-a-transformation" title="Link to this heading">#</a></h3>
+<p>Say that Northwind Traders’ input costs have risen. This has depressed product margins and adversely affected the bottom line. To mitigate the effects of rising input costs, the marketing vice president has ordered a 10% across-the-board increase in prices. She wants you to list all products, their current prices, and their new prices. You can easily do this by running the following SQL query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">10</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+</pre></div>
+</div>
+<p>The first five rows of the output are shown below:</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/DataTransformationExample.png"><img alt="Data Transformation Example" src="../_images/DataTransformationExample.png" style="width: 85%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Example of a Data Transformation</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In the output, the last column contains computed values. The data in this column is not in the database table <code class="docutils literal notranslate"><span class="pre">Products</span></code>. Instead, the data in this column was computed “on the fly” by SQL. Notice the line in the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement that reads <code class="docutils literal notranslate"><span class="pre">Unit</span> <span class="pre">Price</span> <span class="pre">*</span> <span class="pre">1.10</span></code>. When SQL read that line, it took the value of <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code> in each row and multiplied it by 1.10 to create a new data value. This is a transformation.</p>
+</section>
+<section id="the-as-keyword-column-aliasing">
+<h3>The <code class="docutils literal notranslate"><span class="pre">AS</span></code> Keyword (Column Aliasing)<a class="headerlink" href="#the-as-keyword-column-aliasing" title="Link to this heading">#</a></h3>
+<p>When you apply an operator or function to create a new column, the database management system generates a result but does not automatically name the new column. In Visual Studio Code, the output header will simply read <code class="docutils literal notranslate"><span class="pre">(No</span> <span class="pre">column</span> <span class="pre">name)</span></code>. You can see this in the figure above.</p>
+<p>To give your calculated field a clear, professional header, use the <strong><code class="docutils literal notranslate"><span class="pre">AS</span></code></strong> keyword to assign an <strong>alias</strong>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">CurrentPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">10</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NewPrice</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+</pre></div>
+</div>
+<p>By writing <code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">*</span> <span class="pre">1.10</span> <span class="pre">AS</span> <span class="pre">NewPrice</span></code>, we told SQL to use the name <code class="docutils literal notranslate"><span class="pre">NewPrice</span></code> for this column.</p>
+<p>Notice that you can also use <code class="docutils literal notranslate"><span class="pre">AS</span></code> to change the label of an existing column. By changing the label on the <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code> column to <code class="docutils literal notranslate"><span class="pre">CurrentPrice</span></code>, we create output that clearly shows the current and future selling prices of the products. Assigning clear aliases is an essential coding practice that ensures your query output is readable and unambiguous.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/DataTransformationExample2.png"><img alt="Data Transformation Example with Aliases" src="../_images/DataTransformationExample2.png" style="width: 85%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Example of a Data Transformation with Aliases</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="transforming-data-with-operators">
+<h2>Transforming Data with Operators<a class="headerlink" href="#transforming-data-with-operators" title="Link to this heading">#</a></h2>
+<p>An <strong>operator</strong> is a symbol that acts on data values to perform a specific calculation. While you previously used comparison operators (<code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>) and logical operators (<code class="docutils literal notranslate"><span class="pre">AND</span></code>, <code class="docutils literal notranslate"><span class="pre">OR</span></code>) in the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause to filter rows, you will typically use arithmetic operators and string operators to transform columns.</p>
+<blockquote>
+<div><p><strong>Programming Tip: All Available Operators</strong><br />
+We will only cover a small subset of the available SQL operators. I chose the operators that I thought you would be most likely to use. For reference, here is a <u><a href="https://learn.microsoft.com/en-us/sql/t-sql/language-elements/operators-transact-sql?view=azuresqldb-current">link</a></u> to the official Microsoft SQL Server documentation; it lists and describes all available operators.</p>
+</div></blockquote>
+<section id="arithmetic-operators">
+<h3>Arithmetic Operators<a class="headerlink" href="#arithmetic-operators" title="Link to this heading">#</a></h3>
+<p>SQL supports the standard arithmetic operators used in algebra:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Operator</p></th>
+<th class="head text-left"><p>Operation</p></th>
+<th class="head text-left"><p>Example Syntax</p></th>
+<th class="head text-left"><p>What It Calculates</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">+</span></code></strong></p></td>
+<td class="text-left"><p>Addition</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">+</span> <span class="pre">ShippingFee</span></code></p></td>
+<td class="text-left"><p>Sums two numeric values</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">-</span></code></strong></p></td>
+<td class="text-left"><p>Subtraction</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">-</span> <span class="pre">UnitCost</span></code></p></td>
+<td class="text-left"><p>Calculates the unit contribution margin</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">*</span></code></strong></p></td>
+<td class="text-left"><p>Multiplication</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">*</span> <span class="pre">Quantity</span></code></p></td>
+<td class="text-left"><p>Calculates gross line-item revenue</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">/</span></code></strong></p></td>
+<td class="text-left"><p>Division</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">TotalAmount</span> <span class="pre">/</span> <span class="pre">Quantity</span></code></p></td>
+<td class="text-left"><p>Calculates the average cost per unit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Consider an example from Northwind Traders. The sales manager wants to evaluate line-item profitability across all historical transactions in the <code class="docutils literal notranslate"><span class="pre">OrderDetails</span></code> table:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Quantity</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">GrossRevenue</span><span class="p">,</span>
+<span class="w">    </span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NetRevenue</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+</pre></div>
+</div>
+<p>In this single query, we extract raw facts (<code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code>, <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="docutils literal notranslate"><span class="pre">Discount</span></code>) and compute two  financial transformations: gross revenue before discounts and net revenue after applying percentage discounts.</p>
+</section>
+<section id="data-types">
+<h3>Data Types<a class="headerlink" href="#data-types" title="Link to this heading">#</a></h3>
+<p>Conceptually, a data transformation is simple. A formula or function is used to combine data from existing columns into a new column. However, there is a nuance to transformations that, if not fully understood, <em>will</em> lead to unexpected and invalid results. For example, if you divide <code class="docutils literal notranslate"><span class="pre">1</span></code> by <code class="docutils literal notranslate"><span class="pre">2</span></code> in SQL, the result will be <code class="docutils literal notranslate"><span class="pre">0</span></code>, not <code class="docutils literal notranslate"><span class="pre">0.5</span></code>. However, if you divide <code class="docutils literal notranslate"><span class="pre">1.0</span></code> by <code class="docutils literal notranslate"><span class="pre">2.0</span></code>, the result will be the mathematically correct value of <code class="docutils literal notranslate"><span class="pre">0.5</span></code>. This seemingly strange behavior is explained below.</p>
+<p>These problems occur when SQL users lack an understanding of <strong>data types</strong>. In algebra or spreadsheets, a number is simply a number. In a relational database, however, every column is assigned a rigid data type. A data type defines the kind of data a column can store (e.g., whole numbers, decimals, currency, logical flags, dates, or text) and dictates which mathematical operations are valid.</p>
+<p>Understanding data types is essential for accountants. When you write query calculations, combine columns, or clean raw financial records, knowing how SQL handles data types prevents logic errors, calculation bugs, and truncation mistakes.</p>
+<blockquote>
+<div><p><strong>Programming Tip: All Available Data Types</strong><br />
+We will only cover a small subset of the available SQL data types. I chose the data types that I thought you would be most likely to use. For reference, here is a <u><a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=azuresqldb-current#exact-numerics">link</a></u> to the official Microsoft SQL Server documentation; it lists and describes all available data types.</p>
+</div></blockquote>
+<section id="integer-data-types-int-smallint-tinyint-bigint">
+<h4>Integer Data Types (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">smallint</span></code>, <code class="docutils literal notranslate"><span class="pre">tinyint</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code>)<a class="headerlink" href="#integer-data-types-int-smallint-tinyint-bigint" title="Link to this heading">#</a></h4>
+<p>An <strong>integer</strong> represents a whole number without any fractional or decimal component (positive, negative, or zero).</p>
+<p>In T-SQL, integers are divided into four sub-types depending on the range of numbers they need to hold and the disk space required:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tinyint</span></code>:</strong> Stores numbers from 0 to 255 (1 byte of storage).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">smallint</span></code>:</strong> Stores numbers from -32,768 to 32,767 (2 bytes).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">int</span></code>:</strong> The standard integer type, storing numbers from -2.14 billion to 2.14 billion (4 bytes).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">bigint</span></code>:</strong> For massive datasets, storing whole numbers up to 9 quintillion (8 bytes).</p></li>
+</ul>
+<p><strong>Accounting Use Case:</strong> Integer fields are used whenever exact whole-number counting is required - such as physical inventory unit counts, journal entry line IDs, customer IDs, and transaction numbers.</p>
+</section>
+<section id="the-integer-division-trap">
+<h4>The Integer Division Trap<a class="headerlink" href="#the-integer-division-trap" title="Link to this heading">#</a></h4>
+<p>Because integer columns store strictly whole numbers, a critical trap arises when performing division: <strong>In SQL, dividing an integer by another integer always yields an integer result.</strong> SQL automatically truncates (discards) the entire decimal portion without rounding.</p>
+<p>Consider the following division examples in SQL:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">2</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">0</span></code> (not <code class="docutils literal notranslate"><span class="pre">0.5</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">86</span> <span class="pre">/</span> <span class="pre">100</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">0</span></code> (not <code class="docutils literal notranslate"><span class="pre">0.86</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">/</span> <span class="pre">2</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">1</span></code> (not <code class="docutils literal notranslate"><span class="pre">1.5</span></code>).</p></li>
+</ul>
+<p>Imagine an auditor calculating a gross margin ratio using <code class="docutils literal notranslate"><span class="pre">NetIncome</span> <span class="pre">/</span> <span class="pre">Revenue</span></code>. If both underlying fields are stored as integers, SQL will return <code class="docutils literal notranslate"><span class="pre">0</span></code> for every transaction where revenue exceeds net income!</p>
+<p><strong>The Solution:</strong> To preserve decimal precision, at least one argument in a division expression must be evaluated as a floating-point or decimal number. You can force decimal precision by multiplying by <code class="docutils literal notranslate"><span class="pre">1.0</span></code> or adding a decimal point:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- INCORRECT: Returns 0 due to integer division truncation</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Half</span><span class="p">;</span>
+
+<span class="c1">-- CORRECT: Returns 0.5 by forcing floating-point evaluation</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Half</span><span class="p">;</span>
+<span class="c1">-- OR</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Half</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="floating-point-numbers-float-and-the-need-for-integers">
+<h4>Floating-Point Numbers (<code class="docutils literal notranslate"><span class="pre">float</span></code>) and the Need for Integers<a class="headerlink" href="#floating-point-numbers-float-and-the-need-for-integers" title="Link to this heading">#</a></h4>
+<p>If integer division discards decimals, you might ask: <em>Why not store every number as a decimal or floating-point number? Why bother with integers at all?</em></p>
+<p>The answer comes down to <strong>exact representation</strong>. Computers store integers with 100% exact mathematical accuracy. Floating-point numbers (<code class="docutils literal notranslate"><span class="pre">float</span></code>), by contrast, use approximations to store numbers with fractional components.</p>
+<p>Because floating-point math uses approximations, small representation errors can occur in temporary memory (for instance, an expression like <code class="docutils literal notranslate"><span class="pre">5.7</span> <span class="pre">-</span> <span class="pre">100.826</span> <span class="pre">+</span> <span class="pre">100.826</span></code> might evaluate in memory to <code class="docutils literal notranslate"><span class="pre">5.699999999999999</span></code>).</p>
+<p>While floating-point numbers (<code class="docutils literal notranslate"><span class="pre">float</span></code>) are suitable for scientific measurements and general statistical estimates, exact integer representation is mandatory when matching primary key IDs, counting physical warehouse inventory, or tracking account ledger line numbers.</p>
+</section>
+<section id="financial-and-currency-data-types-money-smallmoney">
+<h4>Financial and Currency Data Types (<code class="docutils literal notranslate"><span class="pre">money</span></code>, <code class="docutils literal notranslate"><span class="pre">smallmoney</span></code>)<a class="headerlink" href="#financial-and-currency-data-types-money-smallmoney" title="Link to this heading">#</a></h4>
+<p>Because floating-point numbers carry tiny approximation risks, enterprise accounting databases do <strong>not</strong> use <code class="docutils literal notranslate"><span class="pre">float</span></code> to store financial balances. Instead, relational databases use specialized fixed-precision currency types:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">money</span></code>:</strong> High-precision monetary data type storing values from -$922 trillion to +$922 trillion with accuracy to four decimal places ($0.0001).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">smallmoney</span></code>:</strong> Compact monetary type storing values from -$214,748.36 to +$214,748.36.</p></li>
+</ul>
+<p>Using <code class="docutils literal notranslate"><span class="pre">money</span></code> guarantees that monetary additions, subtractions, and ledger totals reconcile to the exact penny without rounding drift.</p>
+</section>
+<section id="logical-boolean-data-type-bit">
+<h4>Logical / Boolean Data Type (<code class="docutils literal notranslate"><span class="pre">bit</span></code>)<a class="headerlink" href="#logical-boolean-data-type-bit" title="Link to this heading">#</a></h4>
+<p>Not all business attributes represent monetary values or quantities; some represent simple yes/no values (e.g., Is a product active or discontinued? Is a customer credit account flagged? Has a invoice been posted?).</p>
+<p>SQL represents true/false values using the <strong><code class="docutils literal notranslate"><span class="pre">bit</span></code></strong> data type:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> represents True (e.g., product is discontinued).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> represents False (e.g., product is active, or not discontinued).</p></li>
+</ul>
+</section>
+<section id="date-and-time-data-types-date-time-datetime2">
+<h4>Date and Time Data Types (<code class="docutils literal notranslate"><span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime2</span></code>)<a class="headerlink" href="#date-and-time-data-types-date-time-datetime2" title="Link to this heading">#</a></h4>
+<p>Financial reporting cycles are inherently time-bound - monthly closes, quarterly filings, and fiscal year audits. T-SQL provides specialized data types to store dates and times:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">date</span></code>:</strong> Stores purely the calendar date (<code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">time</span></code>:</strong> Stores purely the time of day (<code class="docutils literal notranslate"><span class="pre">HH:MM:SS.nnnnnnn</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">datetime2</span></code>:</strong> The modern standard for combined date and time, storing timestamps down to fractional seconds with high precision.</p></li>
+</ul>
+</section>
+<section id="text-data-types-nvarchar-varchar-nchar-char">
+<h4>Text Data Types (<code class="docutils literal notranslate"><span class="pre">nvarchar</span></code>, <code class="docutils literal notranslate"><span class="pre">varchar</span></code>, <code class="docutils literal notranslate"><span class="pre">nchar</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>)<a class="headerlink" href="#text-data-types-nvarchar-varchar-nchar-char" title="Link to this heading">#</a></h4>
+<p>Beyond numbers, dates, and true/false values, databases store extensive textual information - customer names, street addresses, vendor descriptions, and audit notes.</p>
+<p>Text data types (often referred to as <strong>strings</strong>) are categorized by length and character encoding:</p>
+<ul class="simple">
+<li><p><strong>Fixed vs. Variable Length (<code class="docutils literal notranslate"><span class="pre">char</span></code> vs. <code class="docutils literal notranslate"><span class="pre">varchar</span></code>):</strong> <code class="docutils literal notranslate"><span class="pre">char(n)</span></code> always consumes n bytes of storage. For example, a field with data type <code class="docutils literal notranslate"><span class="pre">char(10)</span></code> will always store 10 characters. The string <code class="docutils literal notranslate"><span class="pre">'dog'</span></code>, which has length of 3 characters, will be stored in the database as <code class="docutils literal notranslate"><span class="pre">'dog</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">'</span></code>. In other words, the database will “pad” the text with blank spaces. <code class="docutils literal notranslate"><span class="pre">varchar(10)</span></code> (variable character) dynamically adjusts disk space to fit the actual text length. Thus, <code class="docutils literal notranslate"><span class="pre">varchar(10)</span></code> can store up to 10 characters.</p></li>
+<li><p><strong>Standard vs. Unicode (<code class="docutils literal notranslate"><span class="pre">nvarchar</span></code> / <code class="docutils literal notranslate"><span class="pre">nchar</span></code>):</strong> The <code class="docutils literal notranslate"><span class="pre">n</span></code> prefix stands for <strong>National / Unicode</strong>. Standard <code class="docutils literal notranslate"><span class="pre">varchar</span></code> stores basic Latin characters. <code class="docutils literal notranslate"><span class="pre">nvarchar</span></code> stores international character sets (including accents, non-Western alphabets, and special symbols), ensuring corporate databases handle global vendor and customer names accurately.</p></li>
+</ul>
+</section>
+</section>
+<section id="data-type-precedence">
+<h3>Data Type Precedence<a class="headerlink" href="#data-type-precedence" title="Link to this heading">#</a></h3>
+<p>What happens when an arithmetic calculation combines columns of different data types, such as multiplying <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code> (type <code class="docutils literal notranslate"><span class="pre">money</span></code>) by <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> (type <code class="docutils literal notranslate"><span class="pre">smallint</span></code>)?</p>
+<p>SQL handles mixed-type expressions by using <strong>data type precedence</strong>. SQL ranks all data types in a strict hierarchy. When an expression combines two different types, SQL automatically converts the lower-precedence type (<code class="docutils literal notranslate"><span class="pre">smallint</span></code>) into the higher-precedence type (<code class="docutils literal notranslate"><span class="pre">money</span></code>) before executing the math. The result will always be of the higher-precedence type. This ensures the output retains full financial precision.</p>
+<p>Following is a subset of the data type precedence hierarchy.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">datetime2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">money</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smallmoney</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bigint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">smallint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tinyint</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nvarchar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nchar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">varchar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">char</span></code></p></li>
+</ol>
+<blockquote>
+<div><p><strong>Programming Tip: Full data type precedence hierarchy</strong><br />
+Since we will only cover a small subset of the available SQL data types, I did not include the full data type precedence hierarchy above. For reference, here is a <u><a href="https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-type-precedence-transact-sql?view=azuresqldb-current">link</a></u> to the official Microsoft SQL Server documentation, which provides the full hierarchy.</p>
+</div></blockquote>
+</section>
+<section id="operator-precedence-and-parentheses">
+<h3>Operator Precedence and Parentheses<a class="headerlink" href="#operator-precedence-and-parentheses" title="Link to this heading">#</a></h3>
+<p>When an expression contains multiple operators, SQL evaluates them in a strict order dictated by <strong>operator precedence</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Multiplication (<code class="docutils literal notranslate"><span class="pre">*</span></code>) and Division (<code class="docutils literal notranslate"><span class="pre">/</span></code>)</strong> are evaluated first (from left to right).</p></li>
+<li><p><strong>Addition (<code class="docutils literal notranslate"><span class="pre">+</span></code>) and Subtraction (<code class="docutils literal notranslate"><span class="pre">-</span></code>)</strong> are evaluated second (from left to right).</p></li>
+</ol>
+<p>Consider an expression intended to compute net line-item profit:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- CAUTION: EVALUATES INCORRECTLY DUE TO OPERATOR PRECEDENCE!</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">UnitCost</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Quantity</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+</pre></div>
+</div>
+<p>Without parentheses, SQL evaluates <code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">*</span> <span class="pre">1.0</span></code> first, then computes <code class="docutils literal notranslate"><span class="pre">UnitCost</span> <span class="pre">*</span> <span class="pre">Quantity</span></code>, and finally subtracts <code class="docutils literal notranslate"><span class="pre">Discount</span></code> and the multiplied cost. This does <strong>not</strong> calculate total order profit; it subtracts total cost from single-unit revenue!</p>
+<p>To override standard operator precedence and enforce your intended calculation logic, <strong>always use parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code></strong>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- CORRECT: Parentheses enforce proper order of operations</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">UnitCost</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Quantity</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">LineItemProfit</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+</pre></div>
+</div>
+</section>
+<section id="string-operators-concatenation">
+<h3>String Operators: Concatenation<a class="headerlink" href="#string-operators-concatenation" title="Link to this heading">#</a></h3>
+<p>In SQL, arithmetic operators like <code class="docutils literal notranslate"><span class="pre">+</span></code> are overloaded to work with text strings. When applied to string columns, the <strong><code class="docutils literal notranslate"><span class="pre">+</span></code></strong> operator performs <strong>string concatenation</strong>, that is, joining two or more text strings end-to-end into a single combined string.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table stores titles, first names, and last names in separate fields. To see this, consider the following query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">TitleOfCourtesy</span><span class="p">,</span><span class="w"> </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span><span class="n">LastName</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
+</pre></div>
+</div>
+<p>This yields the following:</p>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>TitleOfCourtesy</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ms.</td>
+      <td>Nancy</td>
+      <td>Davolio</td>
+    </tr>
+    <tr>
+      <td>Dr.</td>
+      <td>Andrew</td>
+      <td>Fuller</td>
+    </tr>
+    <tr>
+      <td>Ms.</td>
+      <td>Janet</td>
+      <td>Leverling</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+<p>To format a single, complete employee name for a mailing label or audit report:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">TitleOfCourtesy</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">' '</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">FirstName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">' '</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">LastName</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">FullName</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
+</pre></div>
+</div>
+<p>Notice that literal string constants (spaces <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code>) are enclosed in single quotes and joined using <code class="docutils literal notranslate"><span class="pre">+</span></code>. If <code class="docutils literal notranslate"><span class="pre">TitleOfCourtesy</span></code> contains <code class="docutils literal notranslate"><span class="pre">'Ms.'</span></code>, <code class="docutils literal notranslate"><span class="pre">FirstName</span></code> contains <code class="docutils literal notranslate"><span class="pre">'Nancy'</span></code>, and <code class="docutils literal notranslate"><span class="pre">LastName</span></code> contains <code class="docutils literal notranslate"><span class="pre">'Davolio'</span></code>, the query returns <code class="docutils literal notranslate"><span class="pre">'Ms.</span> <span class="pre">Nancy</span> <span class="pre">Davolio'</span></code>.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>FullName</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ms. Nancy Davolio</td>
+    </tr>
+    <tr>
+      <td>Dr. Andrew Fuller</td>
+    </tr>
+    <tr>
+      <td>Ms. Janet Leverling</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+</section>
+<section id="transforming-data-with-functions">
+<h2>Transforming Data with Functions<a class="headerlink" href="#transforming-data-with-functions" title="Link to this heading">#</a></h2>
+<p>While arithmetic operators handle straightforward calculations, real-world data analysis requires more sophisticated tools. A <strong>function</strong> is a pre-defined, reusable code routine that takes one or more inputs, performs a specific operation, and returns a single output value.</p>
+<p>You can think of a function as a “black box” that takes inputs (called arguments) and transforms them into an output (called the return value).</p>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/FunctionAsBlackBox.png"><img alt="Data Transformation Example with Aliases" src="../_images/FunctionAsBlackBox.png" style="width: 70%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">A Function as a Black Box</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<blockquote>
+<div><p><strong>Programming Tip: List of All Available Functions</strong><br />
+We will only cover a small subset of the available SQL functions. I chose the functions that I thought you would be most likely to use. For reference, here is a <u><a href="https://learn.microsoft.com/en-us/sql/t-sql/functions/functions?view=azuresqldb-current">link</a></u> to the official Microsoft SQL Server documentation; it lists and describes all available functions.</p>
+</div></blockquote>
+<section id="understanding-function-terminology">
+<h3>Understanding Function Terminology<a class="headerlink" href="#understanding-function-terminology" title="Link to this heading">#</a></h3>
+<p>When working with functions, keep these core terms in mind:</p>
+<ul class="simple">
+<li><p><strong>Function Name:</strong> The keyword that identifies the operation (e.g., <code class="docutils literal notranslate"><span class="pre">ROUND</span></code>, <code class="docutils literal notranslate"><span class="pre">DATEDIFF</span></code>, <code class="docutils literal notranslate"><span class="pre">UPPER</span></code>).</p></li>
+<li><p><strong>Argument(s):</strong> The input values passed into the function inside parentheses. Arguments can be literal values, column names, or even other transformed expressions.</p></li>
+<li><p><strong>Optional Argument:</strong> An argument that has a default setting and does not need to be provided explicitly.</p></li>
+<li><p><strong>Return Value:</strong> The final calculated output generated by the function.</p></li>
+<li><p><strong>Calling a Function:</strong> The act of invoking a function within a SQL statement by typing its name followed by an argument list in parentheses: <code class="docutils literal notranslate"><span class="pre">FUNCTION_NAME(argument1,</span> <span class="pre">argument2)</span></code>.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Note on SQL Dialects:</strong> The database examples in this textbook run on <strong>Microsoft SQL Server</strong>, which uses the <strong>Transact-SQL (T-SQL)</strong> dialect. While basic SQL keywords like <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> and <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> are standardized across all relational databases, specific function names and arguments can vary between database systems (such as PostgreSQL, MySQL, or Oracle). Always consult T-SQL documentation when writing queries for SQL Server.</p>
+</div></blockquote>
+</section>
+<section id="date-and-time-functions">
+<h3>Date and Time Functions<a class="headerlink" href="#date-and-time-functions" title="Link to this heading">#</a></h3>
+<p>Temporal data (dates and times) is notoriously difficult to manipulate because months vary in length, leap years occur, and time zones shift. T-SQL provides specialized date functions that handle these underlying complexities seamlessly.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Function</p></th>
+<th class="head text-left"><p>Syntax</p></th>
+<th class="head text-left"><p>Description &amp; Accounting Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">DATEDIFF</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DATEDIFF(datepart,</span> <span class="pre">startdate,</span> <span class="pre">enddate)</span></code></p></td>
+<td class="text-left"><p>Returns the difference between two dates (e.g., days between order placement and fulfillment).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">DAY</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DAY(date)</span></code></p></td>
+<td class="text-left"><p>Extracts the day of the month (1-31) as an integer.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">MONTH</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">MONTH(date)</span></code></p></td>
+<td class="text-left"><p>Extracts the month number (1-12) as an integer.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">YEAR</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">YEAR(date)</span></code></p></td>
+<td class="text-left"><p>Extracts the 4-digit year as an integer.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">GETDATE</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">GETDATE()</span></code></p></td>
+<td class="text-left"><p>Returns the current system date and time from the database server. Takes no arguments.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">DATEFROMPARTS</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DATEFROMPARTS(year,</span> <span class="pre">month,</span> <span class="pre">day)</span></code></p></td>
+<td class="text-left"><p>Combines integer year, month, and day components into a valid <code class="docutils literal notranslate"><span class="pre">date</span></code> value.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="calculating-elapsed-days-datediff">
+<h4>Calculating Elapsed Days (<code class="docutils literal notranslate"><span class="pre">DATEDIFF</span></code>)<a class="headerlink" href="#calculating-elapsed-days-datediff" title="Link to this heading">#</a></h4>
+<p>Supply chain auditors frequently analyze fulfillment velocity. How many days elapse between when a customer places an order (<code class="docutils literal notranslate"><span class="pre">OrderDate</span></code>) and when the warehouse ships the goods (<code class="docutils literal notranslate"><span class="pre">ShippedDate</span></code>)?</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OrderDate</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ShippedDate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="n">OrderDate</span><span class="p">,</span><span class="w"> </span><span class="n">ShippedDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">DaysToShip</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">DATEDIFF(day,</span> <span class="pre">OrderDate,</span> <span class="pre">ShippedDate)</span></code>, the first argument <code class="docutils literal notranslate"><span class="pre">day</span></code> specifies the unit of time, the second is the starting timestamp, and the third is the ending timestamp. If an order was placed on <code class="docutils literal notranslate"><span class="pre">1996-07-04</span></code> and shipped on <code class="docutils literal notranslate"><span class="pre">1996-07-16</span></code>, <code class="docutils literal notranslate"><span class="pre">DATEDIFF</span></code> returns <code class="docutils literal notranslate"><span class="pre">12</span></code>.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>OrderID</th>
+      <th>OrderDate</th>
+      <th>ShippedDate</th>
+      <th>DaysToShip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10248</td>
+      <td>1996-07-04</td>
+      <td>1996-07-16</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>10249</td>
+      <td>1996-07-05</td>
+      <td>1996-07-10</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>10250</td>
+      <td>1996-07-08</td>
+      <td>1996-07-12</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+<section id="extracting-date-components-year-month-day">
+<h4>Extracting Date Components (<code class="docutils literal notranslate"><span class="pre">YEAR</span></code>, <code class="docutils literal notranslate"><span class="pre">MONTH</span></code>, <code class="docutils literal notranslate"><span class="pre">DAY</span></code>)<a class="headerlink" href="#extracting-date-components-year-month-day" title="Link to this heading">#</a></h4>
+<p>Date functions are not limited to the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause; they can also be used inside <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clauses to filter records by specific accounting periods:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Extract all orders placed in December 1996</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="n">OrderDate</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1996</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">MONTH</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span>
+</pre></div>
+</div>
+</section>
+<section id="working-with-system-time-getdate">
+<h4>Working with System Time (<code class="docutils literal notranslate"><span class="pre">GETDATE</span></code>)<a class="headerlink" href="#working-with-system-time-getdate" title="Link to this heading">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">GETDATE()</span></code> function retrieves the current system date and time. Notice that even though <code class="docutils literal notranslate"><span class="pre">GETDATE()</span></code> requires no input arguments, you <strong>must still include empty parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code></strong> so SQL recognizes it as a function call.</p>
+<p>By combining <code class="docutils literal notranslate"><span class="pre">GETDATE()</span></code> with <code class="docutils literal notranslate"><span class="pre">DATEDIFF()</span></code>, HR managers or auditors can compute dynamic workforce metrics, such as employee ages or tenure, without hardcoding static dates:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">EmployeeID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">BirthDate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DATEDIFF</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="w"> </span><span class="n">BirthDate</span><span class="p">,</span><span class="w"> </span><span class="n">GETDATE</span><span class="p">())</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">CurrentAge</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
+</pre></div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>EmployeeID</th>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>BirthDate</th>
+      <th>CurrentAge</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Nancy</td>
+      <td>Davolio</td>
+      <td>1948-12-08</td>
+      <td>78</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Andrew</td>
+      <td>Fuller</td>
+      <td>1952-02-19</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Janet</td>
+      <td>Leverling</td>
+      <td>1963-08-30</td>
+      <td>63</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+</section>
+<section id="mathematical-functions">
+<h3>Mathematical Functions<a class="headerlink" href="#mathematical-functions" title="Link to this heading">#</a></h3>
+<p>T-SQL offers a suite of mathematical functions that mirror common formulas in Microsoft Excel:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>T-SQL Function</p></th>
+<th class="head text-left"><p>Excel Equivalent</p></th>
+<th class="head text-left"><p>Operation &amp; Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">ABS(x)</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ABS(x)</span></code></p></td>
+<td class="text-left"><p>Returns the absolute (positive) value of a number.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">CEILING(x)</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CEILING.MATH(x)</span></code></p></td>
+<td class="text-left"><p>Returns the smallest integer greater than or equal to <code class="docutils literal notranslate"><span class="pre">x</span></code> (rounds up).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">FLOOR(x)</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">FLOOR.MATH(x)</span></code></p></td>
+<td class="text-left"><p>Returns the largest integer less than or equal to <code class="docutils literal notranslate"><span class="pre">x</span></code> (rounds down).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">POWER(x,</span> <span class="pre">y)</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">POWER(x,</span> <span class="pre">y)</span></code></p></td>
+<td class="text-left"><p>Raises <code class="docutils literal notranslate"><span class="pre">x</span></code> to the power of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">ROUND(x,</span> <span class="pre">decimals)</span></code></strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ROUND(x,</span> <span class="pre">decimals)</span></code></p></td>
+<td class="text-left"><p>Rounds <code class="docutils literal notranslate"><span class="pre">x</span></code> to a specified number of decimal places.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For example, when reporting financial summary figures, you may wish to round unit prices to the nearest whole dollar:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">UnitPrice</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">RoundedPrice</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+</pre></div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>ProductID</th>
+      <th>ProductName</th>
+      <th>UnitPrice</th>
+      <th>RoundedPrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5</td>
+      <td>Chef Anton's Gumbo Mix</td>
+      <td>21.35</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Tofu</td>
+      <td>23.25</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Genen Shouyu</td>
+      <td>15.50</td>
+      <td>16</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+<section id="logical-functions-iif">
+<h3>Logical Functions (<code class="docutils literal notranslate"><span class="pre">IIF</span></code>)<a class="headerlink" href="#logical-functions-iif" title="Link to this heading">#</a></h3>
+<p>One of the most versatile functions in T-SQL is <strong><code class="docutils literal notranslate"><span class="pre">IIF()</span></code></strong> (short for <em>Immediate IF</em>). <code class="docutils literal notranslate"><span class="pre">IIF()</span></code> checks whether a logical condition is True or False and returns one value if the condition is True, and another value if the condition is False.</p>
+<p>Syntax:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">IIF</span><span class="p">(</span><span class="n">boolean_expression</span><span class="p">,</span><span class="w"> </span><span class="n">true_value</span><span class="p">,</span><span class="w"> </span><span class="n">false_value</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">IIF()</span></code> functions identically to the <code class="docutils literal notranslate"><span class="pre">=IF()</span></code> function in Microsoft Excel.</p>
+<p>Imagine a logistics compliance audit where management requires all orders to be shipped on time. If <code class="docutils literal notranslate"><span class="pre">ShippedDate</span></code> occurs after <code class="docutils literal notranslate"><span class="pre">RequiredDate</span></code>, the shipment is late. We can use <code class="docutils literal notranslate"><span class="pre">IIF()</span></code> to automatically label every order’s status:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">RequiredDate</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ShippedDate</span><span class="p">,</span>
+<span class="w">    </span><span class="n">IIF</span><span class="p">(</span><span class="n">ShippedDate</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">RequiredDate</span><span class="p">,</span><span class="w"> </span><span class="s1">'Late'</span><span class="p">,</span><span class="w"> </span><span class="s1">'On Time'</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Status</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">IIF()</span></code> evaluates <code class="docutils literal notranslate"><span class="pre">ShippedDate</span> <span class="pre">&gt;</span> <span class="pre">RequiredDate</span></code> row-by-row. If the condition holds True, it writes <code class="docutils literal notranslate"><span class="pre">'Late'</span></code> into the <code class="docutils literal notranslate"><span class="pre">Status</span></code> column; otherwise, it writes <code class="docutils literal notranslate"><span class="pre">'On</span> <span class="pre">Time'</span></code>.</p>
+<p>We can also embed mathematical calculations inside <code class="docutils literal notranslate"><span class="pre">IIF()</span></code>. Consider detecting transactions where discounts resulted in negative unit contribution margins:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NetPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UnitCost</span><span class="p">,</span>
+<span class="w">    </span><span class="n">IIF</span><span class="p">(</span>
+<span class="w">        </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">UnitCost</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="s1">'Margin Deficit (Loss)'</span><span class="p">,</span><span class="w"> </span>
+<span class="w">        </span><span class="s1">'Profitable'</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MarginStatus</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+</pre></div>
+</div>
+</section>
+<section id="string-functions">
+<h3>String Functions<a class="headerlink" href="#string-functions" title="Link to this heading">#</a></h3>
+<p>Data analysts frequently work with dirty or poorly formatted text data. T-SQL provides powerful string functions to clean, reformat, and standardize text fields:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>T-SQL Function</p></th>
+<th class="head text-left"><p>What It Accomplishes</p></th>
+<th class="head text-left"><p>Example Syntax</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">UPPER(string)</span></code></strong></p></td>
+<td class="text-left"><p>Converts all characters to uppercase.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UPPER(CompanyName)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">LOWER(string)</span></code></strong></p></td>
+<td class="text-left"><p>Converts all characters to lowercase.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LOWER(EmailAddress)</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">LEN(string)</span></code></strong></p></td>
+<td class="text-left"><p>Returns the character length of a string.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LEN(PostalCode)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">LEFT(string,</span> <span class="pre">n)</span></code></strong></p></td>
+<td class="text-left"><p>Extracts the first <code class="docutils literal notranslate"><span class="pre">n</span></code> characters from the left.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">LEFT(LastName,</span> <span class="pre">1)</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">TRIM(string)</span></code></strong></p></td>
+<td class="text-left"><p>Strips leading and trailing blank spaces.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">TRIM(Address)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">REPLACE(s,</span> <span class="pre">search,</span> <span class="pre">replace)</span></code></strong></p></td>
+<td class="text-left"><p>Replaces all occurrences of a target substring.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">REPLACE(Phone,</span> <span class="pre">'(',</span> <span class="pre">'')</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">CONCAT(s1,</span> <span class="pre">s2,</span> <span class="pre">...)</span></code></strong></p></td>
+<td class="text-left"><p>Joins multiple text items into a single string.</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">CONCAT(LastName,</span> <span class="pre">',</span> <span class="pre">',</span> <span class="pre">FirstName)</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For example, to extract employee initials for an abbreviated audit schedule:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">LastName</span><span class="p">,</span>
+<span class="w">    </span><span class="n">CONCAT</span><span class="p">(</span><span class="k">LEFT</span><span class="p">(</span><span class="n">FirstName</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">LEFT</span><span class="p">(</span><span class="n">LastName</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Initials</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
+</pre></div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Initials</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Nancy</td>
+      <td>Davolio</td>
+      <td>ND</td>
+    </tr>
+    <tr>
+      <td>Andrew</td>
+      <td>Fuller</td>
+      <td>AF</td>
+    </tr>
+    <tr>
+      <td>Janet</td>
+      <td>Leverling</td>
+      <td>JL</td>
+    </tr>
+  </tbody>
+</table></div></div>
+</div>
+</section>
+</section>
+<section id="real-world-application-data-cleaning-and-forensic-auditing">
+<h2>Real-World Application: Data Cleaning and Forensic Auditing<a class="headerlink" href="#real-world-application-data-cleaning-and-forensic-auditing" title="Link to this heading">#</a></h2>
+<p>In introductory coursework, data is often presented in pristine tables. In real-world corporate accounting, however, <strong>raw data is messy and dirty</strong>.</p>
+<p>Data analysts and auditors regularly spend 60% to 80% of their project time preparing and cleaning raw data before conducting any formal statistical analysis. Common real-world data errors include:</p>
+<ul class="simple">
+<li><p><strong>Inconsistent Capitalization:</strong> Mixed text entries (e.g., <code class="docutils literal notranslate"><span class="pre">'mCDONALD'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Mcdonald'</span></code>, <code class="docutils literal notranslate"><span class="pre">'MCDONALD'</span></code>) that break category grouping.</p></li>
+<li><p><strong>Embedded Formatting Symbols:</strong> Currency values stored as text strings containing dollar signs (<code class="docutils literal notranslate"><span class="pre">$</span></code>), commas (<code class="docutils literal notranslate"><span class="pre">,</span></code>), or trailing spaces.</p></li>
+<li><p><strong>Ambiguous Dates:</strong> Strings containing mixed date conventions (e.g., <code class="docutils literal notranslate"><span class="pre">24.07.2012</span></code> vs. <code class="docutils literal notranslate"><span class="pre">07/24/2012</span></code>).</p></li>
+<li><p><strong>Accounting Conventions:</strong> Negative monetary amounts represented with outer parentheses (e.g., <code class="docutils literal notranslate"><span class="pre">$(304.78)</span></code>).</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>The Auditor’s Perspective: Why Manual Cleaning in Excel is an Audit Violation</strong><br />
+When faced with dirty client data, inexperienced staff accountants often open Excel and manually edit cells, find-and-replace text, or delete erroneous rows.</p>
+<p>In professional accounting, manual data editing is a severe control breakdown. If you manually alter raw data, you break the audit trail. A peer or regulator cannot verify whether a modified cell was a legitimate correction or an intentional misstatement.</p>
+<p>By contrast, executing data cleaning through SQL transformations (<code class="docutils literal notranslate"><span class="pre">UPPER()</span></code>, <code class="docutils literal notranslate"><span class="pre">REPLACE()</span></code>, <code class="docutils literal notranslate"><span class="pre">CAST()</span></code>, <code class="docutils literal notranslate"><span class="pre">IIF()</span></code>) leaves raw database records untouched while creating a transparent, auditable, and 100% reproducible script.</p>
+</div>
+<section id="case-study-cleaning-state-purchasing-card-p-card-data">
+<h3>Case Study: Cleaning State Purchasing Card (P-Card) Data<a class="headerlink" href="#case-study-cleaning-state-purchasing-card-p-card-data" title="Link to this heading">#</a></h3>
+<p>Consider a forensic audit of credit card transactions for the State of Oklahoma (a dataset containing millions of purchasing card records). The raw <code class="docutils literal notranslate"><span class="pre">Amount</span></code> column was imported into a database staging table as a text string containing currency symbols, commas, and negative parentheses: e.g., <code class="docutils literal notranslate"><span class="pre">'$1,250.50'</span></code> or <code class="docutils literal notranslate"><span class="pre">'$(304.78)'</span></code>.</p>
+<p>To perform mathematical audits on these transactions, an auditor must write a T-SQL query that strips invalid characters and converts the text into a numeric <code class="docutils literal notranslate"><span class="pre">float</span></code> data type using nested functions:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Agency_Name</span><span class="p">,</span>
+<span class="w">    </span><span class="k">UPPER</span><span class="p">(</span><span class="n">Card_Holder_Last_Name</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">LastName</span><span class="p">,</span>
+<span class="w">    </span><span class="k">UPPER</span><span class="p">(</span><span class="n">Card_Holder_First_Name</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">FirstName</span><span class="p">,</span>
+<span class="w">    </span><span class="c1">-- Strip $, commas, and parentheses, then cast to Float</span>
+<span class="w">    </span><span class="k">CAST</span><span class="p">(</span>
+<span class="w">        </span><span class="k">REPLACE</span><span class="p">(</span>
+<span class="w">            </span><span class="k">REPLACE</span><span class="p">(</span>
+<span class="w">                </span><span class="k">REPLACE</span><span class="p">(</span>
+<span class="w">                    </span><span class="k">REPLACE</span><span class="p">(</span><span class="n">Amount</span><span class="p">,</span><span class="w"> </span><span class="s1">'$'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">),</span><span class="w"> </span>
+<span class="w">                </span><span class="s1">'('</span><span class="p">,</span><span class="w"> </span><span class="s1">'-'</span><span class="p">),</span><span class="w"> </span>
+<span class="w">            </span><span class="s1">')'</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">),</span><span class="w"> </span>
+<span class="w">        </span><span class="s1">','</span><span class="p">,</span><span class="w"> </span><span class="s1">''</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">AS</span><span class="w"> </span><span class="nb">Float</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">CleanAmount</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">PCard_FY2013</span>
+</pre></div>
+</div>
+<p>By nesting <code class="docutils literal notranslate"><span class="pre">REPLACE()</span></code> functions inside <code class="docutils literal notranslate"><span class="pre">CAST(...</span> <span class="pre">AS</span> <span class="pre">Float)</span></code>, the query dynamically strips clean numeric values from corrupted text strings without modifying the original database record on disk.</p>
+</section>
+</section>
+<section id="summary-and-transformation-checklist">
+<h2>Summary and Transformation Checklist<a class="headerlink" href="#summary-and-transformation-checklist" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Transformation Category</p></th>
+<th class="head text-left"><p>Key SQL Tools</p></th>
+<th class="head text-left"><p>Primary Accounting Application</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Arithmetic Calculations</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">()</span></code></p></td>
+<td class="text-left"><p>Calculating line-item revenue, net profit, margins, and unit price adjustments.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Text Concatenation</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">CONCAT()</span></code></p></td>
+<td class="text-left"><p>Combining name fields, formatting mailing addresses, and building composite keys.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Date Calculations</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">DATEDIFF()</span></code>, <code class="docutils literal notranslate"><span class="pre">GETDATE()</span></code></p></td>
+<td class="text-left"><p>Computing days to ship, account aging, employee tenure, and payment velocity.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Period Extraction</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">YEAR()</span></code>, <code class="docutils literal notranslate"><span class="pre">MONTH()</span></code>, <code class="docutils literal notranslate"><span class="pre">DAY()</span></code></p></td>
+<td class="text-left"><p>Filtering transactions by fiscal quarter, month, or annual reporting period.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Conditional Logic</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">IIF()</span></code></p></td>
+<td class="text-left"><p>Categorizing late shipments, tagging loss-making sales, or flagging control breaches.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Text Standardizing</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">UPPER()</span></code>, <code class="docutils literal notranslate"><span class="pre">LOWER()</span></code>, <code class="docutils literal notranslate"><span class="pre">TRIM()</span></code>, <code class="docutils literal notranslate"><span class="pre">REPLACE()</span></code></p></td>
+<td class="text-left"><p>Cleaning dirty text, stripping formatting characters, and standardizing vendor names.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="looking-ahead">
+<h2>Looking Ahead<a class="headerlink" href="#looking-ahead" title="Link to this heading">#</a></h2>
+<p>Now that you know how to retrieve, filter, and transform individual row values, the next step is summarizing detailed transactions into high-level category totals. In the next chapter, we will study grouping and aggregating data using the <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> and <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> clauses.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jupyterbook"
+        },
+        kernelOptions: {
+            name: "jupyterbook",
+            path: "./Unit 3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jupyterbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3-3%20Filtering%20Data%20with%20SQL%20WHERE.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Filtering Data with SQL WHERE</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-what-is-a-data-transformation">Introduction: What is a Data Transformation?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-a-transformation">Example of a Transformation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-as-keyword-column-aliasing">The <code class="docutils literal notranslate"><span class="pre">AS</span></code> Keyword (Column Aliasing)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-data-with-operators">Transforming Data with Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arithmetic-operators">Arithmetic Operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data Types</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-data-types-int-smallint-tinyint-bigint">Integer Data Types (<code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">smallint</span></code>, <code class="docutils literal notranslate"><span class="pre">tinyint</span></code>, <code class="docutils literal notranslate"><span class="pre">bigint</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-integer-division-trap">The Integer Division Trap</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-numbers-float-and-the-need-for-integers">Floating-Point Numbers (<code class="docutils literal notranslate"><span class="pre">float</span></code>) and the Need for Integers</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#financial-and-currency-data-types-money-smallmoney">Financial and Currency Data Types (<code class="docutils literal notranslate"><span class="pre">money</span></code>, <code class="docutils literal notranslate"><span class="pre">smallmoney</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-boolean-data-type-bit">Logical / Boolean Data Type (<code class="docutils literal notranslate"><span class="pre">bit</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#date-and-time-data-types-date-time-datetime2">Date and Time Data Types (<code class="docutils literal notranslate"><span class="pre">date</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">datetime2</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#text-data-types-nvarchar-varchar-nchar-char">Text Data Types (<code class="docutils literal notranslate"><span class="pre">nvarchar</span></code>, <code class="docutils literal notranslate"><span class="pre">varchar</span></code>, <code class="docutils literal notranslate"><span class="pre">nchar</span></code>, <code class="docutils literal notranslate"><span class="pre">char</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-type-precedence">Data Type Precedence</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-precedence-and-parentheses">Operator Precedence and Parentheses</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-operators-concatenation">String Operators: Concatenation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transforming-data-with-functions">Transforming Data with Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-function-terminology">Understanding Function Terminology</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#date-and-time-functions">Date and Time Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-elapsed-days-datediff">Calculating Elapsed Days (<code class="docutils literal notranslate"><span class="pre">DATEDIFF</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-date-components-year-month-day">Extracting Date Components (<code class="docutils literal notranslate"><span class="pre">YEAR</span></code>, <code class="docutils literal notranslate"><span class="pre">MONTH</span></code>, <code class="docutils literal notranslate"><span class="pre">DAY</span></code>)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-system-time-getdate">Working with System Time (<code class="docutils literal notranslate"><span class="pre">GETDATE</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-functions">Mathematical Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-functions-iif">Logical Functions (<code class="docutils literal notranslate"><span class="pre">IIF</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">String Functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#real-world-application-data-cleaning-and-forensic-auditing">Real-World Application: Data Cleaning and Forensic Auditing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-cleaning-state-purchasing-card-p-card-data">Case Study: Cleaning State Purchasing Card (P-Card) Data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-transformation-checklist">Summary and Transformation Checklist</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking Ahead</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
