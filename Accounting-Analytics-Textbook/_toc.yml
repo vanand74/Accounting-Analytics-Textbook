@@ -24,3 +24,4 @@ parts:
   - file: "Unit 3/3-1 Overview of SQL"
   - file: "Unit 3/3-2 The SQL SELECT Statement"
   - file: "Unit 3/3-3 Filtering Data with SQL WHERE"
+  - file: "Unit 3/3-4 Transforming Data"
