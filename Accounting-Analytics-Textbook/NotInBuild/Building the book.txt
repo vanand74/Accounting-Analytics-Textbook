@@ -1,0 +1,16 @@
+Open a Terminal
+
+Go to this folder: C:\Users\mih53\Documents\GitHub\Accounting-Analytics-Textbook\Accounting-Analytics-Textbook\
+This is the folder where _config.yml, _topic.yml, and my content folders (Unit 1, Unit 2, etc.) live.
+
+Run these commands inside this inner folder:
+# 1. Clean the previous build cache
+jupyter-book clean .
+
+# 2. Build the book from scratch
+jupyter-book build .
+
+# 3. Publish the built site to GitHub Pages
+ghp-import -n -p -f _build/html
+
+You only need to run the clean command if you have made a change to the structure of the book, e.g., to the table of contents.
