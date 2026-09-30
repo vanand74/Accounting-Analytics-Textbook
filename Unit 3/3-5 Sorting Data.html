@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -678,7 +678,7 @@
 <p>In Microsoft Excel, sorting physically moves cells on the worksheet grid and modifies the saved file on disk. Inexperienced accountants frequently commit a catastrophic data corruption error in Excel: they highlight a single column (e.g., Column C) and click “Sort” without expanding the selection to adjacent columns.</p>
 <p>When this occurs in Excel, the spreadsheet sorts Column C in isolation while leaving Columns A, B, and D untouched! This completely severs the alignment between records—for instance, assigning Barbie the Horse’s weight of 500 kg to Azure the Parakeet.</p>
 <p>In professional accounting, this type of spreadsheet error leads to false financial statements, broken audit trails, and severe control failures.</p>
-<p>In SQL, this user error is impossible. Because the <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause operates on the entire rows, SQL always moves entire rows together, guaranteeing 100% data integrity.</p>
+<p>In SQL, this user error is impossible. Because the <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> clause operates on entire rows, SQL always moves entire rows together, guaranteeing 100% data integrity.</p>
 </div>
 </section>
 <section id="multi-level-sorting">
@@ -957,45 +957,25 @@
 <div class="output text_html"><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>GVKEY</th>
-      <th>FiscalYear</th>
       <th>CompanyName</th>
       <th>Ticker</th>
-      <th>AuditorName</th>
-      <th>CommonSharesOutstanding</th>
-      <th>ClosingPrice</th>
       <th>MarketCap</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>1690</td>
-      <td>2018</td>
       <td>APPLE INC</td>
       <td>AAPL</td>
-      <td>E&amp;Y</td>
-      <td>4,754,986,000</td>
-      <td>$225.74</td>
       <td>$1,073,390,000,000</td>
     </tr>
     <tr>
-      <td>12141</td>
-      <td>2018</td>
       <td>MICROSOFT CORP</td>
       <td>MSFT</td>
-      <td>Deloitte</td>
-      <td>7,677,000,000</td>
-      <td>$98.61</td>
       <td>$757,029,000,000</td>
     </tr>
     <tr>
-      <td>64768</td>
-      <td>2018</td>
       <td>AMAZON.COM INC</td>
       <td>AMZN</td>
-      <td>E&amp;Y</td>
-      <td>491,000,000</td>
-      <td>$1501.97</td>
       <td>$737,467,000,000</td>
     </tr>
   </tbody>
@@ -1165,7 +1145,7 @@
 <li><p>Sort by <code class="docutils literal notranslate"><span class="pre">MarketCap</span> <span class="pre">ASC</span></code> (ascending puts the lowest value at the top)</p></li>
 <li><p>Limit the result to <code class="docutils literal notranslate"><span class="pre">TOP</span> <span class="pre">(1)</span></code>.</p></li>
 </ol>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="n">FiscalYear</span><span class="p">,</span><span class="w"> </span><span class="n">ClosingPrice</span><span class="p">,</span><span class="w"> </span><span class="n">MarketCap</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="n">FiscalYear</span><span class="p">,</span><span class="w"> </span><span class="n">ClosingPrice</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">CompanyData</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="n">CompanyName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'American Airlines Group Inc'</span>
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">MarketCap</span><span class="w"> </span><span class="k">ASC</span>
