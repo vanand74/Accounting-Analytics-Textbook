@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -511,7 +511,7 @@
 </div>
 <p>To understand how SQL evaluates a <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, keep these fundamental mechanics in mind:</p>
 <ul class="simple">
-<li><p><strong>The “Left” vs. “Right” Table:</strong> The table specified in the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause is designated as the <strong>left table</strong>. The table specified in the <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> clause is designated as the <strong>right table</strong>.</p></li>
+<li><p><strong>The “Left” vs. “Right” Table:</strong> The table specified in the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause is designated as the <strong>left table.</strong> The table specified in the <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> clause is designated as the <strong>right table.</strong></p></li>
 <li><p><strong>The <code class="docutils literal notranslate"><span class="pre">ON</span></code> Link Condition:</strong> The <code class="docutils literal notranslate"><span class="pre">ON</span></code> clause tells SQL <em>how</em> to connect the two tables. It specifies that a row from the left table should be merged with a row from the right table only when their values in the designated key column are equal.</p></li>
 <li><p><strong>Table Aliases (<code class="docutils literal notranslate"><span class="pre">AS</span></code>):</strong> To keep code clean and readable, accountants assign short aliases to table names in the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> and <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> clauses (e.g., <code class="docutils literal notranslate"><span class="pre">Orders</span> <span class="pre">AS</span> <span class="pre">O</span></code> and <code class="docutils literal notranslate"><span class="pre">Customers</span> <span class="pre">AS</span> <span class="pre">C</span></code>).</p></li>
 <li><p><strong>Column Qualification:</strong> If a column name exists in both tables (such as <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code>), you must qualify the column name using its table prefix (e.g., <code class="docutils literal notranslate"><span class="pre">C.CustomerID</span></code> or <code class="docutils literal notranslate"><span class="pre">O.CustomerID</span></code>). Qualifying column names eliminates ambiguity and prevents database execution errors.</p></li>
@@ -666,7 +666,7 @@ When one row in the left table matches <em>N</em> rows in the right table, the l
 <section id="preserving-all-records-with-left-join">
 <h3>Preserving All Records with <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code><a class="headerlink" href="#preserving-all-records-with-left-join" title="Link to this heading">#</a></h3>
 <p>What if a marketing manager or auditor wants a report listing <strong>all</strong> registered customers, regardless of whether they have placed an order?</p>
-<p>To preserve every record from the primary table, use a <strong><code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code></strong>.</p>
+<p>To preserve every record from the primary table, use a <strong><code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code>.</strong></p>
 <p>A <strong><code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code></strong> guarantees that <strong>every single row from the left table (<code class="docutils literal notranslate"><span class="pre">FROM</span></code>) appears in the final output</strong>:</p>
 <ul class="simple">
 <li><p>If a left-table row matches right-table records, SQL merges the data normally.</p></li>
@@ -748,11 +748,11 @@ When one row in the left table matches <em>N</em> rows in the right table, the l
 <tbody>
 <tr class="row-even"><td class="text-left"><p><strong>Merging <code class="docutils literal notranslate"><span class="pre">Orders</span></code> to <code class="docutils literal notranslate"><span class="pre">Customers</span></code></strong> (<code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">Orders</span> <span class="pre">LEFT</span> <span class="pre">JOIN</span> <span class="pre">Customers</span></code>)</p></td>
 <td class="text-center"><p><strong>YES</strong></p></td>
-<td class="text-left"><p>Every valid order <strong>must</strong> be assigned to a customer (enforced by referential integrity constraints). Because zero orphan orders exist, no right-side <code class="docutils literal notranslate"><span class="pre">NULL</span></code>s are created.</p></td>
+<td class="text-left"><p>Every valid order <strong>must</strong> be assigned to a customer (enforced by referential integrity constraints). Because zero orphan orders exist, no right-side <code class="docutils literal notranslate"><span class="pre">NULLs</span></code> are created.</p></td>
 </tr>
 <tr class="row-odd"><td class="text-left"><p><strong>Merging <code class="docutils literal notranslate"><span class="pre">Customers</span></code> to <code class="docutils literal notranslate"><span class="pre">Orders</span></code></strong> (<code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">Customers</span> <span class="pre">LEFT</span> <span class="pre">JOIN</span> <span class="pre">Orders</span></code>)</p></td>
 <td class="text-center"><p><strong>NO</strong></p></td>
-<td class="text-left"><p>Inactive or prospective customers exist who have zero orders. <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> drops them; <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> preserves them with <code class="docutils literal notranslate"><span class="pre">NULL</span></code>s.</p></td>
+<td class="text-left"><p>Inactive or prospective customers exist who have zero orders. <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code> drops them; <code class="docutils literal notranslate"><span class="pre">LEFT</span> <span class="pre">JOIN</span></code> preserves them with <code class="docutils literal notranslate"><span class="pre">NULLs</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td class="text-left"><p><strong>Merging <code class="docutils literal notranslate"><span class="pre">Orders</span></code> to <code class="docutils literal notranslate"><span class="pre">Employees</span></code></strong> (<code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">Orders</span> <span class="pre">LEFT</span> <span class="pre">JOIN</span> <span class="pre">Employees</span></code>)</p></td>
 <td class="text-center"><p><strong>YES</strong></p></td>
