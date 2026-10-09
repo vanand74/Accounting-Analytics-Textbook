@@ -26,3 +26,4 @@ parts:
   - file: "Unit 3/3-3 Filtering Data with SQL WHERE"
   - file: "Unit 3/3-4 Transforming Data"
   - file: "Unit 3/3-5 Sorting Data"
+  - file: "Unit 3/3-6 Merging Data"
