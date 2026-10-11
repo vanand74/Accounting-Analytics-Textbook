@@ -1,0 +1,1326 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Grouping and Aggregating Data with SQL &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3W9L1EX77X"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 3/3-7 Grouping and Aggregating Data';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Merging Data with SQL JOINs" href="3-6%20Merging%20Data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: The Process of Analytics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-2%20Types%20of%20Data.html">Types of Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: SQL</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3-0%20Working%20with%20Files%20and%20Folders.html">Working with Files and Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1%20Overview%20of%20SQL.html">Overview of SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2%20The%20SQL%20SELECT%20Statement.html">The SQL SELECT Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3%20Filtering%20Data%20with%20SQL%20WHERE.html">Filtering Data with SQL WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4%20Transforming%20Data.html">Transforming Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5%20Sorting%20Data.html">Sorting Data with SQL ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6%20Merging%20Data.html">Merging Data with SQL JOINs</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Grouping and Aggregating Data with SQL</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 3/3-7 Grouping and Aggregating Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 3/3-7 Grouping and Aggregating Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Grouping and Aggregating Data with SQL</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-what-is-grouping-and-aggregation">Introduction: What is Grouping and Aggregation?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dollar-counting-analogy">The Dollar-Counting Analogy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-excel-pivot-table-parallel">The Excel Pivot Table Parallel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-categories-select-distinct-vs-group-by">Identifying Categories: SELECT DISTINCT vs. GROUP BY</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listing-unique-values-with-select-distinct">Listing Unique Values with <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-column-unique-combinations">Multi-Column Unique Combinations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-distinct-vs-group-by"><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code> vs. <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarizing-data-by-category-the-group-by-clause">Summarizing Data by Category: The GROUP BY Clause</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-group-by-syntax">Basic <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-records-by-category">Counting Records by Category</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-orders-placed-per-customer">Example 1: Orders Placed per Customer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-employee-staffing-headcount-by-job-title">Example 2: Employee Staffing Headcount by Job Title</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summing-quantities-by-category">Summing Quantities by Category</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-total-unit-volume-sold-per-product">Example 3: Total Unit Volume Sold per Product</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-reports-by-merging-parent-tables">Improving Reports by Merging Parent Tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics-across-groups">Descriptive Statistics Across Groups</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#price-variation-and-discount-dispersion">Price Variation and Discount Dispersion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-column-transformations-and-period-summaries">Multi-Column Transformations and Period Summaries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-sales-revenue-by-product">1. Gross Sales Revenue by Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricting-revenue-summaries-to-specific-accounting-periods">2. Restricting Revenue Summaries to Specific Accounting Periods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revenue-summaries-by-customer">3. Revenue Summaries by Customer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-period-income-statement-summaries-year-and-month">4. Multi-Period Income Statement Summaries (Year and Month)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-aggregated-data-the-having-clause">Filtering Aggregated Data: The HAVING Clause</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-where-cannot-filter-aggregate-results">Why <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> Cannot Filter Aggregate Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-the-having-clause">The Solution: The <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> Clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-alias-execution-rule-having-vs-order-by">The Alias Execution Rule: <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> vs. <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-comparison-where-vs-having">Summary Comparison: <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> vs. <code class="docutils literal notranslate"><span class="pre">HAVING</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-complete-sql-execution-checklist">Summary and Complete SQL Execution Checklist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-chapter-takeaways">Key Chapter Takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-sql-statement-execution-checklist">Complete SQL Statement Execution Checklist</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="grouping-and-aggregating-data-with-sql">
+<h1>Grouping and Aggregating Data with SQL<a class="headerlink" href="#grouping-and-aggregating-data-with-sql" title="Link to this heading">#</a></h1>
+<section id="introduction-what-is-grouping-and-aggregation">
+<h2>Introduction: What is Grouping and Aggregation?<a class="headerlink" href="#introduction-what-is-grouping-and-aggregation" title="Link to this heading">#</a></h2>
+<p>Up to this point in Unit 3, every query you have written operates row-by-row. You learned how to retrieve specific columns using <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, filter rows using <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, transform individual values using operators and functions, and sort output using <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>. However, corporate managers, financial auditors, and executive leaders rarely review raw, transaction data. Instead, they require summarized financial statements such as total monthly sales, average transaction size per customer, or inventory counts grouped by warehouse location.</p>
+<p>In data analytics, <strong>grouping and aggregation</strong> is the process of dividing a dataset into distinct category “piles” and calculating summary statistics for each pile.</p>
+<section id="the-dollar-counting-analogy">
+<h3>The Dollar-Counting Analogy<a class="headerlink" href="#the-dollar-counting-analogy" title="Link to this heading">#</a></h3>
+<p>To understand the intuition behind grouping and aggregating, imagine a simple physical task: counting cash. Suppose you are handed a stack $1, $5, $10, and $20 bills and asked to compute the total dollar value for each denomination. How would you proceed?</p>
+<p>You would probably perform a two-step process:</p>
+<ol class="arabic simple">
+<li><p><strong>Grouping (Sorting into Piles):</strong> You separate the bills into distinct piles based on their denomination ($1 bills in one pile, $5 bills in another, and so on).</p></li>
+<li><p><strong>Aggregation (Calculating Summary Statistics):</strong> Once the bills are sorted into piles, you count the number of bills or sum the total value within each pile.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+-----------------------------------------------------------------------+
+|                              RAW DATA                                 |
+|         Mixed Bills: [$1, $5, $10, $1, $20, $5, $1, $10]              |
++-----------------------------------------------------------------------+
+                                   |
+                                   v  GROUP BY Denomination
++------------------+------------------+------------------+--------------+
+|   $1 Bill Pile   |   $5 Bill Pile   |  $10 Bill Pile   | $20 Bill Pile|
+|   [$1, $1, $1]   |     [$5, $5]     |    [$10, $10]    |    [$20]     |
++------------------+------------------+------------------+--------------+
+                                   |
+                                   v  AGGREGATE (COUNT / SUM)
++------------------+------------------+------------------+---------------+
+| Count: 3 ($3)    | Count: 2 ($10)   | Count: 2 ($20)   | Count: 1 ($20)|
++------------------+------------------+------------------+---------------+
+</pre></div>
+</div>
+<p>This two-step process is the exact conceptual framework used in relational database querying. In SQL, the <strong><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></strong> clause divides table rows into separate “piles”. Once rows are grouped, SQL applies <strong>aggregate functions</strong> (<code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>) to calculate a single summary result for each group.</p>
+</section>
+<section id="the-excel-pivot-table-parallel">
+<h3>The Excel Pivot Table Parallel<a class="headerlink" href="#the-excel-pivot-table-parallel" title="Link to this heading">#</a></h3>
+<p>If you have used Microsoft Excel, you have already performed grouping and aggregation. An Excel <strong>pivot table</strong> performs the exact same operation as SQL’s <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause:</p>
+<ul class="simple">
+<li><p>Placing a field in the <strong>rows</strong> area of a Pivot Table is identical to specifying that field in a SQL <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause.</p></li>
+<li><p>Placing a field in the <strong>values</strong> area (e.g., <code class="docutils literal notranslate"><span class="pre">Sum</span> <span class="pre">of</span> <span class="pre">Sales</span></code> or <code class="docutils literal notranslate"><span class="pre">Count</span> <span class="pre">of</span> <span class="pre">Orders</span></code>) is identical to applying a SQL aggregate function.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>The Power of Relational Aggregation</strong><br />
+While Excel pivot tables allow quick drag-and-drop summaries, they require loading raw data into spreadsheet memory. In enterprise databases containing millions of credit card charges or ledger transactions, SQL’s <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause executes aggregation directly on the database engine server in seconds, returning compact summary tables without spreadsheet memory constraints.</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="identifying-categories-select-distinct-vs-group-by">
+<h2>Identifying Categories: SELECT DISTINCT vs. GROUP BY<a class="headerlink" href="#identifying-categories-select-distinct-vs-group-by" title="Link to this heading">#</a></h2>
+<p>Before you can summarize data across categories, you must be able to identify the categories present in a dataset.</p>
+<section id="listing-unique-values-with-select-distinct">
+<h3>Listing Unique Values with <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code><a class="headerlink" href="#listing-unique-values-with-select-distinct" title="Link to this heading">#</a></h3>
+<p>Suppose you want to know all countries to which <em>Northwind Traders</em> has shipped customer orders. If you query the <code class="docutils literal notranslate"><span class="pre">ShipCountry</span></code> column using a standard <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement, SQL returns 830 rows—one for every historical order—containing hundreds of duplicate country names.</p>
+<p>To collapse duplicate values and display each unique category name once, use the <strong><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code></strong> keyword immediately after <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">ShipCountry</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+</pre></div>
+</div>
+<p>This query scans the <code class="docutils literal notranslate"><span class="pre">Orders</span></code> table and returns a clean list of 21 unique shipping countries (e.g., <code class="docutils literal notranslate"><span class="pre">Argentina</span></code>, <code class="docutils literal notranslate"><span class="pre">Austria</span></code>, <code class="docutils literal notranslate"><span class="pre">Belgium</span></code>, <code class="docutils literal notranslate"><span class="pre">Brazil</span></code>).</p>
+</section>
+<section id="multi-column-unique-combinations">
+<h3>Multi-Column Unique Combinations<a class="headerlink" href="#multi-column-unique-combinations" title="Link to this heading">#</a></h3>
+<p>You can pass multiple columns to <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code>. When you list multiple fields, SQL identifies every unique <em>combination</em> of values across those columns.</p>
+<p>For example, to determine all unique year-and-month calendar periods in which orders were placed:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span>
+<span class="w">    </span><span class="k">YEAR</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="k">Year</span><span class="p">],</span><span class="w"> </span>
+<span class="w">    </span><span class="k">MONTH</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="k">Month</span><span class="p">]</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">[</span><span class="k">Year</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="k">Month</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><em>Output (First 6 rows):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Year</p></th>
+<th class="head text-left"><p>Month</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1996</p></td>
+<td class="text-left"><p>7</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>1996</p></td>
+<td class="text-left"><p>8</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>1996</p></td>
+<td class="text-left"><p>9</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>1996</p></td>
+<td class="text-left"><p>10</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>1996</p></td>
+<td class="text-left"><p>11</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>1996</p></td>
+<td class="text-left"><p>12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>SQL creates a distinct category key for every unique combination of year and month. This multi-column category listing forms the foundation for multi-period financial reporting.</p>
+</section>
+<section id="select-distinct-vs-group-by">
+<h3><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code> vs. <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code><a class="headerlink" href="#select-distinct-vs-group-by" title="Link to this heading">#</a></h3>
+<p>You can achieve the same unique country list using a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause without an aggregate function:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ShipCountry</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ShipCountry</span>
+</pre></div>
+</div>
+<p>While both queries return the same 21 unique country names, their analytical purpose differs:</p>
+<ul class="simple">
+<li><p>Use <strong><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code></strong> when your sole goal is to list unique category names or remove duplicates.</p></li>
+<li><p>Use <strong><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></strong> when you intend to calculate summary statistics (<code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>) for each unique category.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summarizing-data-by-category-the-group-by-clause">
+<h2>Summarizing Data by Category: The GROUP BY Clause<a class="headerlink" href="#summarizing-data-by-category-the-group-by-clause" title="Link to this heading">#</a></h2>
+<p>To compute summary statistics for each category in a table, combine the <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause with aggregate functions in the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement.</p>
+<section id="basic-group-by-syntax">
+<h3>Basic <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> Syntax<a class="headerlink" href="#basic-group-by-syntax" title="Link to this heading">#</a></h3>
+<p>The standard syntax for a query with <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> is:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">GroupColumn</span><span class="p">,</span><span class="w"> </span><span class="n">AGGREGATE_FUNCTION</span><span class="p">(</span><span class="n">ValueColumn</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">Alias</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">GroupColumn</span>
+</pre></div>
+</div>
+<p>When SQL executes a <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> query, it processes the statement in three distinct phases:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">FROM</span></code> Phase:</strong> Identifies the database source table.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> Phase:</strong> Scans the target column, identifies all unique category values, and sorts the individual table rows into separate category “piles”.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SELECT</span></code> Phase:</strong> For each category pile, evaluates the aggregate function and outputs one summary row containing the category name and its calculated summary metric.</p></li>
+</ol>
+</section>
+<section id="counting-records-by-category">
+<h3>Counting Records by Category<a class="headerlink" href="#counting-records-by-category" title="Link to this heading">#</a></h3>
+<section id="example-1-orders-placed-per-customer">
+<h4>Example 1: Orders Placed per Customer<a class="headerlink" href="#example-1-orders-placed-per-customer" title="Link to this heading">#</a></h4>
+<p>How many total orders has each customer placed with Northwind Traders?</p>
+<p>To answer this question, we group the <code class="docutils literal notranslate"><span class="pre">Orders</span></code> table by <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code> and count the rows in each customer’s pile using <code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">NumOrders</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">CustomerID</span>
+</pre></div>
+</div>
+<p><em>Output (Excerpt):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>CustomerID</p></th>
+<th class="head text-left"><p>NumOrders</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>ALFKI</p></td>
+<td class="text-left"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>ANATR</p></td>
+<td class="text-left"><p>4</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ANTON</p></td>
+<td class="text-left"><p>5</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>AOUTR</p></td>
+<td class="text-left"><p>2</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>BERGS</p></td>
+<td class="text-left"><p>18</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="example-2-employee-staffing-headcount-by-job-title">
+<h4>Example 2: Employee Staffing Headcount by Job Title<a class="headerlink" href="#example-2-employee-staffing-headcount-by-job-title" title="Link to this heading">#</a></h4>
+<p>HR executives frequently monitor workforce distribution across job roles. How many employees hold each official job title in the <code class="docutils literal notranslate"><span class="pre">Employees</span></code> table?</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Title</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">EmployeeCount</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Employees</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Title</span>
+</pre></div>
+</div>
+<p><em>Output:</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Title</p></th>
+<th class="head text-center"><p>EmployeeCount</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Inside Sales Coordinator</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Sales Representative</p></td>
+<td class="text-center"><p>6</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Sales Manager</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Vice President, Sales</p></td>
+<td class="text-center"><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="summing-quantities-by-category">
+<h3>Summing Quantities by Category<a class="headerlink" href="#summing-quantities-by-category" title="Link to this heading">#</a></h3>
+<section id="example-3-total-unit-volume-sold-per-product">
+<h4>Example 3: Total Unit Volume Sold per Product<a class="headerlink" href="#example-3-total-unit-volume-sold-per-product" title="Link to this heading">#</a></h4>
+<p>Marketing managers tracking sales volume need to know the total physical quantity sold for every product item. The <code class="docutils literal notranslate"><span class="pre">OrderDetails</span></code> table contains one row per order per item ordered. Each row records a specific line item on an order (<code class="docutils literal notranslate"><span class="pre">ProductID</span></code>, <code class="docutils literal notranslate"><span class="pre">UnitPrice</span></code>, <code class="docutils literal notranslate"><span class="pre">Quantity</span></code>, <code class="docutils literal notranslate"><span class="pre">Discount</span></code>).</p>
+<p>To calculate total units sold per product, group by <code class="docutils literal notranslate"><span class="pre">ProductID</span></code> and apply the <code class="docutils literal notranslate"><span class="pre">SUM()</span></code> aggregate function to the <code class="docutils literal notranslate"><span class="pre">Quantity</span></code> column:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalQtySold</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ProductID</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ProductID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em>Output (Excerpt):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>ProductID</p></th>
+<th class="head text-center"><p>TotalQtySold</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-center"><p>828</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-center"><p>1057</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>3</p></td>
+<td class="text-center"><p>328</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>4</p></td>
+<td class="text-center"><p>453</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>5</p></td>
+<td class="text-center"><p>298</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="improving-reports-by-merging-parent-tables">
+<h3>Improving Reports by Merging Parent Tables<a class="headerlink" href="#improving-reports-by-merging-parent-tables" title="Link to this heading">#</a></h3>
+<p>In the previous query, the output displays product IDs like <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">2</span></code>. Executive decision-makers cannot evaluate product strategy without seeing official product names.</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">ProductName</span></code> resides in the <code class="docutils literal notranslate"><span class="pre">Products</span></code> table while transaction quantities reside in <code class="docutils literal notranslate"><span class="pre">OrderDetails</span></code>, we must <em>merge</em> the <code class="docutils literal notranslate"><span class="pre">Products</span></code> table with the <code class="docutils literal notranslate"><span class="pre">OrderDetails</span></code> table before grouping:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">P</span><span class="p">.</span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalQtySold</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Products</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">P</span><span class="w"> </span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">ProductID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span><span class="n">P</span><span class="p">.</span><span class="n">ProductName</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><em>Output (Excerpt):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>ProductID</p></th>
+<th class="head text-left"><p>ProductName</p></th>
+<th class="head text-center"><p>TotalQtySold</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p>Chai</p></td>
+<td class="text-center"><p>828</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p>Chang</p></td>
+<td class="text-center"><p>1057</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p>Aniseed Syrup</p></td>
+<td class="text-center"><p>328</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p>Chef Anton’s Cajun Seasoning</p></td>
+<td class="text-center"><p>453</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p>Chef Anton’s Gumbo Mix</p></td>
+<td class="text-center"><p>298</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>The Non-Aggregated Column Rule</strong><br />
+Look closely at the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> and <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clauses in the query above. Notice that both <code class="docutils literal notranslate"><span class="pre">OD.ProductID</span></code> and <code class="docutils literal notranslate"><span class="pre">P.ProductName</span></code> are explicitly listed in the <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause!</p>
+<p><strong>CRITICAL RULE</strong><br />
+<em>Every un-aggregated column listed in the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause MUST be included in the <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause.</em></p>
+<p>Why does this rule exist? If you request <code class="docutils literal notranslate"><span class="pre">P.ProductName</span></code> in <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> but group only by <code class="docutils literal notranslate"><span class="pre">OD.ProductID</span></code>, the SQL engine does not know that a 1-to-1 relationship exists between Product ID and Product Name. If multiple distinct product names were associated with a single ID, SQL would not know which name to display on the single summary output row. Therefore, SQL requires every non-aggregated column in <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> to be listed in <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>. Omitting an un-aggregated column from <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> results in an immediate syntax error.</p>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="descriptive-statistics-across-groups">
+<h2>Descriptive Statistics Across Groups<a class="headerlink" href="#descriptive-statistics-across-groups" title="Link to this heading">#</a></h2>
+<p>Aggregate functions are not restricted to simple counts or sums. You can calculate multiple summary statistics for each category.</p>
+<section id="price-variation-and-discount-dispersion">
+<h3>Price Variation and Discount Dispersion<a class="headerlink" href="#price-variation-and-discount-dispersion" title="Link to this heading">#</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">OrderDetails</span></code> table, Northwind Traders grants percentage discounts on line items. As a result, the actual net price paid per unit (<code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">*</span> <span class="pre">(1.0</span> <span class="pre">-</span> <span class="pre">Discount)</span></code>) varies across historical orders for the same product.</p>
+<p>An auditor evaluating discount compliance wants to review the minimum, average, and maximum selling prices for every product line:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">MIN</span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MinNetPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">AvgNetPrice</span><span class="p">,</span>
+<span class="w">    </span><span class="k">MAX</span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MaxNetPrice</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ProductID</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ProductID</span>
+</pre></div>
+</div>
+<p><em>Output (Excerpt):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>ProductID</p></th>
+<th class="head text-center"><p>MinNetPrice</p></th>
+<th class="head text-center"><p>AvgNetPrice</p></th>
+<th class="head text-center"><p>MaxNetPrice</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-center"><p>$11.52</p></td>
+<td class="text-center"><p>$15.80</p></td>
+<td class="text-center"><p>$18.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-center"><p>$11.40</p></td>
+<td class="text-center"><p>$16.06</p></td>
+<td class="text-center"><p>$19.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-center"><p>$7.20</p></td>
+<td class="text-center"><p>$9.35</p></td>
+<td class="text-center"><p>$10.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-center"><p>$14.08</p></td>
+<td class="text-center"><p>$19.10</p></td>
+<td class="text-center"><p>$22.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-center"><p>$13.60</p></td>
+<td class="text-center"><p>$18.18</p></td>
+<td class="text-center"><p>$21.35</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Managerial Accounting Interpretation:</em> For Product 1 (<code class="docutils literal notranslate"><span class="pre">Chai</span></code>, list price $18.00), historical net selling prices ranged from a minimum of $11.52 to a maximum of $18.00, averaging $15.80. Evaluating statistical spread across groups helps decision-makers learn the typical revenue per unit that they can expect. This helps with product portfolio planning, and provides insight into the opportunity cost of scarce warehouse capacity.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="multi-column-transformations-and-period-summaries">
+<h2>Multi-Column Transformations and Period Summaries<a class="headerlink" href="#multi-column-transformations-and-period-summaries" title="Link to this heading">#</a></h2>
+<p>Real-world financial reporting frequently requires embedding complex mathematical transformations (<code class="docutils literal notranslate"><span class="pre">UnitPrice</span> <span class="pre">*</span> <span class="pre">(1.0</span> <span class="pre">-</span> <span class="pre">Discount)</span> <span class="pre">*</span> <span class="pre">Quantity</span></code>) inside aggregate functions and grouping across multiple period columns (<code class="docutils literal notranslate"><span class="pre">Year</span></code>, <code class="docutils literal notranslate"><span class="pre">Month</span></code>).</p>
+<section id="gross-sales-revenue-by-product">
+<h3>1. Gross Sales Revenue by Product<a class="headerlink" href="#gross-sales-revenue-by-product" title="Link to this heading">#</a></h3>
+<p>To compute gross sales revenue by product across the company’s entire history, embed the net revenue transformation inside the <code class="docutils literal notranslate"><span class="pre">SUM()</span></code> function:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalRevenue</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ProductID</span>
+</pre></div>
+</div>
+</section>
+<section id="restricting-revenue-summaries-to-specific-accounting-periods">
+<h3>2. Restricting Revenue Summaries to Specific Accounting Periods<a class="headerlink" href="#restricting-revenue-summaries-to-specific-accounting-periods" title="Link to this heading">#</a></h3>
+<p>Executive managers rarely review all-time historical totals; they require annual or quarterly reporting.</p>
+<p>To evaluate product sales revenue strictly for fiscal year 1997, join the <code class="docutils literal notranslate"><span class="pre">Orders</span></code> table to access <code class="docutils literal notranslate"><span class="pre">OrderDate</span></code>, apply a <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> filter for <code class="docutils literal notranslate"><span class="pre">YEAR(OrderDate)</span> <span class="pre">=</span> <span class="pre">1997</span></code>, and group by <code class="docutils literal notranslate"><span class="pre">ProductID</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Revenue1997</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span><span class="w"> </span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1997</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span>
+</pre></div>
+</div>
+</section>
+<section id="revenue-summaries-by-customer">
+<h3>3. Revenue Summaries by Customer<a class="headerlink" href="#revenue-summaries-by-customer" title="Link to this heading">#</a></h3>
+<p>By modifying the grouping key from <code class="docutils literal notranslate"><span class="pre">ProductID</span></code> to <code class="docutils literal notranslate"><span class="pre">CustomerID</span></code>, the exact same underlying transaction data generates a customer sales ranking for 1997:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">O</span><span class="p">.</span><span class="n">CustomerID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Revenue1997</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span><span class="w"> </span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1997</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">CustomerID</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-period-income-statement-summaries-year-and-month">
+<h3>4. Multi-Period Income Statement Summaries (Year and Month)<a class="headerlink" href="#multi-period-income-statement-summaries-year-and-month" title="Link to this heading">#</a></h3>
+<p>Corporate financial statements evaluate performance across multiple time horizons. Suppose the Chief Financial Officer requires a monthly financial performance report listing revenue, cost of goods sold (COGS), and gross margin for every calendar month in the database.</p>
+<p>To build this report, we group by two expressions: <code class="docutils literal notranslate"><span class="pre">YEAR(OrderDate)</span></code> and <code class="docutils literal notranslate"><span class="pre">MONTH(OrderDate)</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="k">YEAR</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="k">Year</span><span class="p">],</span>
+<span class="w">    </span><span class="k">MONTH</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">[</span><span class="k">Month</span><span class="p">],</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Revenue</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitCost</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">COGS</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">((</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">UnitCost</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">GrossMargin</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span><span class="w"> </span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">),</span><span class="w"> </span><span class="k">MONTH</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">[</span><span class="k">Year</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="k">Month</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><em>Output (Excerpt):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Year</p></th>
+<th class="head text-center"><p>Month</p></th>
+<th class="head text-center"><p>Revenue</p></th>
+<th class="head text-center"><p>COGS</p></th>
+<th class="head text-center"><p>GrossMargin</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1996</p></td>
+<td class="text-center"><p>7</p></td>
+<td class="text-center"><p>$27,861.90</p></td>
+<td class="text-center"><p>$14,200.00</p></td>
+<td class="text-center"><p>$13,661.90</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1996</p></td>
+<td class="text-center"><p>8</p></td>
+<td class="text-center"><p>$25,485.27</p></td>
+<td class="text-center"><p>$13,100.00</p></td>
+<td class="text-center"><p>$12,385.27</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>1996</p></td>
+<td class="text-center"><p>9</p></td>
+<td class="text-center"><p>$26,381.40</p></td>
+<td class="text-center"><p>$13,850.00</p></td>
+<td class="text-center"><p>$12,531.40</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1996</p></td>
+<td class="text-center"><p>10</p></td>
+<td class="text-center"><p>$37,515.73</p></td>
+<td class="text-center"><p>$19,400.00</p></td>
+<td class="text-center"><p>$18,115.73</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>1996</p></td>
+<td class="text-center"><p>11</p></td>
+<td class="text-center"><p>$45,600.04</p></td>
+<td class="text-center"><p>$23,200.00</p></td>
+<td class="text-center"><p>$22,400.04</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>1996</p></td>
+<td class="text-center"><p>12</p></td>
+<td class="text-center"><p>$45,239.63</p></td>
+<td class="text-center"><p>$23,050.00</p></td>
+<td class="text-center"><p>$22,189.63</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>How SQL Evaluates Multi-Column Grouping:</em>
+When you group by <code class="docutils literal notranslate"><span class="pre">YEAR(OrderDate),</span> <span class="pre">MONTH(OrderDate)</span></code>, SQL creates a distinct summary “pile” for every unique combination of year and month (e.g., <code class="docutils literal notranslate"><span class="pre">1996-07</span></code>, <code class="docutils literal notranslate"><span class="pre">1996-08</span></code>, <code class="docutils literal notranslate"><span class="pre">1997-01</span></code>). It then aggregates all line items falling within that specific month to compute total revenue, total COGS, and total gross margin.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="filtering-aggregated-data-the-having-clause">
+<h2>Filtering Aggregated Data: The HAVING Clause<a class="headerlink" href="#filtering-aggregated-data-the-having-clause" title="Link to this heading">#</a></h2>
+<p>Suppose your sales manager reviews the 1997 product sales summary and asks a follow-up question: <em>“Filter this report to show ONLY products whose total 1997 revenue exceeded $20,000.”</em></p>
+<p>Your natural instinct might be to add a condition to the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- CAUTION: THIS QUERY PRODUCES A SYNTAX ERROR!</span>
+<span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Revenue</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="c1">-- WHERE is invalid here!</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1997</span><span class="w"> </span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20000</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you attempt to execute this query, SQL Server throws an error: <code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">aggregate</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">appear</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">WHERE</span> <span class="pre">clause</span> <span class="pre">unless</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">subquery...</span></code></p>
+<section id="why-where-cannot-filter-aggregate-results">
+<h3>Why <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> Cannot Filter Aggregate Results<a class="headerlink" href="#why-where-cannot-filter-aggregate-results" title="Link to this heading">#</a></h3>
+<p>To understand why <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> fails on aggregate totals, you must understand <strong>SQL’s internal clause execution order</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+------------------------------------------------------------------------+</span>
+<span class="o">|</span>                       <span class="n">SQL</span> <span class="n">EXECUTION</span> <span class="n">SEQUENCE</span>                           <span class="o">|</span>
+<span class="o">+------------------------------------------------------------------------+</span>
+<span class="o">|</span>  <span class="mf">1.</span> <span class="n">FROM</span> <span class="o">/</span> <span class="n">JOIN</span>   <span class="o">--&gt;</span> <span class="n">Identifies</span> <span class="n">source</span> <span class="n">tables</span> <span class="ow">and</span> <span class="n">merges</span> <span class="n">rows</span>         <span class="o">|</span>
+<span class="o">|</span>  <span class="mf">2.</span> <span class="n">WHERE</span>         <span class="o">--&gt;</span> <span class="n">Filters</span> <span class="n">individual</span> <span class="n">detail</span> <span class="n">rows</span> <span class="n">BEFORE</span> <span class="n">grouping</span>   <span class="o">|</span>
+<span class="o">|</span>  <span class="mf">3.</span> <span class="n">GROUP</span> <span class="n">BY</span>      <span class="o">--&gt;</span> <span class="n">Sorts</span> <span class="n">remaining</span> <span class="n">detail</span> <span class="n">rows</span> <span class="n">into</span> <span class="n">category</span> <span class="n">piles</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mf">4.</span> <span class="n">HAVING</span>        <span class="o">--&gt;</span> <span class="n">Filters</span> <span class="n">aggregated</span> <span class="n">summary</span> <span class="n">piles</span> <span class="n">AFTER</span> <span class="n">grouping</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mf">5.</span> <span class="n">SELECT</span>        <span class="o">--&gt;</span> <span class="n">Constructs</span> <span class="n">output</span> <span class="n">columns</span> <span class="ow">and</span> <span class="n">creates</span> <span class="n">aliases</span>    <span class="o">|</span>
+<span class="o">|</span>  <span class="mf">6.</span> <span class="n">ORDER</span> <span class="n">BY</span>      <span class="o">--&gt;</span> <span class="n">Sorts</span> <span class="n">final</span> <span class="n">summary</span> <span class="n">rows</span> <span class="k">for</span> <span class="n">display</span>             <span class="o">|</span>
+<span class="o">+------------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+<p>Look closely at Step 2 (<code class="docutils literal notranslate"><span class="pre">WHERE</span></code>) versus Step 3 (<code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>):</p>
+<ul class="simple">
+<li><p>The <strong><code class="docutils literal notranslate"><span class="pre">WHERE</span></code></strong> clause operates on <strong>individual transaction rows</strong> <em>before</em> SQL groups them into piles.</p></li>
+<li><p>When Step 2 (<code class="docutils literal notranslate"><span class="pre">WHERE</span></code>) evaluates, SQL has not yet performed Step 3 (<code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>). The aggregated total <code class="docutils literal notranslate"><span class="pre">SUM(...)</span></code> does not exist yet!</p></li>
+</ul>
+<p>Therefore, you cannot use <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> to filter on aggregate calculations.</p>
+</section>
+<section id="the-solution-the-having-clause">
+<h3>The Solution: The <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> Clause<a class="headerlink" href="#the-solution-the-having-clause" title="Link to this heading">#</a></h3>
+<p>To filter aggregated summary results <em>after</em> grouping has occurred, use SQL’s <strong><code class="docutils literal notranslate"><span class="pre">HAVING</span></code></strong> clause.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> clause functions identically to <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, but evaluates conditions on aggregated group summary piles during Step 4:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span><span class="p">,</span>
+<span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">Revenue</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">OrderDetails</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">OD</span>
+<span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">Orders</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">O</span><span class="w"> </span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">OrderID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">O</span><span class="p">.</span><span class="n">OrderID</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">YEAR</span><span class="p">(</span><span class="n">O</span><span class="p">.</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1997</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">ProductID</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">OD</span><span class="p">.</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Discount</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">OD</span><span class="p">.</span><span class="n">Quantity</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20000</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Revenue</span><span class="w"> </span><span class="k">DESC</span>
+</pre></div>
+</div>
+<p><em>Output:</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>ProductID</p></th>
+<th class="head text-center"><p>Revenue</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>38</p></td>
+<td class="text-center"><p>$49,198.09</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>59</p></td>
+<td class="text-center"><p>$35,775.30</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>29</p></td>
+<td class="text-center"><p>$34,755.91</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>56</p></td>
+<td class="text-center"><p>$32,604.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>51</p></td>
+<td class="text-center"><p>$24,570.80</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>62</p></td>
+<td class="text-center"><p>$21,638.30</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>60</p></td>
+<td class="text-center"><p>$20,505.40</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="the-alias-execution-rule-having-vs-order-by">
+<h3>The Alias Execution Rule: <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> vs. <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code><a class="headerlink" href="#the-alias-execution-rule-having-vs-order-by" title="Link to this heading">#</a></h3>
+<p>Notice that in the <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> clause above, we wrote out the full aggregate expression <code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">SUM(...)</span> <span class="pre">&gt;</span> <span class="pre">20000</span></code> rather than using the column alias <code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">Revenue</span> <span class="pre">&gt;</span> <span class="pre">20000</span></code>.</p>
+<p>Why can’t you use the alias <code class="docutils literal notranslate"><span class="pre">Revenue</span></code> in <code class="docutils literal notranslate"><span class="pre">HAVING</span></code>?</p>
+<p>Once again, the answer lies in SQL’s execution sequence:</p>
+<ul class="simple">
+<li><p><strong>Step 4 (<code class="docutils literal notranslate"><span class="pre">HAVING</span></code>):</strong> SQL filters summary piles.</p></li>
+<li><p><strong>Step 5 (<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>):</strong> SQL constructs output columns and assigns the alias <code class="docutils literal notranslate"><span class="pre">Revenue</span></code>.</p></li>
+<li><p><strong>Step 6 (<code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>):</strong> SQL sorts the final summary rows.</p></li>
+</ul>
+<p>Because Step 4 (<code class="docutils literal notranslate"><span class="pre">HAVING</span></code>) executes <em>before</em> Step 5 (<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>), the alias <code class="docutils literal notranslate"><span class="pre">Revenue</span></code> does not exist yet when <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> evaluates! Attempting to use a <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> alias inside <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> causes an <code class="docutils literal notranslate"><span class="pre">Invalid</span> <span class="pre">column</span> <span class="pre">name</span></code> error.</p>
+<p>By contrast, Step 6 (<code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>) executes <em>after</em> Step 5 (<code class="docutils literal notranslate"><span class="pre">SELECT</span></code>), so <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span> <span class="pre">Revenue</span> <span class="pre">DESC</span></code> works perfectly.</p>
+</section>
+<section id="summary-comparison-where-vs-having">
+<h3>Summary Comparison: <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> vs. <code class="docutils literal notranslate"><span class="pre">HAVING</span></code><a class="headerlink" href="#summary-comparison-where-vs-having" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> Clause</p></th>
+<th class="head text-left"><p><code class="docutils literal notranslate"><span class="pre">HAVING</span></code> Clause</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Purpose</strong></p></td>
+<td class="text-left"><p>Filters individual detail rows</p></td>
+<td class="text-left"><p>Filters aggregated group summary piles</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Execution Point</strong></p></td>
+<td class="text-left"><p>Executes <em>before</em> <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></p></td>
+<td class="text-left"><p>Executes <em>after</em> <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Can Use Aggregates?</strong></p></td>
+<td class="text-left"><p>NO (<code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">SUM(...)</span></code> is invalid)</p></td>
+<td class="text-left"><p>YES (<code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">SUM(...)</span> <span class="pre">&gt;</span> <span class="pre">x</span></code> is allowed)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Can Use Aliases?</strong></p></td>
+<td class="text-left"><p>NO (Evaluates before <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>)</p></td>
+<td class="text-left"><p>NO (Evaluates before <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Primary Use Case</strong></p></td>
+<td class="text-left"><p>Eliminating irrelevant data (e.g., <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">YEAR(Date)</span> <span class="pre">=</span> <span class="pre">1997</span></code>)</p></td>
+<td class="text-left"><p>Isolating key summary groups (e.g., <code class="docutils literal notranslate"><span class="pre">HAVING</span> <span class="pre">Revenue</span> <span class="pre">&gt;</span> <span class="pre">20000</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summary-and-complete-sql-execution-checklist">
+<h2>Summary and Complete SQL Execution Checklist<a class="headerlink" href="#summary-and-complete-sql-execution-checklist" title="Link to this heading">#</a></h2>
+<p>Grouping and aggregation completes our study of relational data retrieval in SQL. By combining <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">HAVING</span></code>, and <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>, you possess a powerful toolkit with which you can answer complex enterprise business questions.</p>
+<section id="key-chapter-takeaways">
+<h3>Key Chapter Takeaways<a class="headerlink" href="#key-chapter-takeaways" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Grouping Collapses Rows into Category Piles:</strong> The <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause combines detailed transaction rows into categories based on unique values in grouping columns.</p></li>
+<li><p><strong>Aggregate Functions Summarize Groups:</strong> Once rows are grouped, aggregate functions (<code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>) compute a single summary result per group.</p></li>
+<li><p><strong>The Non-Aggregated Column Rule:</strong> Every un-aggregated column listed in the <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> clause must be explicitly included in the <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> clause to eliminate display ambiguity.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> vs. <code class="docutils literal notranslate"><span class="pre">HAVING</span></code>:</strong> Use <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> to filter data rows before grouping; use <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> to filter aggregated summary rows after grouping.</p></li>
+<li><p><strong>Execution Order Dictates Syntax:</strong> SQL evaluates queries in a strict internal sequence: <code class="docutils literal notranslate"><span class="pre">FROM/JOIN</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> <span class="math notranslate nohighlight">\(\rightarrow\)</span> <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>.</p></li>
+</ol>
+</section>
+<section id="complete-sql-statement-execution-checklist">
+<h3>Complete SQL Statement Execution Checklist<a class="headerlink" href="#complete-sql-statement-execution-checklist" title="Link to this heading">#</a></h3>
+<p>Below is the definitive, unchangeable execution order for all seven major clauses in a SQL <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">TOP</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">ColumnList_and_Aggregations</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">PrimaryTable</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">A</span>
+<span class="p">[</span><span class="k">INNER</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">LEFT</span><span class="p">]</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">SecondaryTable</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">B</span><span class="w"> </span>
+<span class="w">    </span><span class="k">ON</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">SharedKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">SharedKey</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">Detail_Row_Filter_Conditions</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Grouping_Columns</span>
+<span class="k">HAVING</span><span class="w"> </span><span class="n">Aggregate_Summary_Filter_Conditions</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">Sort_Columns</span><span class="w"> </span><span class="p">[</span><span class="k">ASC</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">DESC</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Order</p></th>
+<th class="head text-left"><p>Clause</p></th>
+<th class="head text-left"><p>Purpose</p></th>
+<th class="head text-center"><p>Required or Optional?</p></th>
+<th class="head text-left"><p>Primary Accounting / Analytics Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><strong>1st</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">FROM</span></code></strong></p></td>
+<td class="text-left"><p>Identifies the primary source database table.</p></td>
+<td class="text-center"><p><strong>Required</strong></p></td>
+<td class="text-left"><p>Defines the foundational transaction ledger.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><strong>2nd</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">JOIN</span> <span class="pre">...</span> <span class="pre">ON</span></code></strong></p></td>
+<td class="text-left"><p>Links related secondary tables using shared key columns.</p></td>
+<td class="text-center"><p>Optional</p></td>
+<td class="text-left"><p>Merges parent entity names (customers, products, employees).</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>3rd</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">WHERE</span></code></strong></p></td>
+<td class="text-left"><p>Filters individual transaction rows before grouping.</p></td>
+<td class="text-center"><p>Optional</p></td>
+<td class="text-left"><p>Restricts analysis to specific fiscal years, territories, or active statuses.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><strong>4th</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></strong></p></td>
+<td class="text-left"><p>Collapses detail rows into distinct category piles.</p></td>
+<td class="text-center"><p>Optional</p></td>
+<td class="text-left"><p>Groups data by customer, product, department, or period.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>5th</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">HAVING</span></code></strong></p></td>
+<td class="text-left"><p>Filters aggregated summary category piles after grouping.</p></td>
+<td class="text-center"><p>Optional</p></td>
+<td class="text-left"><p>Isolates top-tier revenue items, loss-making categories, or control breaches.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><strong>6th</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">SELECT</span></code></strong></p></td>
+<td class="text-left"><p>Constructs output columns, evaluates aggregations, and assigns aliases (<code class="docutils literal notranslate"><span class="pre">AS</span></code>).</p></td>
+<td class="text-center"><p><strong>Required</strong></p></td>
+<td class="text-left"><p>Formats calculated metrics and reports.</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>7th</strong></p></td>
+<td class="text-left"><p><strong><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></strong></p></td>
+<td class="text-left"><p>Sorts final summary result rows for display.</p></td>
+<td class="text-center"><p>Optional</p></td>
+<td class="text-left"><p>Ranks top revenue drivers, chronological trends, or risk exposures.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jupyterbook"
+        },
+        kernelOptions: {
+            name: "jupyterbook",
+            path: "./Unit 3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jupyterbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3-6%20Merging%20Data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Merging Data with SQL JOINs</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-what-is-grouping-and-aggregation">Introduction: What is Grouping and Aggregation?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dollar-counting-analogy">The Dollar-Counting Analogy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-excel-pivot-table-parallel">The Excel Pivot Table Parallel</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifying-categories-select-distinct-vs-group-by">Identifying Categories: SELECT DISTINCT vs. GROUP BY</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listing-unique-values-with-select-distinct">Listing Unique Values with <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-column-unique-combinations">Multi-Column Unique Combinations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-distinct-vs-group-by"><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code> vs. <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summarizing-data-by-category-the-group-by-clause">Summarizing Data by Category: The GROUP BY Clause</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-group-by-syntax">Basic <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#counting-records-by-category">Counting Records by Category</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1-orders-placed-per-customer">Example 1: Orders Placed per Customer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2-employee-staffing-headcount-by-job-title">Example 2: Employee Staffing Headcount by Job Title</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summing-quantities-by-category">Summing Quantities by Category</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3-total-unit-volume-sold-per-product">Example 3: Total Unit Volume Sold per Product</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#improving-reports-by-merging-parent-tables">Improving Reports by Merging Parent Tables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-statistics-across-groups">Descriptive Statistics Across Groups</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#price-variation-and-discount-dispersion">Price Variation and Discount Dispersion</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-column-transformations-and-period-summaries">Multi-Column Transformations and Period Summaries</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gross-sales-revenue-by-product">1. Gross Sales Revenue by Product</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#restricting-revenue-summaries-to-specific-accounting-periods">2. Restricting Revenue Summaries to Specific Accounting Periods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#revenue-summaries-by-customer">3. Revenue Summaries by Customer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multi-period-income-statement-summaries-year-and-month">4. Multi-Period Income Statement Summaries (Year and Month)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filtering-aggregated-data-the-having-clause">Filtering Aggregated Data: The HAVING Clause</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-where-cannot-filter-aggregate-results">Why <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> Cannot Filter Aggregate Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-the-having-clause">The Solution: The <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> Clause</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-alias-execution-rule-having-vs-order-by">The Alias Execution Rule: <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> vs. <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-comparison-where-vs-having">Summary Comparison: <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> vs. <code class="docutils literal notranslate"><span class="pre">HAVING</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-complete-sql-execution-checklist">Summary and Complete SQL Execution Checklist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-chapter-takeaways">Key Chapter Takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-sql-statement-execution-checklist">Complete SQL Statement Execution Checklist</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
