@@ -28,3 +28,4 @@ parts:
   - file: "Unit 3/3-5 Sorting Data"
   - file: "Unit 3/3-6 Merging Data"
   - file: "Unit 3/3-7 Grouping and Aggregating Data"
+  - file: "Unit 3/3-8 Advanced SQL Concepts"
