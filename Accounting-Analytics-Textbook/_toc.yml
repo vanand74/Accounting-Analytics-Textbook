@@ -29,3 +29,8 @@ parts:
   - file: "Unit 3/3-6 Merging Data"
   - file: "Unit 3/3-7 Grouping and Aggregating Data"
   - file: "Unit 3/3-8 Advanced SQL Concepts"
+
+- caption: "Unit 4: Excel"
+  chapters:
+  - file: "Unit 4/4-0 From SQL to Spreadsheets"
+  - file: "Unit 4/4-1 Excel Under the Hood"
