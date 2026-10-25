@@ -34,3 +34,4 @@ parts:
   chapters:
   - file: "Unit 4/4-0 From SQL to Spreadsheets"
   - file: "Unit 4/4-1 Excel Under the Hood"
+  - file: "Unit 4/4-3 CSV Files"
