@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced SQL Concepts (COUNT DISTINCT and Subqueries) &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3W9L1EX77X"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 3/3-8 Advanced SQL Concepts';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Grouping and Aggregating Data with SQL" href="3-7%20Grouping%20and%20Aggregating%20Data.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: The Process of Analytics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-2%20Types%20of%20Data.html">Types of Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: SQL</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="3-0%20Working%20with%20Files%20and%20Folders.html">Working with Files and Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-1%20Overview%20of%20SQL.html">Overview of SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-2%20The%20SQL%20SELECT%20Statement.html">The SQL SELECT Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-3%20Filtering%20Data%20with%20SQL%20WHERE.html">Filtering Data with SQL WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-4%20Transforming%20Data.html">Transforming Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-5%20Sorting%20Data.html">Sorting Data with SQL ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-6%20Merging%20Data.html">Merging Data with SQL JOINs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-7%20Grouping%20and%20Aggregating%20Data.html">Grouping and Aggregating Data with SQL</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Advanced SQL Concepts (COUNT DISTINCT and Subqueries)</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 3/3-8 Advanced SQL Concepts.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 3/3-8 Advanced SQL Concepts.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced SQL Concepts (COUNT DISTINCT and Subqueries)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-extending-your-sql-toolkit">Introduction: Extending Your SQL Toolkit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-1-counting-unique-entities-with-count-distinct">Topic 1: Counting Unique Entities with <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-duplicate-transaction-records">The Problem: Duplicate Transaction Records</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-count-distinct-columnname">The Solution: <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT</span> <span class="pre">ColumnName)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-canadian-government-employee-travel-oh-canada-database">Case Study: Canadian Government Employee Travel (<code class="docutils literal notranslate"><span class="pre">Oh</span> <span class="pre">Canada</span></code> Database)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-2-comparing-rows-to-summary-statistics-scalar-subqueries">Topic 2: Comparing Rows to Summary Statistics (Scalar Subqueries)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-precedence-trap-why-where-value-avg-value-fails">The Precedence Trap: Why <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">Value</span> <span class="pre">&gt;</span> <span class="pre">AVG(Value)</span></code> Fails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-scalar-subqueries">The Solution: Scalar Subqueries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subquery-syntax-and-structure">Subquery Syntax and Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-audit-fee-benchmarking-top500-dataset">Case Study: Audit Fee Benchmarking (<code class="docutils literal notranslate"><span class="pre">Top500</span></code> Dataset)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-forensic-applications-of-scalar-subqueries">Additional Forensic Applications of Scalar Subqueries</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-date-filtering-relative-to-latest-entry">1. Dynamic Date Filtering (Relative to Latest Entry)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#low-margin-product-exception-reporting">2. Low-Margin Product Exception Reporting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-advanced-sql-reference-checklist">Summary and Advanced SQL Reference Checklist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-chapter-takeaways">Key Chapter Takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-comparison-of-advanced-sql-retrieval-techniques">Summary Comparison of Advanced SQL Retrieval Techniques</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-sql-concepts-count-distinct-and-subqueries">
+<h1>Advanced SQL Concepts (COUNT DISTINCT and Subqueries)<a class="headerlink" href="#advanced-sql-concepts-count-distinct-and-subqueries" title="Link to this heading">#</a></h1>
+<section id="introduction-extending-your-sql-toolkit">
+<h2>Introduction: Extending Your SQL Toolkit<a class="headerlink" href="#introduction-extending-your-sql-toolkit" title="Link to this heading">#</a></h2>
+<p>Throughout Unit 3, you learned the foundational clauses of Structured Query Language: <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, <code class="docutils literal notranslate"><span class="pre">JOIN</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">HAVING</span></code>, and <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>. With these core tools, you can answer the vast majority of enterprise business questions—retrieving raw records, linking relational tables, filtering subsets, creating calculated transformations, and aggregating transactions into summary reports.</p>
+<p>However, real-world corporate auditing and financial analytics frequently present questions that fall outside standard row-by-row filtering or routine category grouping. For example:</p>
+<ul class="simple">
+<li><p>How many foreign countries did government executives visit on official travel this year?</p></li>
+<li><p>Which corporate audit clients paid above-average audit fees relative to the industry benchmark?</p></li>
+<li><p>Which credit card charges occurred in the last 30 days of the fiscal year, when the exact ending date of the database is unknown in advance?</p></li>
+</ul>
+<p>Answering these questions requires <strong>intermediate SQL techniques</strong>. While this supplemental chapter introduces concepts beyond the basic required course assignments, mastering these techniques will solidify your understanding of SQL execution logic, sharpen your forensic auditing capabilities, and prepare you for advanced modeling in tools like Microsoft Excel, Power BI, and Tableau.</p>
+</section>
+<hr class="docutils" />
+<section id="topic-1-counting-unique-entities-with-count-distinct">
+<h2>Topic 1: Counting Unique Entities with <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code><a class="headerlink" href="#topic-1-counting-unique-entities-with-count-distinct" title="Link to this heading">#</a></h2>
+<p>Previously, you learned that <code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code> returns the total number of rows in a table, while <code class="docutils literal notranslate"><span class="pre">COUNT(ColumnName)</span></code> counts the number of non-null values in a specific column. However, both of these functions count every instance of a value, <strong>including duplicates.</strong></p>
+<p>In financial auditing and business analytics, you frequently need to know the number of <strong>unique</strong> or <strong>distinct</strong> entities rather than the total count of transactions.</p>
+<section id="the-problem-duplicate-transaction-records">
+<h3>The Problem: Duplicate Transaction Records<a class="headerlink" href="#the-problem-duplicate-transaction-records" title="Link to this heading">#</a></h3>
+<p>Consider a government agency tracking travel expenses for public officials. If an executive takes ten separate business trips to London, England during the fiscal year, a standard <code class="docutils literal notranslate"><span class="pre">COUNT(DestinationCountry)</span></code> query will count <code class="docutils literal notranslate"><span class="pre">'United</span> <span class="pre">Kingdom'</span></code> ten separate times.</p>
+<p>If a legislative committee asks, <em>“To how many unique foreign countries did our executives travel?”</em>, simply counting transaction rows will drastically inflate the result.</p>
+</section>
+<section id="the-solution-count-distinct-columnname">
+<h3>The Solution: <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT</span> <span class="pre">ColumnName)</span></code><a class="headerlink" href="#the-solution-count-distinct-columnname" title="Link to this heading">#</a></h3>
+<p>To count only the unique values in a column, embed the <strong><code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code></strong> keyword directly inside the <code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> aggregate function:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">ColumnName</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>SQL processes <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code> in two sequential phases:</p>
+<ol class="arabic simple">
+<li><p><strong>Scan and Deduplicate:</strong> It inspects the specified column across all filtered rows and eliminates all duplicate values in memory.</p></li>
+<li><p><strong>Count Scalar:</strong> It counts the remaining unique entries and returns a single integer.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span></code> vs. <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code></strong></p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span> <span class="pre">Country</span> <span class="pre">FROM</span> <span class="pre">Trips</span></code></strong> returns a <strong>multi-row table</strong> listing the actual names of the unique countries (e.g., <code class="docutils literal notranslate"><span class="pre">'France'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Germany'</span></code>, <code class="docutils literal notranslate"><span class="pre">'Japan'</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">COUNT(DISTINCT</span> <span class="pre">Country)</span> <span class="pre">FROM</span> <span class="pre">Trips</span></code></strong> returns a <strong>single number</strong> representing how many unique countries exist in the dataset (e.g., <code class="docutils literal notranslate"><span class="pre">3</span></code>).</p></li>
+</ul>
+</div>
+</section>
+<section id="case-study-canadian-government-employee-travel-oh-canada-database">
+<h3>Case Study: Canadian Government Employee Travel (<code class="docutils literal notranslate"><span class="pre">Oh</span> <span class="pre">Canada</span></code> Database)<a class="headerlink" href="#case-study-canadian-government-employee-travel-oh-canada-database" title="Link to this heading">#</a></h3>
+<p>Consider an audit of public sector travel expenses using the <code class="docutils literal notranslate"><span class="pre">Oh</span> <span class="pre">Canada</span></code> database (<code class="docutils literal notranslate"><span class="pre">Trips</span></code> table), which records travel details for Canadian government employees. A parliamentary minister requests a summary metric: <strong>How many unique travel destinations (countries) outside of Canada were visited by government personnel?</strong></p>
+<p>To answer this question, we combine <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> filtering with <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="n">DestinationCountry</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">TotalForeignTrips</span><span class="p">,</span>
+<span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">DestinationCountry</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">UniqueForeignCountries</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Trips</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">DestinationCountry</span><span class="w"> </span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="s1">'Canada'</span>
+</pre></div>
+</div>
+<p><em>Expected Query Output:</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>TotalForeignTrips</p></th>
+<th class="head text-left"><p>UniqueForeignCountries</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1,420</p></td>
+<td class="text-left"><p>48</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Analytical Takeaway:</em> While Canadian officials completed 1,420 international trips (<code class="docutils literal notranslate"><span class="pre">TotalForeignTrips</span></code>), those trips were concentrated across only 48 unique foreign nations (<code class="docutils literal notranslate"><span class="pre">UniqueForeignCountries</span></code>). Distinguishing total volume from unique reach is a vital auditing capability when evaluating travel policy compliance and geographic risk exposure.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="topic-2-comparing-rows-to-summary-statistics-scalar-subqueries">
+<h2>Topic 2: Comparing Rows to Summary Statistics (Scalar Subqueries)<a class="headerlink" href="#topic-2-comparing-rows-to-summary-statistics-scalar-subqueries" title="Link to this heading">#</a></h2>
+<p>A common task in financial analysis and forensic auditing is identifying <strong>outliers</strong> — records that deviate significantly from a population average. For example:</p>
+<ul class="simple">
+<li><p>Finding companies that pay <strong>higher-than-average audit fees</strong>.</p></li>
+<li><p>Flagging employees whose credit card purchases exceed the <strong>departmental average expense</strong>.</p></li>
+<li><p>Identifying products sold at <strong>unusually low profit margins</strong> compared to the portfolio average.</p></li>
+</ul>
+<section id="the-precedence-trap-why-where-value-avg-value-fails">
+<h3>The Precedence Trap: Why <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">Value</span> <span class="pre">&gt;</span> <span class="pre">AVG(Value)</span></code> Fails<a class="headerlink" href="#the-precedence-trap-why-where-value-avg-value-fails" title="Link to this heading">#</a></h3>
+<p>When asked to find companies with above-average audit fees, beginner analysts often write the following query:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- CAUTION: THIS QUERY PRODUCES A SYNTAX ERROR!</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span><span class="n">AuditFees</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Top500</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">AuditFees</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">AuditFees</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you execute this query, SQL Server immediately throws an error:<br />
+<code class="docutils literal notranslate"><span class="pre">An</span> <span class="pre">aggregate</span> <span class="pre">may</span> <span class="pre">not</span> <span class="pre">appear</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">WHERE</span> <span class="pre">clause</span> <span class="pre">unless</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">subquery...</span></code></p>
+<p><strong>Why does this happen?</strong><br />
+Recall the strict <strong>SQL Clause Execution Sequence</strong> established throughout this textbook:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FROM</span></code> / <code class="docutils literal notranslate"><span class="pre">JOIN</span></code> (Identify source tables)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WHERE</span></code> (Filter individual transaction rows)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> (Collapse rows into categories)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HAVING</span></code> (Filter aggregated groups)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code> (Compute output columns and aggregations)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> (Sort final results)</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause is evaluated at <strong>Step 2</strong>, row-by-row, <em>before</em> the database engine has evaluated the full table. Because <code class="docutils literal notranslate"><span class="pre">AVG(AuditFees)</span></code> requires scanning the entire table to compute the average, that benchmark value <strong>does not yet exist</strong> when the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause is filtering individual rows!</p>
+</section>
+<section id="the-solution-scalar-subqueries">
+<h3>The Solution: Scalar Subqueries<a class="headerlink" href="#the-solution-scalar-subqueries" title="Link to this heading">#</a></h3>
+<p>To solve this execution order dilemma, we use a <strong>subquery</strong> (also known as an <em>nested query</em> or <em>inner query</em>).</p>
+<p>A <strong>scalar subquery</strong> is a complete <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> statement enclosed in parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> that returns a <strong>single value</strong> (one row, one column). Because SQL evaluates expressions inside parentheses first, the database engine executes the inner subquery, calculates the scalar summary statistic (e.g., the overall average audit fee), and passes that exact numeric value directly into the outer query’s <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause!</p>
+</section>
+<section id="subquery-syntax-and-structure">
+<h3>Subquery Syntax and Structure<a class="headerlink" href="#subquery-syntax-and-structure" title="Link to this heading">#</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">Column1</span><span class="p">,</span><span class="w"> </span><span class="n">Column2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">BenchmarkColumn</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="c1">-- SCALAR SUBQUERY: Computes the single benchmark value first</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">BenchmarkColumn</span><span class="p">)</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">TableName</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="case-study-audit-fee-benchmarking-top500-dataset">
+<h3>Case Study: Audit Fee Benchmarking (<code class="docutils literal notranslate"><span class="pre">Top500</span></code> Dataset)<a class="headerlink" href="#case-study-audit-fee-benchmarking-top500-dataset" title="Link to this heading">#</a></h3>
+<p>Consider a corporate governance audit examining external audit costs across major public corporations (<code class="docutils literal notranslate"><span class="pre">Top500</span></code> table). Management wants to identify <strong>which companies paid higher-than-average audit fees</strong>, including their revenue, net income, and audit firm.</p>
+<p>To construct this analysis, we write a scalar subquery that computes the population average audit fee:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">CompanyName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Revenue</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Income</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">AuditFees</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Auditor</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Top500</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">AuditFees</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">AuditFees</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Top500</span>
+<span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">AuditFees</span><span class="w"> </span><span class="k">DESC</span>
+</pre></div>
+</div>
+<p><em>Deconstructing the Execution Steps:</em></p>
+<ol class="arabic">
+<li><p><strong>Inner Query Execution (First):</strong> SQL evaluates <code class="docutils literal notranslate"><span class="pre">(SELECT</span> <span class="pre">AVG(AuditFees)</span> <span class="pre">FROM</span> <span class="pre">Top500)</span></code> across all 500 records. Suppose the overall average audit fee evaluates to <strong>$3,150,000</strong>.</p></li>
+<li><p><strong>Outer Query Execution (Second):</strong> SQL substitutes the scalar result directly into the <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> clause, effectively running:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WHERE</span><span class="w"> </span><span class="n">AuditFees</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3150000</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Filtering and Display:</strong> SQL filters the table row-by-row, returning only those corporate clients whose audit fees exceed $3.15M, sorted from highest to lowest.</p></li>
+</ol>
+<p><em>Output (Excerpt):</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>CompanyName</p></th>
+<th class="head text-left"><p>Revenue</p></th>
+<th class="head text-left"><p>Income</p></th>
+<th class="head text-left"><p>AuditFees</p></th>
+<th class="head text-left"><p>Auditor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Alcoa Corp</p></td>
+<td class="text-left"><p>$13,403,000,000</p></td>
+<td class="text-left"><p>$227,000,000</p></td>
+<td class="text-left"><p>$7,822,000</p></td>
+<td class="text-left"><p>PricewaterhouseCoopers LLP</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>American Airlines Group Inc</p></td>
+<td class="text-left"><p>$44,541,000,000</p></td>
+<td class="text-left"><p>$1,412,000,000</p></td>
+<td class="text-left"><p>$4,010,000</p></td>
+<td class="text-left"><p>KPMG LLP</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Advance Auto Parts Inc</p></td>
+<td class="text-left"><p>$9,580,554,000</p></td>
+<td class="text-left"><p>$423,847,000</p></td>
+<td class="text-left"><p>$4,008,000</p></td>
+<td class="text-left"><p>Deloitte &amp; Touche LLP</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="additional-forensic-applications-of-scalar-subqueries">
+<h3>Additional Forensic Applications of Scalar Subqueries<a class="headerlink" href="#additional-forensic-applications-of-scalar-subqueries" title="Link to this heading">#</a></h3>
+<p>Scalar subqueries are exceptionally versatile in accounting and risk management. Here are three common audit scenarios where scalar subqueries solve time-sequence and benchmark challenges:</p>
+<section id="dynamic-date-filtering-relative-to-latest-entry">
+<h4>1. Dynamic Date Filtering (Relative to Latest Entry)<a class="headerlink" href="#dynamic-date-filtering-relative-to-latest-entry" title="Link to this heading">#</a></h4>
+<p>In real-world accounting databases, you rarely know the exact maximum date stored in a historical transaction table. Suppose an auditor wants to review all sales orders placed within the <strong>last 30 days</strong> of a database’s recording history.</p>
+<p>Instead of hardcoding a static date, use a scalar subquery to find the latest order date dynamically:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">OrderID</span><span class="p">,</span><span class="w"> </span><span class="n">OrderDate</span><span class="p">,</span><span class="w"> </span><span class="n">CustomerID</span><span class="p">,</span><span class="w"> </span><span class="n">Freight</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">OrderDate</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">day</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">OrderDate</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Orders</span>
+<span class="p">))</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">OrderDate</span><span class="w"> </span><span class="k">DESC</span>
+</pre></div>
+</div>
+<p><em>Why this matters:</em> If the database is updated with new transaction files next month, this query automatically adjusts its 30-day window relative to the new maximum date without requiring code modifications!</p>
+</section>
+<section id="low-margin-product-exception-reporting">
+<h4>2. Low-Margin Product Exception Reporting<a class="headerlink" href="#low-margin-product-exception-reporting" title="Link to this heading">#</a></h4>
+<p>Inventory accountants routinely audit product profitability to identify items sold below portfolio contribution benchmarks. To flag products whose unit profit margin falls below the portfolio average:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductID</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ProductName</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">UnitCost</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">UnitCost</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ContributionMargin</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">UnitCost</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">UnitPrice</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">UnitCost</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">Products</span>
+<span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ContributionMargin</span><span class="w"> </span><span class="k">ASC</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="summary-and-advanced-sql-reference-checklist">
+<h2>Summary and Advanced SQL Reference Checklist<a class="headerlink" href="#summary-and-advanced-sql-reference-checklist" title="Link to this heading">#</a></h2>
+<p>Mastering <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code> and scalar subqueries unlocks sophisticated analytical workflows, allowing you to ask multi-layered questions of corporate databases.</p>
+<section id="key-chapter-takeaways">
+<h3>Key Chapter Takeaways<a class="headerlink" href="#key-chapter-takeaways" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code> Eliminates Duplicates:</strong> Use <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT</span> <span class="pre">Column)</span></code> to count unique entities (such as active customer accounts, unique vendor countries, or distinct product SKUs) rather than total raw transaction rows.</p></li>
+<li><p><strong>Scalar Subqueries Solve Execution Precedence:</strong> Because <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> evaluates row-by-row before overall aggregations are computed, wrap summary queries in parentheses <code class="docutils literal notranslate"><span class="pre">()</span></code> to calculate benchmark values first.</p></li>
+<li><p><strong>Dynamic Benchmarking:</strong> Scalar subqueries eliminate hardcoded constants, ensuring your audit scripts automatically update when new transaction data is loaded into the system.</p></li>
+</ol>
+</section>
+<section id="summary-comparison-of-advanced-sql-retrieval-techniques">
+<h3>Summary Comparison of Advanced SQL Retrieval Techniques<a class="headerlink" href="#summary-comparison-of-advanced-sql-retrieval-techniques" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Technique</p></th>
+<th class="head text-left"><p>SQL Syntax Example</p></th>
+<th class="head text-left"><p>What It Calculates</p></th>
+<th class="head text-left"><p>Primary Accounting / Auditing Role</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Row Count</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">COUNT(*)</span></code></p></td>
+<td class="text-left"><p>Total number of database records</p></td>
+<td class="text-left"><p>Counting total journal entries or invoice volume.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Non-Null Count</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">COUNT(Region)</span></code></p></td>
+<td class="text-left"><p>Number of populated entries</p></td>
+<td class="text-left"><p>Identifying missing required fields or data incompleteness.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Unique Values List</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">DISTINCT</span> <span class="pre">Country</span></code></p></td>
+<td class="text-left"><p>Multi-row table of unique values</p></td>
+<td class="text-left"><p>Extracting unique vendor, customer, or country master lists.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Unique Entity Count</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT</span> <span class="pre">Country)</span></code></p></td>
+<td class="text-left"><p>Single scalar count of unique items</p></td>
+<td class="text-left"><p>Quantifying geographic reach or client diversification.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Scalar Subquery</strong></p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">Fee</span> <span class="pre">&gt;</span> <span class="pre">(SELECT</span> <span class="pre">AVG(Fee)...)</span></code></p></td>
+<td class="text-left"><p>Filter rows against a dynamic benchmark</p></td>
+<td class="text-left"><p>Detecting audit fee outliers, excessive expenses, or dynamic date windows.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jupyterbook"
+        },
+        kernelOptions: {
+            name: "jupyterbook",
+            path: "./Unit 3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jupyterbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3-7%20Grouping%20and%20Aggregating%20Data.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Grouping and Aggregating Data with SQL</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-extending-your-sql-toolkit">Introduction: Extending Your SQL Toolkit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-1-counting-unique-entities-with-count-distinct">Topic 1: Counting Unique Entities with <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT)</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-duplicate-transaction-records">The Problem: Duplicate Transaction Records</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-count-distinct-columnname">The Solution: <code class="docutils literal notranslate"><span class="pre">COUNT(DISTINCT</span> <span class="pre">ColumnName)</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-canadian-government-employee-travel-oh-canada-database">Case Study: Canadian Government Employee Travel (<code class="docutils literal notranslate"><span class="pre">Oh</span> <span class="pre">Canada</span></code> Database)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#topic-2-comparing-rows-to-summary-statistics-scalar-subqueries">Topic 2: Comparing Rows to Summary Statistics (Scalar Subqueries)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-precedence-trap-why-where-value-avg-value-fails">The Precedence Trap: Why <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">Value</span> <span class="pre">&gt;</span> <span class="pre">AVG(Value)</span></code> Fails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-scalar-subqueries">The Solution: Scalar Subqueries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subquery-syntax-and-structure">Subquery Syntax and Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-study-audit-fee-benchmarking-top500-dataset">Case Study: Audit Fee Benchmarking (<code class="docutils literal notranslate"><span class="pre">Top500</span></code> Dataset)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-forensic-applications-of-scalar-subqueries">Additional Forensic Applications of Scalar Subqueries</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dynamic-date-filtering-relative-to-latest-entry">1. Dynamic Date Filtering (Relative to Latest Entry)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#low-margin-product-exception-reporting">2. Low-Margin Product Exception Reporting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-advanced-sql-reference-checklist">Summary and Advanced SQL Reference Checklist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-chapter-takeaways">Key Chapter Takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-comparison-of-advanced-sql-retrieval-techniques">Summary Comparison of Advanced SQL Retrieval Techniques</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
