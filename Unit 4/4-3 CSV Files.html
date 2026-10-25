@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CSV Files &#8212; Data Analytics for Accountants</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-3W9L1EX77X"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-3W9L1EX77X');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Unit 4/4-3 CSV Files';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Excel Under the Hood" href="4-1%20Excel%20Under%20the%20Hood.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/BookLogo.png" class="logo__image only-light" alt="Data Analytics for Accountants - Home"/>
+    <img src="../_static/BookLogo.png" class="logo__image only-dark pst-js-only" alt="Data Analytics for Accountants - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Introduction and Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 1: The Process of Analytics</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%201/1-1%20The%20Process%20of%20Analytics.html">The Process of Analytics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 2: Introduction to Databases</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-1%20A%20Company%20and%20its%20Data.html">A Company and its Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-2%20Types%20of%20Data.html">Types of Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-3%20Introduction%20to%20Databases.html">Introduction to Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-4%20Why%20Accountants%20Should%20Care%20about%20Databases.html">Why Accounting Students Should Care About Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-5%20VS%20Code%20Overview.html">Visual Studio Code Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-6%20Connecting%20to%20a%20Database.html">Connecting to a Database</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%202/2-7%20Running%20Queries%20in%20VS%20Code.html">Running Queries in VS Code</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 3: SQL</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-0%20Working%20with%20Files%20and%20Folders.html">Working with Files and Folders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-1%20Overview%20of%20SQL.html">Overview of SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-2%20The%20SQL%20SELECT%20Statement.html">The SQL SELECT Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-3%20Filtering%20Data%20with%20SQL%20WHERE.html">Filtering Data with SQL WHERE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-4%20Transforming%20Data.html">Transforming Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-5%20Sorting%20Data.html">Sorting Data with SQL ORDER BY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-6%20Merging%20Data.html">Merging Data with SQL JOINs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-7%20Grouping%20and%20Aggregating%20Data.html">Grouping and Aggregating Data with SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Unit%203/3-8%20Advanced%20SQL%20Concepts.html">Advanced SQL Concepts (COUNT DISTINCT and Subqueries)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Unit 4: Excel</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="4-0%20From%20SQL%20to%20Spreadsheets.html">From SQL to Spreadsheets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-1%20Excel%20Under%20the%20Hood.html">Excel Under the Hood</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">CSV Files</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/vanand74/Accounting-Analytics-Textbook/issues/new?title=Issue%20on%20page%20%2FUnit 4/4-3 CSV Files.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Unit 4/4-3 CSV Files.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>CSV Files</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-what-is-a-csv-file">Introduction: What is a CSV File?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-csv-files-so-popular">Why Are CSV Files So Popular?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-csv-files-work-format-and-structure">How CSV Files Work: Format and Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-of-a-clean-csv-file">Anatomy of a “Clean” CSV File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values-in-a-csv-file">Handling Missing Values in a CSV File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiters-the-comma-trap-in-accounting">Delimiters &amp; The “Comma Trap” in Accounting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-unquoted-commas-in-accounting-data">The Problem: Unquoted Commas in Accounting Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-text-enclosure-alternative-delimiters">The Solution: Text Enclosure &amp; Alternative Delimiters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-working-with-csv-files-in-a-text-editor">Exercise: Working with CSV Files in a Text Editor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-instructions">Exercise Instructions:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-you-observe-in-the-text-editor">What Do You Observe in the Text Editor?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-vs-importing-csv-files-in-excel-an-auditor-s-warning">Opening vs. Importing CSV Files in Excel: An Auditor’s Warning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-reference-checklist">Summary Reference Checklist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-chapter-takeaways">Key Chapter Takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-excel-workbook-xlsx-vs-csv-text-file-csv">Comparison: Excel Workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>) vs. CSV Text File (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="csv-files">
+<h1>CSV Files<a class="headerlink" href="#csv-files" title="Link to this heading">#</a></h1>
+<section id="introduction-what-is-a-csv-file">
+<h2>Introduction: What is a CSV File?<a class="headerlink" href="#introduction-what-is-a-csv-file" title="Link to this heading">#</a></h2>
+<p>In previous chapters, you learned how enterprise databases store tabular records in structured relational tables. However, when accountants, auditors, and financial analysts extract data from corporate Enterprise Resource Planning (ERP) systems—such as SAP, Oracle, or NetSuite—or download transaction logs from banks and regulatory portals, the data is rarely delivered as a pre-formatted Excel workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>).</p>
+<p>Instead, bulk financial data is almost universally transmitted as a <strong>CSV file</strong> (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>).</p>
+<p>CSV stands for <strong>Comma-Separated Values</strong>. A CSV file is a plain, unformatted <strong>text file</strong> used to store structured tabular data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------------------------------------------------------------------+</span>
+<span class="o">|</span>                       <span class="n">PLAIN</span> <span class="n">TEXT</span> <span class="n">CSV</span> <span class="n">FILE</span> <span class="n">STRUCTURE</span>                   <span class="o">|</span>
+<span class="o">+-----------------------------------------------------------------------+</span>
+<span class="o">|</span>  <span class="n">Date</span><span class="p">,</span><span class="n">Stock</span> <span class="n">Price</span><span class="p">,</span><span class="n">Volume</span>                                              <span class="o">|</span>
+<span class="o">|</span>  <span class="mi">10</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">2019</span><span class="p">,</span><span class="mf">113.86</span><span class="p">,</span><span class="mi">2209500</span>                                             <span class="o">|</span>
+<span class="o">|</span>  <span class="mi">10</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">2019</span><span class="p">,</span><span class="mf">115.28</span><span class="p">,</span><span class="mi">3083300</span>                                            <span class="o">|</span>
+<span class="o">|</span>  <span class="mi">10</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">2019</span><span class="p">,</span><span class="mf">116.02</span><span class="p">,</span><span class="mi">1960300</span>                                            <span class="o">|</span>
+<span class="o">+-----------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+<section id="why-are-csv-files-so-popular">
+<h3>Why Are CSV Files So Popular?<a class="headerlink" href="#why-are-csv-files-so-popular" title="Link to this heading">#</a></h3>
+<p>Despite the ubiquity of Microsoft Excel, proprietary spreadsheet formats like <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> carry complex internal XML markup, binary compression, and version compatibility constraints that make them difficult to parse across different software platforms. CSV files remain the global standard for data exchange because of three distinct advantages:</p>
+<ol class="arabic simple">
+<li><p><strong>Platform Independence:</strong> Because a CSV file is plain text, it can be opened and processed effortlessly on any operating system (Windows, macOS, Linux, Unix) and inside any software application (Excel, SQL Server, Python, R, Tableau, Power BI, or Canvas).</p></li>
+<li><p><strong>Database Ingestion &amp; Export:</strong> Database management systems can rapidly write millions of records to a CSV file or ingest a CSV file into a database table in seconds without software overhead.</p></li>
+<li><p><strong>Universal Data Transfer:</strong> When moving data between two incompatible, proprietary enterprise systems (for instance, exporting payroll records from a legacy mainframe into an external audit tool), CSV serves as the universal “lingua franca” of digital accounting.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="how-csv-files-work-format-and-structure">
+<h2>How CSV Files Work: Format and Structure<a class="headerlink" href="#how-csv-files-work-format-and-structure" title="Link to this heading">#</a></h2>
+<p>Unlike an Excel workbook—which stores cell formatting, grid lines, formulas, multiple worksheets, and embedded charts—a CSV file contains strictly raw characters.</p>
+<p>A CSV file follows a simple set of formatting rules:</p>
+<ul class="simple">
+<li><p><strong>One Line Per Row:</strong> Every line in the text file represents exactly one row (record or observation) of tabular data.</p></li>
+<li><p><strong>Commas as Column Boundaries:</strong> Within each line, individual column values are separated by a <strong>comma</strong> (<code class="docutils literal notranslate"><span class="pre">,</span></code>). The comma acts as a <strong>delimiter</strong>—a special character that marks where one column ends and the next column begins.</p></li>
+<li><p><strong>Text-Based Storage:</strong> Every number, date, and text string is written out as plain text characters.</p></li>
+</ul>
+<section id="anatomy-of-a-clean-csv-file">
+<h3>Anatomy of a “Clean” CSV File<a class="headerlink" href="#anatomy-of-a-clean-csv-file" title="Link to this heading">#</a></h3>
+<p>In financial analytics, a <strong>“clean” CSV file</strong> is one that satisfies four structural criteria:</p>
+<ol class="arabic simple">
+<li><p><strong>Header Row:</strong> The very first line of the file contains the column names (attribute headers).</p></li>
+<li><p><strong>Uniform Column Count:</strong> Every single row contains the exact same number of columns. If the dataset contains <span class="math notranslate nohighlight">\(n\)</span> columns, every line in the file must contain exactly <span class="math notranslate nohighlight">\(n - 1\)</span> commas.</p></li>
+<li><p><strong>Consistent Data Types:</strong> Every value within a given column shares the same underlying data type (e.g., all dates, all numeric amounts, or all text strings). <em>Note:</em> This rule does not apply to the first header row, which always consists of text strings.</p></li>
+<li><p><strong>Explicit Missing Values:</strong> Missing or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> entries are clearly indicated by adjacent commas without spaces between them.</p></li>
+</ol>
+</section>
+<section id="handling-missing-values-in-a-csv-file">
+<h3>Handling Missing Values in a CSV File<a class="headerlink" href="#handling-missing-values-in-a-csv-file" title="Link to this heading">#</a></h3>
+<p>Consider a stock price dataset containing dates, closing prices, and trading volumes where some days have missing volume or price entries:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Date</p></th>
+<th class="head text-left"><p>Stock Price</p></th>
+<th class="head text-left"><p>Volume</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>10/9/2019</p></td>
+<td class="text-left"><p>113.86</p></td>
+<td class="text-left"><p><em>[Missing]</em></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>10/10/2019</p></td>
+<td class="text-left"><p>115.28</p></td>
+<td class="text-left"><p>2,209,500</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>10/11/2019</p></td>
+<td class="text-left"><p><em>[Missing]</em></p></td>
+<td class="text-left"><p>3,083,300</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>10/14/2019</p></td>
+<td class="text-left"><p>115.87</p></td>
+<td class="text-left"><p>1,960,300</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When saved as a CSV file, missing values are represented simply by placing two commas side by side (<code class="docutils literal notranslate"><span class="pre">,,</span></code>) or ending a line with a trailing comma (<code class="docutils literal notranslate"><span class="pre">,</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Date</span><span class="p">,</span><span class="n">Stock</span> <span class="n">Price</span><span class="p">,</span><span class="n">Volume</span>
+<span class="mi">10</span><span class="o">/</span><span class="mi">9</span><span class="o">/</span><span class="mi">2019</span><span class="p">,</span><span class="mf">113.86</span><span class="p">,</span>
+<span class="mi">10</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="mi">2019</span><span class="p">,</span><span class="mf">115.28</span><span class="p">,</span><span class="mi">2209500</span>
+<span class="mi">10</span><span class="o">/</span><span class="mi">11</span><span class="o">/</span><span class="mi">2019</span><span class="p">,,</span><span class="mi">3083300</span>
+<span class="mi">10</span><span class="o">/</span><span class="mi">14</span><span class="o">/</span><span class="mi">2019</span><span class="p">,</span><span class="mf">115.87</span><span class="p">,</span><span class="mi">1960300</span>
+</pre></div>
+</div>
+<p>Notice that on <code class="docutils literal notranslate"><span class="pre">10/9/2019</span></code>, the trailing comma indicates that the third column (<code class="docutils literal notranslate"><span class="pre">Volume</span></code>) is missing. On <code class="docutils literal notranslate"><span class="pre">10/11/2019</span></code>, the double comma (<code class="docutils literal notranslate"><span class="pre">,,</span></code>) indicates that the second column (<code class="docutils literal notranslate"><span class="pre">Stock</span> <span class="pre">Price</span></code>) is missing.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="delimiters-the-comma-trap-in-accounting">
+<h2>Delimiters &amp; The “Comma Trap” in Accounting<a class="headerlink" href="#delimiters-the-comma-trap-in-accounting" title="Link to this heading">#</a></h2>
+<p>While commas are the default separator in CSV files, using commas to delimit fields presents a major technical challenge when the underlying accounting data itself contains natural commas!</p>
+<section id="the-problem-unquoted-commas-in-accounting-data">
+<h3>The Problem: Unquoted Commas in Accounting Data<a class="headerlink" href="#the-problem-unquoted-commas-in-accounting-data" title="Link to this heading">#</a></h3>
+<p>Consider a corporate vendor list containing legal business names and street addresses:</p>
+<ul class="simple">
+<li><p>Company Name: <code class="docutils literal notranslate"><span class="pre">Deloitte</span> <span class="pre">&amp;</span> <span class="pre">Touche,</span> <span class="pre">LLP</span></code></p></li>
+<li><p>Firm Name: <code class="docutils literal notranslate"><span class="pre">Dewey,</span> <span class="pre">Cheatem,</span> <span class="pre">and</span> <span class="pre">Howe</span></code></p></li>
+<li><p>Address: <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">Main</span> <span class="pre">Street,</span> <span class="pre">Suite</span> <span class="pre">400</span></code></p></li>
+</ul>
+<p>If an automated script exports these records into a CSV file without special handling:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VendorID</span><span class="p">,</span><span class="n">CompanyName</span><span class="p">,</span><span class="n">FirmName</span><span class="p">,</span><span class="n">Address</span>
+<span class="mi">1</span><span class="p">,</span><span class="n">Deloitte</span> <span class="o">&amp;</span> <span class="n">Touche</span><span class="p">,</span> <span class="n">LLP</span><span class="p">,</span><span class="n">Dewey</span><span class="p">,</span> <span class="n">Cheatem</span><span class="p">,</span> <span class="ow">and</span> <span class="n">Howe</span><span class="p">,</span><span class="mi">100</span> <span class="n">Main</span> <span class="n">Street</span><span class="p">,</span> <span class="n">Suite</span> <span class="mi">400</span>
+</pre></div>
+</div>
+<p>When Excel or a database engine parses this line, it counts the commas to split the line into columns. Because the line contains <strong>seven</strong> commas instead of <strong>three</strong>, the parsing engine creates <strong>eight columns</strong> instead of <strong>four</strong>!</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+-----------------------------------------------------------------------------------+
+|                        PARSING ERROR CAUSED BY UNQUOTED COMMAS                    |
++-----------------------------------------------------------------------------------+
+| Column 1 (VendorID) : 1                                                           |
+| Column 2 (CompanyName)  : Deloitte &amp; Touche                                       |
+| Column 3 (Shifted!) :  LLP                                                        |
+| Column 4 (FirmName) : Dewey                                                       |
+| Column 5 (Shifted!) :  Cheatem                                                    |
+| Column 6 (Shifted!) :  and Howe                                                   |
+| Column 7 (Shifted!) : 100 Main Street                                             |
+| Column 8 (Shifted!) :  Suite 400                                                  |
++-----------------------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>In accounting, this type of parsing error leads to severe data corruption: vendor names are chopped in half, address details spill into credit limit columns, and financial amounts shift out of alignment across the grid.</p>
+</section>
+<section id="the-solution-text-enclosure-alternative-delimiters">
+<h3>The Solution: Text Enclosure &amp; Alternative Delimiters<a class="headerlink" href="#the-solution-text-enclosure-alternative-delimiters" title="Link to this heading">#</a></h3>
+<p>Modern accounting systems handle commas inside text fields using two techniques:</p>
+<ol class="arabic">
+<li><p><strong>Text Enclosure (Double Quotes):</strong> Whenever a text field contains an internal comma, the exporting software wraps the entire text string inside <strong>double quotes</strong> (<code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>). When Excel encounters double quotes, it treats everything inside the quotes as a single text value, ignoring internal commas:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VendorID</span><span class="p">,</span><span class="n">CompanyName</span><span class="p">,</span><span class="n">FirmName</span><span class="p">,</span><span class="n">Address</span>
+<span class="mi">1</span><span class="p">,</span><span class="s2">"Deloitte &amp; Touche, LLP"</span><span class="p">,</span><span class="s2">"Dewey, Cheatem, and Howe"</span><span class="p">,</span><span class="s2">"100 Main Street, Suite 400"</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Alternative Delimiters:</strong> In international accounting or specialized data pipelines, files may use alternative characters to separate columns instead of commas:</p>
+<ul class="simple">
+<li><p><strong>Tab-Separated Values (<code class="docutils literal notranslate"><span class="pre">.tsv</span></code> or <code class="docutils literal notranslate"><span class="pre">.txt</span></code>):</strong> Uses a tab character (<code class="docutils literal notranslate"><span class="pre">\t</span></code>) between columns.</p></li>
+<li><p><strong>Semicolon-Delimited (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>):</strong> Frequently used in European financial systems where the comma is used as a decimal separator (e.g., <code class="docutils literal notranslate"><span class="pre">1.250,50</span> <span class="pre">€</span></code>).</p></li>
+<li><p><strong>Pipe-Delimited (<code class="docutils literal notranslate"><span class="pre">.txt</span></code>):</strong> Uses the vertical pipe symbol (<code class="docutils literal notranslate"><span class="pre">|</span></code>) to eliminate ambiguity in complex text fields.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="exercise-working-with-csv-files-in-a-text-editor">
+<h2>Exercise: Working with CSV Files in a Text Editor<a class="headerlink" href="#exercise-working-with-csv-files-in-a-text-editor" title="Link to this heading">#</a></h2>
+<p>To truly understand what a CSV file is, accountants must recognize that despite its green Excel icon on your computer desktop, <strong>a CSV file is NOT an Excel file.</strong></p>
+<section id="exercise-instructions">
+<h3>Exercise Instructions:<a class="headerlink" href="#exercise-instructions" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference download internal" download="" href="../_downloads/eab82c640733e4b42df7819d0029e615/UPSStockPrices.xlsx"><span class="xref download myst">Excel file containing stock price data</span></a> and open it in Microsoft Excel.</p></li>
+<li><p>Apply bold headings, dollar sign currency formatting (<code class="docutils literal notranslate"><span class="pre">$115.28</span></code>), highlighted cell fill colors, and a simple sum formula (<code class="docutils literal notranslate"><span class="pre">=SUM(...)</span></code>).</p></li>
+<li><p>Click File <span class="math notranslate nohighlight">\(\rightarrow\)</span> Save As and change the file type dropdown from <em>Excel Workbook (</em>.xlsx)* to <strong>CSV (Comma delimited) (*.csv)</strong>. Save the file as <code class="docutils literal notranslate"><span class="pre">UPS</span> <span class="pre">Stock</span> <span class="pre">Prices.csv</span></code>.</p></li>
+<li><p>Close Microsoft Excel completely.</p></li>
+<li><p>Open your desktop text editor (<strong>Notepad</strong> on Windows, <strong>TextEdit</strong> on Mac, or <strong>Visual Studio Code</strong>).</p></li>
+<li><p>Inside the text editor, open <code class="docutils literal notranslate"><span class="pre">UPS</span> <span class="pre">Stock</span> <span class="pre">Prices.csv</span></code>.</p></li>
+</ol>
+</section>
+<section id="what-do-you-observe-in-the-text-editor">
+<h3>What Do You Observe in the Text Editor?<a class="headerlink" href="#what-do-you-observe-in-the-text-editor" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>All visual formatting is gone:</strong> The dollar signs, bold headings, and fill colors have vanished.</p></li>
+<li><p><strong>All formulas are gone:</strong> If cell <code class="docutils literal notranslate"><span class="pre">B6</span></code> contained <code class="docutils literal notranslate"><span class="pre">=SUM(B2:B5)</span></code>, the text file stores only the static calculated number (e.g., <code class="docutils literal notranslate"><span class="pre">461.63</span></code>).</p></li>
+<li><p><strong>It is plain text:</strong> You can edit numbers or delete characters directly using your keyboard!</p></li>
+<li><p>Try modifying a stock price on line 5 to <code class="docutils literal notranslate"><span class="pre">1.00</span></code> and deleting a missing price on line 2 (keeping the comma). Save the file in your text editor.</p></li>
+<li><p>Re-open <code class="docutils literal notranslate"><span class="pre">UPS</span> <span class="pre">Stock</span> <span class="pre">Prices.csv</span></code> in Microsoft Excel.</p></li>
+</ul>
+<p>Notice that Excel opens the modified text file seamlessly, rendering your text edits in the grid cells!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="opening-vs-importing-csv-files-in-excel-an-auditor-s-warning">
+<h2>Opening vs. Importing CSV Files in Excel: An Auditor’s Warning<a class="headerlink" href="#opening-vs-importing-csv-files-in-excel-an-auditor-s-warning" title="Link to this heading">#</a></h2>
+<p>In corporate accounting, double-clicking a CSV file to open it in Excel feels natural, but it carries immense operational risks.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>The Auditor’s Perspective: Data Corruption Traps When Opening CSV Files</strong><br />
+When you double-click a CSV file, Microsoft Excel automatically executes its default text-parsing algorithm to guess the data type of every column. This default behavior introduces two major audit risks:</p>
+<ol class="arabic">
+<li><p><strong>Catastrophic Truncation of Leading Zeros:</strong>
+Excel assumes that any column containing only digits is a numeric value. If your dataset contains bank routing numbers, customer account IDs, ZIP codes, Federal Information Processing System (FIPS) codes, or Social Security Numbers with leading zeros (e.g., <code class="docutils literal notranslate"><span class="pre">00123456</span></code>), Excel automatically strips the leading zeros and converts the entry to the integer <code class="docutils literal notranslate"><span class="pre">123456</span></code>!</p>
+<p>In fraud investigations or bank reconciliations, losing leading zeros breaks record matching and corrupts account identifiers permanently if saved back to disk.</p>
+</li>
+<li><p><strong>Accidental Saving and Loss of Work:</strong>
+If an analyst opens a CSV file in Excel, builds complex formulas, creates Pivot Tables, or formats balance sheet headings, and then clicks <strong>Save</strong> (<code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">S</span></code>), Excel saves the file back in <code class="docutils literal notranslate"><span class="pre">.csv</span></code> format!</p>
+<p>Because <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files store only raw text, <strong>Excel silently discards all formulas, formatting, charts, and secondary worksheet tabs upon closing.</strong> When the analyst reopens the file the next morning, hours of work have disappeared.</p>
+</li>
+</ol>
+<p><strong>The Power-User Rule:</strong> Always import raw CSV files into a formal Excel Table or Power Query data model, and immediately save your working file as an <strong>Excel Workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>)</strong>.</p>
+</div>
+</section>
+<section id="summary-reference-checklist">
+<h2>Summary Reference Checklist<a class="headerlink" href="#summary-reference-checklist" title="Link to this heading">#</a></h2>
+<p>Understanding the mechanics of CSV files ensures that you can ingest, inspect, and clean raw corporate data exports without falling into data corruption traps.</p>
+<section id="key-chapter-takeaways">
+<h3>Key Chapter Takeaways<a class="headerlink" href="#key-chapter-takeaways" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>CSV Files are Plain Text:</strong> A CSV file is a platform-independent text file where lines represent rows and commas delimit columns.</p></li>
+<li><p><strong>CSV Stores Data Only:</strong> CSV files cannot store formulas, cell formatting, highlights, charts, or multiple worksheet tabs.</p></li>
+<li><p><strong>Beware of Unquoted Commas:</strong> Commas embedded inside text fields (like vendor names or addresses) cause column-shifting errors unless enclosed in double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;...&quot;</span></code>).</p></li>
+<li><p><strong>Avoid the Leading Zero Trap:</strong> Double-clicking a CSV in Excel can silently strip leading zeros from bank accounts and ID numbers. Use Excel’s Data <span class="math notranslate nohighlight">\(\rightarrow\)</span> Get Data (Power Query) import pipeline to lock ID columns as text.</p></li>
+<li><p><strong>Always Save Working Files as <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>:</strong> After importing a CSV into Excel, immediately save your file as an Excel Workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>) to preserve your formulas, tables, and analytical models.</p></li>
+</ol>
+</section>
+<section id="comparison-excel-workbook-xlsx-vs-csv-text-file-csv">
+<h3>Comparison: Excel Workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>) vs. CSV Text File (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>)<a class="headerlink" href="#comparison-excel-workbook-xlsx-vs-csv-text-file-csv" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature / Capability</p></th>
+<th class="head text-left"><p>Excel Workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>)</p></th>
+<th class="head text-left"><p>CSV Text File (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>File Type</strong></p></td>
+<td class="text-left"><p>Binary / XML Container</p></td>
+<td class="text-left"><p>Plain Text File</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Platform Compatibility</strong></p></td>
+<td class="text-left"><p>Requires Excel or compatible spreadsheet software</p></td>
+<td class="text-left"><p>Universal (Reads on any OS, software, or script)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Formulas &amp; Functions</strong></p></td>
+<td class="text-left"><p>Supported (<code class="docutils literal notranslate"><span class="pre">=SUM()</span></code>, <code class="docutils literal notranslate"><span class="pre">=XLOOKUP()</span></code>)</p></td>
+<td class="text-left"><p><strong>Not Supported</strong> (Stores static text values only)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Cell Formatting &amp; Colors</strong></p></td>
+<td class="text-left"><p>Supported (Currency, Dates, Fills, Fonts)</p></td>
+<td class="text-left"><p><strong>Not Supported</strong> (Unformatted text characters only)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Multiple Worksheets (Tabs)</strong></p></td>
+<td class="text-left"><p>Supported</p></td>
+<td class="text-left"><p><strong>Not Supported</strong> (Single table grid only)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Leading Zero Preservation</strong></p></td>
+<td class="text-left"><p>Preserved when formatted as Text</p></td>
+<td class="text-left"><p>Stripped automatically if opened by double-clicking</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Primary Accounting Role</strong></p></td>
+<td class="text-left"><p>Financial modeling, reporting, &amp; dashboarding</p></td>
+<td class="text-left"><p>Data extraction, ERP exchange, &amp; database ingestion</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jupyterbook"
+        },
+        kernelOptions: {
+            name: "jupyterbook",
+            path: "./Unit 4"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jupyterbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4-1%20Excel%20Under%20the%20Hood.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Excel Under the Hood</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-what-is-a-csv-file">Introduction: What is a CSV File?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-are-csv-files-so-popular">Why Are CSV Files So Popular?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-csv-files-work-format-and-structure">How CSV Files Work: Format and Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomy-of-a-clean-csv-file">Anatomy of a “Clean” CSV File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#handling-missing-values-in-a-csv-file">Handling Missing Values in a CSV File</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#delimiters-the-comma-trap-in-accounting">Delimiters &amp; The “Comma Trap” in Accounting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-unquoted-commas-in-accounting-data">The Problem: Unquoted Commas in Accounting Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-solution-text-enclosure-alternative-delimiters">The Solution: Text Enclosure &amp; Alternative Delimiters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-working-with-csv-files-in-a-text-editor">Exercise: Working with CSV Files in a Text Editor</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-instructions">Exercise Instructions:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-do-you-observe-in-the-text-editor">What Do You Observe in the Text Editor?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-vs-importing-csv-files-in-excel-an-auditor-s-warning">Opening vs. Importing CSV Files in Excel: An Auditor’s Warning</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-reference-checklist">Summary Reference Checklist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-chapter-takeaways">Key Chapter Takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-excel-workbook-xlsx-vs-csv-text-file-csv">Comparison: Excel Workbook (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>) vs. CSV Text File (<code class="docutils literal notranslate"><span class="pre">.csv</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr. Vic Anand, Ph.D.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
