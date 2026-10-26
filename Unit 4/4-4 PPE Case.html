@@ -469,7 +469,7 @@
 <h2>Understanding the Accounting Data: Debits vs. Credits in General Ledger Logs<a class="headerlink" href="#understanding-the-accounting-data-debits-vs-credits-in-general-ledger-logs" title="Link to this heading">#</a></h2>
 <section id="data-preview">
 <h3>Data Preview<a class="headerlink" href="#data-preview" title="Link to this heading">#</a></h3>
-<p>Download the data file by clicking <u><a class="reference download internal" download="" href="../_downloads/e475e62ef9853645f8ed89871efaf5e5/PPEdata.csv"><span class="xref download myst">this link</span></a>.</u> The data file is a CSV file that contains only one column of numbers. Each number is from a journal entry that hit the Property, Plant, and Equipment account. Following is a preview of the data, showing the first ten rows.</p>
+<p>Download the data file by clicking <u><a class="reference download internal" download="" href="../_downloads/e475e62ef9853645f8ed89871efaf5e5/PPEdata.csv"><span class="xref download myst">this link</span></a>.</u> The data file is a CSV file that contains only one column of numbers. Each number is from a journal entry that hit the Property, Plant, and Equipment account. Following is a preview of the data, showing the first five rows.</p>
 <div class="cell tag_remove-input docutils container">
 </div>
 <div class="cell tag_remove-input docutils container">
@@ -726,7 +726,7 @@ Inexperienced accountants often get confused by negative numbers in transaction 
 <ol class="arabic simple">
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">FILTER(PPE,</span> <span class="pre">PPE</span> <span class="pre">&gt;</span> <span class="pre">0)</span></code></strong>: Isolates the 718 positive additions.</p></li>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">SORT(...,</span> <span class="pre">1,</span> <span class="pre">-1)</span></code></strong>: Sorts the filtered array by column 1 in descending order (<code class="docutils literal notranslate"><span class="pre">-1</span></code> = descending; <code class="docutils literal notranslate"><span class="pre">1</span></code> = ascending).</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">TAKE(...,</span> <span class="pre">5)</span></code></strong>: Extracts the first 10 rows from the sorted array!</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">TAKE(...,</span> <span class="pre">5)</span></code></strong>: Extracts the first 5 rows from the sorted array!</p></li>
 </ol>
 <p>The result:</p>
 <div class="cell tag_remove-input docutils container">
@@ -762,7 +762,7 @@ Inexperienced accountants often get confused by negative numbers in transaction 
 <section id="data-enrichment-random-ids-and-acquisition-dates">
 <h2>Data Enrichment: Random IDs and Acquisition Dates<a class="headerlink" href="#data-enrichment-random-ids-and-acquisition-dates" title="Link to this heading">#</a></h2>
 <p>Our raw CSV file contains only a single column of monetary amounts. To perform full forensic audit analytics—such as checking monthly acquisition trends or matching entries across ledger systems—we need transaction IDs and transaction dates.</p>
-<p>Normally, transaction data will contain these attributes. However, since our data does not contain those columns, we can <em>simulate</em> them by using Excel’s random number functinos. This will help you understand how Excel handles numbers and dates.</p>
+<p>Normally, transaction data will contain these attributes. However, since our data does not contain those columns, we can <em>simulate</em> them by using Excel’s random number functions. This will help you understand how Excel handles numbers and dates.</p>
 <section id="generating-random-10-digit-transaction-ids-randbetween">
 <h3>1. Generating Random 10-Digit Transaction IDs (<code class="docutils literal notranslate"><span class="pre">RANDBETWEEN</span></code>)<a class="headerlink" href="#generating-random-10-digit-transaction-ids-randbetween" title="Link to this heading">#</a></h3>
 <p>To generate random 10-digit transaction identifiers:</p>
